@@ -27,3 +27,10 @@
     margin: auto;
     background-color: rgba(109, 114, 112, 0.294);
 }
+
+.container_list_of_town {
+    width: 90%;
+    position: relative;
+    height: 250px;
+    overflow: auto;
+}
