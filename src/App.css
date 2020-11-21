@@ -20,7 +20,14 @@ input[type="text"].searchbar {
   height: 60px;
   border: none;
   font-size: 22px;
+  border-radius: 5px;
   margin: auto;
+  text-indent: 50px;
+}
+
+input[type="text"].searchbar:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 4px #ffcb84e6 inset;
 }
 
 input[type="text"].searchbar::-webkit-input-placeholder {

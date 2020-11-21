@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function UseInputSearch(initialState) {
     const [value, setValue] = useState(initialState);
-    const handleChange = event => {
-        event.persist()
-        console.log('eveent', event.target.name);
-        setValue(prevValues => ({
-            ...prevValues,
-            [event.target.name]: event.target.value
-        })
-        )
+    const [notReload, setNotReload] = useState();
+
+    const handleChange = (event, reload) => {
+        if (typeof event === 'string' && reload) {
+            setNotReload(true)
+            setValue(event)
+        } else {
+            setNotReload(false)
+            setValue(event.target.value)
+        }
     }
-    return { handleChange, value }
+    return { handleChange, value, setValue, notReload }
 }

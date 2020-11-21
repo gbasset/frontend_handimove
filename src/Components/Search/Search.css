@@ -32,5 +32,22 @@
     width: 90%;
     position: relative;
     height: 250px;
+}
+
+.container_list_of_town ul {
+    width: 40%;
+    height: auto;
+    max-height: 80%;
+    margin: 0px 0px 0px 55px;
+    background-color: #b3b3b34f;
+    color: #ffcb84e6;
     overflow: auto;
+}
+
+.container_list_of_town ul li {
+    list-style-type: none;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-align: left;
 }
