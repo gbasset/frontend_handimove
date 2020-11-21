@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import UseFetch from '../../Hooks/UseFetch'
 import { StatusAlertService } from 'react-status-alert'
-export default function ResultsOfSearchContainer({ townList, setTownList, handleChange, setResults }) {
+export default function ResultsOfSearchContainer({ townList, setTownList, handleChange, setResults, searchType }) {
 
 
     const { status, data, fetchData } = UseFetch();
@@ -15,7 +15,7 @@ export default function ResultsOfSearchContainer({ townList, setTownList, handle
     }
     useEffect(() => {
         if (idOfSearchElement) {
-            fetchData(`/search/establishment/town/${idOfSearchElement}`)
+            fetchData(`/search/establishment/${searchType}/${idOfSearchElement}`)
         }
     }, [idOfSearchElement])
     useEffect(() => {

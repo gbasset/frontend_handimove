@@ -11,16 +11,18 @@ export default function Search() {
     const { value, handleChange, notReload } = UseInputSearch(INITIAL_STATE);
     const { status, data, fetchData } = UseFetch();
     const [url, setUrl] = useState("searchby/town/")
-    const [townList, setTownList] = useState([])
+    const [listOfSites, setListOfStites] = useState([])
     const [results, setResults] = useState()
+    const [searchType, setSearchType] = useState('department')
     console.log('INITIAL_STATE', value);
-    console.log('townList', townList);
+    console.log('townList', listOfSites);
+
     useEffect(() => {
         const timer = setTimeout(() => {
             if (value.length !== 0 && !notReload) {
-                fetchData(url + value)
+                fetchData(`searchby/${searchType}/${value}`)
             } else {
-                setTownList([])
+                setListOfStites([])
             }
         }, 800)
         return () => {
@@ -29,25 +31,48 @@ export default function Search() {
     }, [value])
     useEffect(() => {
         if (data) {
-            setTownList(data)
+            setListOfStites(data)
         }
     }, [data])
 
-
+    const onChangeFunction = (e) => {
+        handleChange('', true)
+        setSearchType(e.target.value)
+    }
+    const searchTypeList = [
+        {
+            value: 'town',
+            label: 'Ville',
+            placeholder: 'Cherchez une ville'
+        },
+        {
+            value: 'department',
+            label: 'Departement',
+            placeholder: 'Cherchez un departement'
+        },
+        {
+            value: 'regions',
+            label: 'Region',
+            placeholder: 'Cherchez une region'
+        },
+    ]
     return (
         <div className="search_container">
             <div className="search_header">
                 <section>
-                    <h1>Rechercher</h1>
+                    <h1>Rechercher des etablissements</h1>
                     <InputSearch
                         name="town"
                         onChangeValue={(e) => handleChange(e)}
                         valueInSearchBar={value}
-                        placeholder="Chercher une ville"
+                        placeholder={searchTypeList.filter(elem => elem.value === searchType)[0].placeholder}
+                        searchType={searchType}
+                        onChangeFunction={(e) => onChangeFunction(e)}
                     />
                     <ResultsOfSearchContainer
-                        townList={townList}
-                        setTownList={(e) => setTownList(e)}
+                        searchType={searchType}
+                        townList={listOfSites}
+                        setTownList={(e) => setListOfStites(e)}
                         setResults={(e) => setResults(e)}
                         handleChange={(e, elem) => handleChange(e, elem)}
                     />
