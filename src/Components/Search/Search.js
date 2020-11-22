@@ -5,33 +5,41 @@ import UseInputSearch from '../../Hooks/UseInputSearch'
 import UseFetch from '../../Hooks/UseFetch'
 import { StatusAlertService } from 'react-status-alert'
 import ResultsOfSearchContainer from './ResultsOfSearchContainer';
+import EstablishmentCardContainer from './../UI/EstablishmentCardContainer';
+import Loader from 'react-loader-spinner'
 
 export default function Search() {
     const INITIAL_STATE = ""
     const { value, handleChange, notReload } = UseInputSearch(INITIAL_STATE);
     const { status, data, fetchData } = UseFetch();
-    const [url, setUrl] = useState("searchby/town/")
     const [listOfSites, setListOfStites] = useState([])
     const [results, setResults] = useState()
     const [searchType, setSearchType] = useState('department')
-    console.log('INITIAL_STATE', value);
-    console.log('townList', listOfSites);
+    const [naturOfSearch, setNatureOfSearch] = useState('establishment')
+    const [noDataFound, setNoDataFound] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         const timer = setTimeout(() => {
+            setNoDataFound(false)
             if (value.length !== 0 && !notReload) {
                 fetchData(`searchby/${searchType}/${value}`)
             } else {
                 setListOfStites([])
             }
-        }, 800)
+        }, 500)
         return () => {
             clearTimeout(timer);
         }
     }, [value])
     useEffect(() => {
         if (data) {
-            setListOfStites(data)
+            if (data.length !== 0) {
+                setListOfStites(data)
+                setNoDataFound(false)
+            } else {
+                setNoDataFound(true)
+            }
         }
     }, [data])
 
@@ -39,30 +47,44 @@ export default function Search() {
         handleChange('', true)
         setSearchType(e.target.value)
     }
+    useEffect(() => {
+        handleChange('', true)
+        setResults()
+    }, [naturOfSearch])
     const searchTypeList = [
         {
             value: 'town',
             label: 'Ville',
-            placeholder: 'Cherchez une ville'
+            placeholder: 'Chercher une ville'
         },
         {
             value: 'department',
             label: 'Departement',
-            placeholder: 'Cherchez un departement'
+            placeholder: 'Chercher un departement'
         },
         {
             value: 'regions',
             label: 'Region',
-            placeholder: 'Cherchez une region'
+            placeholder: 'Chercher une region'
         },
     ]
+    console.log("status", status);
     return (
         <div className="search_container">
             <div className="search_header">
                 <section>
-                    <h1>Rechercher des etablissements</h1>
+                    <div className="btn_type_of_search_container">
+                        <button className={naturOfSearch === "establishment" ? "isActive_btn" : ""}
+                            onClick={(e) => setNatureOfSearch('establishment')}
+                        > Etablissements</button>
+                        <button className={naturOfSearch === "events" ? "isActive_btn" : ""}
+                            onClick={(e) => setNatureOfSearch('events')}> Evénements</button>
+                    </div>
+                    <div className="search_title">
+                        <h1>Rechercher des {naturOfSearch === "events" ? "événements" : "établissements"}</h1>
+                    </div>
                     <InputSearch
-                        name="town"
+                        name="site"
                         onChangeValue={(e) => handleChange(e)}
                         valueInSearchBar={value}
                         placeholder={searchTypeList.filter(elem => elem.value === searchType)[0].placeholder}
@@ -70,19 +92,43 @@ export default function Search() {
                         onChangeFunction={(e) => onChangeFunction(e)}
                     />
                     <ResultsOfSearchContainer
+                        noDataFound={noDataFound}
                         searchType={searchType}
-                        townList={listOfSites}
-                        setTownList={(e) => setListOfStites(e)}
+                        naturOfSearch={naturOfSearch}
+                        listOfSites={listOfSites}
+                        setListOfStites={(e) => setListOfStites(e)}
                         setResults={(e) => setResults(e)}
+                        setIsLoading={(e) => setIsLoading(e)}
                         handleChange={(e, elem) => handleChange(e, elem)}
                     />
+                    {
+                        isLoading &&
+                        <Loader
+                            type="TailSpin"
+                            color="#ffd0ad"
+                            height={100}
+                            width={100}
+                            timeout={3000}
+                        />
+                    }
                 </section>
             </div>
             <div>
                 <h1>Résultats</h1>
-                {results && results.map(x =>
-                    <div>Nom : {x.name}   - Ville : {x.town}</div>
-                )}
+                <div className="establishment_list">
+
+                    {results && results.map((x, i) =>
+                        <EstablishmentCardContainer
+                            data={x}
+                            key={i}
+                        />
+
+                    )}
+                    {
+                        results && results.length === 0 &&
+                        <> Nous n'avons pas de résultats pour cette recherche </>
+                    }
+                </div>
             </div>
         </div>
     )

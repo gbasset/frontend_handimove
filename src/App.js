@@ -39,12 +39,6 @@ function App() {
 
         </Switch>
         {/* <Header /> */}
-        {
-          status === "fetching" &&
-          <> Fetching bitch </>
-        }
-
-
       </div>
     </BrowserRouter>
   );

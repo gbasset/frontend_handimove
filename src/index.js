@@ -9,6 +9,8 @@ import AboutUs from './Components/AboutUs/AboutUs';
 import Header from './Components/Header/Header'
 import StatusAlert, { StatusAlertService } from 'react-status-alert'
 import 'react-status-alert/dist/status-alert.css'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+
 // axios.interceptors.request.use(request => {
 //   console.log(request);
 

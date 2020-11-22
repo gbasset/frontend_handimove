@@ -11,7 +11,6 @@ export default function useFetch() {
         axios.get(url)
             .then(res => {
                 setStatus('fetched');
-                console.log("res", res);
                 // StatusAlertService.showSuccess(res.request.responseText)
                 setData(res.data);
             })
@@ -19,7 +18,6 @@ export default function useFetch() {
                 StatusAlertService.showError(error.message)
             })
     }
-
     return { status, data, fetchData, setData }
 };
 

@@ -19,21 +19,26 @@ export default function InputSearch({ onChangeValue, valueInSearchBar, placehold
     return (
         <div className="search_bar_container">
             <i className="fa fa-search"></i>
-            <input className="searchbar" type="text"
-                name={name}
-                onChange={onChangeValue}
-                value={valueInSearchBar}
-                placeholder={placeholder}
-            />
-            <select
-                name="typeOfSearch"
-                value={searchType}
-                onChange={onChangeFunction}
-            >
-                {searchTypeList.map((elem, i) =>
-                    <option value={elem.value}>{elem.label}</option>
-                )}
-            </select>
+            <div>
+                <input className="searchbar" type="text"
+                    name={name}
+                    onChange={onChangeValue}
+                    value={valueInSearchBar}
+                    placeholder={placeholder}
+                />
+                <span className="search_type_selection">
+                    <select
+                        name="typeOfSearch"
+                        value={searchType}
+                        onChange={onChangeFunction}
+                    >
+                        {searchTypeList.map((elem, i) =>
+                            <option key={i} value={elem.value}>{elem.label}</option>
+                        )}
+                    </select>
+                </span>
+
+            </div>
         </div>
     )
 }

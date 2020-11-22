@@ -22,7 +22,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 90%;
     margin: auto;
     background-color: rgba(109, 114, 112, 0.294);
@@ -50,4 +50,75 @@
     font-size: 18px;
     margin-bottom: 5px;
     text-align: left;
+    cursor: pointer;
+}
+
+.container_list_of_town ul li:hover {
+    color: #ffd0ad;
+}
+
+.btn_type_of_search_container {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    margin: 0px auto;
+}
+
+.btn_type_of_search_container button {
+    width: 50%;
+    font-weight: bold;
+    font-size: 25px;
+    background-color: #b3b3b314;
+    line-height: 1.125;
+    outline: none;
+    border-width: 2px;
+    border-style: none;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: none;
+    cursor: pointer;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.btn_type_of_search_container button:active {
+    outline: none;
+    border-style: none;
+}
+
+.btn_type_of_search_container button:focus {
+    outline: none;
+    border-style: none;
+}
+
+.btn_type_of_search_container button:hover {
+    background-color: #ffd090;
+    color: #fff;
+}
+
+.isActive_btn {
+    border-bottom: 3px solid #ffd0ad !important;
+    color: #fff;
+}
+
+.search_title {
+    height: 50px;
+    width: 30%;
+    line-height: 11px;
+    padding: 5px;
+    color: #ffd4b3;
+    border-radius: 8px;
+    background-color: #8585854a;
+}
+
+.establishment_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+    .search_container section {
+        width: 100%;
+    }
 }

@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import UseFetch from '../../Hooks/UseFetch'
 import { StatusAlertService } from 'react-status-alert'
-export default function ResultsOfSearchContainer({ townList, setTownList, handleChange, setResults, searchType }) {
-
+export default function ResultsOfSearchContainer({ listOfSites, setListOfStites, handleChange, setResults, searchType, naturOfSearch, noDataFound, setIsLoading }) {
 
     const { status, data, fetchData } = UseFetch();
     const [idOfSearchElement, setIdOfSearchElement] = useState()
@@ -11,28 +10,51 @@ export default function ResultsOfSearchContainer({ townList, setTownList, handle
     const clickOnTown = (e) => {
         handleChange(e, true)
         setIdOfSearchElement(e)
-        setTownList()
+        setListOfStites()
     }
     useEffect(() => {
         if (idOfSearchElement) {
-            fetchData(`/search/establishment/${searchType}/${idOfSearchElement}`)
+            setIsLoading(true)
+            if (naturOfSearch === "events") {
+                fetchData(`/events/${searchType}/${idOfSearchElement}`)
+            } else {
+                fetchData(`/search/establishment/${searchType}/${idOfSearchElement}`)
+            }
         }
     }, [idOfSearchElement])
     useEffect(() => {
         if (data) {
-            setResults(data)
+            setIsLoading(false)
+            console.log("data", data);
+            if (data.length !== 0) {
+                StatusAlertService.showSuccess(`Nous avons trouvé ${data.length} résultats pour votre recherche `)
+                setResults(data)
+            } else {
+                StatusAlertService.showWarning(`Nous n'avons pas de résultats pour votre recherche `)
+                setResults(data)
+            }
         }
     }, [data])
-
+    console.log("searchType", searchType);
     return (
         <div className="container_list_of_town">
             <ul>
-                {townList && townList.map((town, i) =>
-                    <li
-                        key={i}
-                        onClick={(e) => clickOnTown(town.name)}
-                    > {town.name} - {town.zipcode} </li>
-                )}
+                {
+                    !noDataFound ?
+                        <>
+                            {listOfSites && listOfSites.map((site, i) =>
+                                <li
+                                    key={i}
+                                    onClick={(e) => clickOnTown(site.name)}
+                                > {site.name}
+                                    {searchType === 'town' && <> - {site.zipcode} </>}
+
+                                </li>
+                            )}
+                        </>
+                        :
+                        <li>Il n'y a pas de résults pour cette recherche, veuillez verifier l'orthographe</li>
+                }
             </ul>
         </div>
     )
