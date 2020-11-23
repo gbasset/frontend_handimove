@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import './Search.css'
 import InputSearch from './../UI/InputSearch';
 import UseInputSearch from '../../Hooks/UseInputSearch'
@@ -7,6 +7,7 @@ import { StatusAlertService } from 'react-status-alert'
 import ResultsOfSearchContainer from './ResultsOfSearchContainer';
 import EstablishmentCardContainer from './../UI/EstablishmentCardContainer';
 import Loader from 'react-loader-spinner'
+import { Context } from '../../Context/Context'
 
 export default function Search() {
     const INITIAL_STATE = ""
@@ -68,7 +69,11 @@ export default function Search() {
             placeholder: 'Chercher une region'
         },
     ]
-    console.log("status", status);
+    const {
+        locationUrl,
+        setLocationUrl
+    } = useContext(Context)
+    console.log("locationUrl", locationUrl);
     return (
         <div className="search_container">
             <div className="search_header">

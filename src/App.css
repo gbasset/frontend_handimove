@@ -91,3 +91,39 @@ input[type="text"].searchbar::-webkit-input-placeholder {
     right: 34%;
   }
 }
+
+.listbox {
+  margin: 0;
+  color: #212529;
+  font-size: 14px;
+}
+
+.listbox li {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  list-style-image: none;
+  list-style-type: none;
+}
+
+.listbox .item {
+  display: block;
+  border: none;
+  line-height: 1.3em;
+  padding: .5em 2em .5em 1em;
+  margin: 0;
+  color: #222;
+  overflow: hidden;
+  word-break: normal;
+  white-space: nowrap;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.listbox .item:focus, .listbox .item:hover {
+  background-color: #eee;
+  text-decoration: none;
+}
