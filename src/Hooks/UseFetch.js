@@ -18,6 +18,19 @@ export default function useFetch() {
                 StatusAlertService.showError(error.message)
             })
     }
-    return { status, data, fetchData, setData }
+    const postData = async (url, postValue) => {
+        if (!url) return;
+        setStatus('fetching');
+        axios.post(url, postValue)
+            .then(res => {
+                setStatus('fetched');
+                // StatusAlertService.showSuccess(res.request.responseText)
+                setData(res.data);
+            })
+            .catch(error => {
+                StatusAlertService.showError(error.message)
+            })
+    }
+    return { status, data, fetchData, setData, postData }
 };
 

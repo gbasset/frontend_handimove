@@ -1,0 +1,31 @@
+.auth_container {
+    margin-top: 75px;
+}
+
+.poppin {
+    position: fixed;
+    top: 25%;
+    left: -webkit-calc(50% - 235px);
+    left: -moz-calc(50% - 235px);
+    left: calc(50% - 235px);
+    overflow: hidden;
+    width: 470px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #FAFAFA;
+    -webkit-box-shadow: 0 3px 11px 0 rgba(74, 74, 74, .36);
+    -moz-box-shadow: 0 3px 11px 0 rgba(74, 74, 74, .36);
+    box-shadow: 0 3px 11px 0 rgba(74, 74, 74, .36);
+}
+
+.poppin form {
+    display: flex;
+    flex-direction: column;
+}
+
+.connexionform .popin form {
+    display: flex;
+    flex-direction: column;
+    padding: 6% 16% 6%;
+}

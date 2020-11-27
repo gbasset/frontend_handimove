@@ -70,10 +70,9 @@ export default function Search() {
         },
     ]
     const {
-        locationUrl,
-        setLocationUrl
+        user
     } = useContext(Context)
-    console.log("locationUrl", locationUrl);
+    console.log("user", user);
     return (
         <div className="search_container">
             <div className="search_header">

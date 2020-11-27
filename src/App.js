@@ -11,6 +11,7 @@ import User from './Components/Admin/User';
 import Events from './Components/Events/Events';
 import Search from './Components/Search/Search';
 import Help from './Components/Help/Help';
+import AuthenticationContainer from './Components/Auth/AuthenticationContainer';
 function App() {
 
   const { status, data, fetchData } = UseFetch();
@@ -32,6 +33,7 @@ function App() {
         <Switch >
           <Route exact path="/" component={Home} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/authentication" component={AuthenticationContainer} />
           <Route exact path="/about" component={AboutUs} />
           <Route exact path="/user" component={User} />
           {/* <Route exact path="/events" component={Events} /> */}

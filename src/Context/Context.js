@@ -4,14 +4,14 @@ export const Context = createContext()
 
 const ContextProvider = (props) => {
 
-    const [locationUrl, setLocationUrl] = useState('ici')
+    const [user, setUser] = useState()
 
 
 
     return (
         <Context.Provider value={{
-            locationUrl,
-            setLocationUrl
+            user,
+            setUser
         }}>
             {props.children}
         </Context.Provider>

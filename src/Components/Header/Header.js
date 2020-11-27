@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Switch, Link, NavLink, Redirect, withRouter } from 'react-router-dom';
 import './Header.css'
 import menuIco from './Menuico.svg'
 import croix from './Croix.svg'
 import Dropdown from './../UI/Dropdown';
-function Header() {
+import { Context } from '../../Context/Context'
 
+function Header() {
+    const {
+        user,
+        setUser
+    } = useContext(Context)
+    console.log("user", user);
     const [menu, showMenu] = useState(false);
     const [smallScreen, setSmallScreen] = useState(false);
     const [oppenMenuAccount, setMenuOppen] = useState(false)
@@ -99,25 +105,38 @@ function Header() {
                             onClick={() => { setMenuOppen(!oppenMenuAccount); hideMenu() }}
                             className="lienNav"
                             title='mon compte'>
-                            <NavLink to={
+                            {/* <NavLink to={
                                 {
                                     pathname: "/user"
                                 }}
                                 activeStyle={{ color: "#ffcb84e6" }}
-                            >Mon Compte</NavLink>
+                            >Mon Compte</NavLink> */}
+                            Mon Compte
                         </li>
                         <Dropdown isOpen={oppenMenuAccount}>
                             <ul className="listbox">
-                                <li>
-                                    <NavLink onClick={() => setMenuOppen(!oppenMenuAccount)} className="item" exact to="/creation">
-                                        Me connecter
+                                {!user &&
+                                    <li>
+                                        <NavLink onClick={() => setMenuOppen(!oppenMenuAccount)} className="item" exact to="/authentication">
+                                            Me connecter
                                     </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink onClick={() => setMenuOppen(!oppenMenuAccount)} className="item" exact to="/creationSimplify">
-                                        Mon Compte
+                                    </li>
+                                }
+                                {user &&
+                                    <li>
+                                        <NavLink onClick={() => { setMenuOppen(!oppenMenuAccount); setUser() }} className="item" to="/authentication" >
+                                            Me deconnecter
                                     </NavLink>
-                                </li>
+                                    </li>
+                                }
+                                {
+                                    user &&
+                                    <li>
+                                        <NavLink onClick={() => setMenuOppen(!oppenMenuAccount)} className="item" exact to="/user">
+                                            Mon Compte
+                                    </NavLink>
+                                    </li>
+                                }
                             </ul>
                         </Dropdown>
                     </ul>
