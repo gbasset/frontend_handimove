@@ -5,6 +5,7 @@ import { StatusAlertService } from 'react-status-alert'
 export default function useFetch() {
     const [status, setStatus] = useState('');
     const [data, setData] = useState();
+    const [error, setError] = useState();
     const fetchData = async (url, submit) => {
         if (!url) return;
         setStatus('fetching');
@@ -15,7 +16,8 @@ export default function useFetch() {
                 setData(res.data);
             })
             .catch(error => {
-                StatusAlertService.showError(error.message)
+                StatusAlertService.showError(error.response.data)
+                setError(error.response.data)
             })
     }
     const postData = async (url, postValue) => {
@@ -28,9 +30,10 @@ export default function useFetch() {
                 setData(res.data);
             })
             .catch(error => {
-                StatusAlertService.showError(error.message)
+                StatusAlertService.showError(error.response.data)
+                setError(error.response.data)
             })
     }
-    return { status, data, fetchData, setData, postData }
+    return { status, data, error, setError, fetchData, setData, postData }
 };
 

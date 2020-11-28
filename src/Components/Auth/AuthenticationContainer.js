@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from '../../Context/Context'
 import './AuthenticationContainer.css'
 import UseFetch from '../../Hooks/UseFetch'
+import { Switch, Link, NavLink, Redirect, withRouter } from 'react-router-dom';
 import { StatusAlertService } from 'react-status-alert'
 export default function AuthenticationContainer() {
     const {
@@ -14,11 +15,12 @@ export default function AuthenticationContainer() {
     })
     const [isClick, setIsClick] = useState(false)
 
-    const { status, data, postData } = UseFetch();
+    const { status, error, setError, data, postData } = UseFetch();
     console.log("resultForm", resultForm);
     const handleChangeForm = (e) => {
         let prevState = { ...resultForm }
         prevState[e.target.name] = e.target.value
+        setError()
         setResultForm(prevState)
     }
     useEffect(() => {
@@ -40,8 +42,8 @@ export default function AuthenticationContainer() {
             <h1>Authentication</h1>
             <div className="poppin">
                 <h1>Hello</h1>
-                <form className="">
-                    <label for="">
+                <form className="mail">
+                    <label htmlFor="">
                         <i className="fa fa-envelope"></i>
                         <input
                             type="email"
@@ -52,7 +54,7 @@ export default function AuthenticationContainer() {
                         />
 
                     </label>
-                    <label for="">
+                    <label htmlFor="password">
                         <i className="fa fa-lock"></i>
                         <input type="password"
                             name="password"
@@ -64,21 +66,38 @@ export default function AuthenticationContainer() {
                     <div className="spinner ng-hide" ng-show="LoadingProcess">
                         <div className="rect1"></div> <div className="rect2"></div> <div className="rect3"></div> <div className="rect4"></div> <div className="rect5"></div>
                     </div>
-                    <input
-                        type="hidden"
-                        name="connexionform"
-                        value="true" />
-                    <p className="login-error-message ng-hide">Your credentials are invalid. Please try again.</p>
+                    {
+                        error && <>
+                            <input
+                                type="hidden"
+                                name="connexionform"
+                                value="true" />
+                            <p className="login-error-message">{error}</p>
+                        </>
+                    }
                     <button
                         type="submit"
                         className="btt-second btt-blue"
                         onClick={(e) => { e.preventDefault(); setIsClick(true) }}
                     >Log In</button>
-                    <a href="/RecoverPassword">I have forgotten my password.</a>
+                    <NavLink to={
+                        {
+                            pathname: "/changePassword"
+                        }}
+                        activeStyle={{ color: "#ffcb84e6" }}
+                    >J'ai oublié mon Mot de passe</NavLink>
+
                 </form>
                 <div className="signup">
-                    <p>I do not have any account yet.</p>
-                    <button className="btt-second"><a href="/SignUp">Create a new account</a></button>
+                    <p>Je n'ai pas encore de compte</p>
+                    <button className="btt-second">
+                        <NavLink to={
+                            {
+                                pathname: "/register"
+                            }}
+                            activeStyle={{ color: "#ffcb84e6" }}
+                        >Créer un compte</NavLink>
+                    </button>
                 </div>
             </div>
         </div>
