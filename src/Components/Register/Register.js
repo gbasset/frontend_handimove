@@ -10,16 +10,17 @@ export default function Register() {
         user,
         setUser
     } = useContext(Context)
-    const { value, handleChange, notReload } = UseInputSearch({ town: "" });
+    const { value, handleChange, notReload } = UseInputSearch("");
     const { status, data, fetchData } = UseFetch();
     const [listOfSites, setListOfStites] = useState([])
     const [noDataFound, setNoDataFound] = useState(false)
+    const [idOfSearchElement, setIdOfSearchElement] = useState()
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setNoDataFound(false)
             if (value.length !== 0 && !notReload) {
-                fetchData(`/town//${value}`)
+                fetchData(`searchby/town/${value}`)
             } else {
                 setListOfStites([])
             }
@@ -28,6 +29,24 @@ export default function Register() {
             clearTimeout(timer);
         }
     }, [value])
+    useEffect(() => {
+        if (data) {
+            if (data.length !== 0) {
+                setListOfStites(data)
+                setNoDataFound(false)
+            } else {
+                setNoDataFound(true)
+            }
+        }
+    }, [data])
+
+    const clickOnTown = (e) => {
+        handleChange(e, true)
+        setIdOfSearchElement(e)
+        setListOfStites()
+    }
+    console.log("data", data);
+    console.log("value", value);
     return (
         <div className="register-container">
             <h1>Bienvenue parmis nous ! </h1>
@@ -43,7 +62,29 @@ export default function Register() {
                 </div>
                 <div className="container-input">
                     <label htmlFor="name">Votre ville</label>
-                    <input type="text" />
+                    <input
+                        type="text"
+                        name="town"
+                        value={value}
+                        onChange={(e) => handleChange(e)}
+                    />
+                    <div className={listOfSites && listOfSites.length ? "container_list_of_town" : ""}>
+                        <ul>
+                            {!noDataFound ?
+                                <>
+                                    {listOfSites && listOfSites.map((site, i) =>
+                                        <li
+                                            key={i}
+                                            onClick={(e) => clickOnTown(site.name)}
+                                        > {site.name} -  {site.zipcode}
+                                        </li>
+                                    )}
+                                </>
+                                :
+                                <li>Il n'y a pas de résults pour cette recherche, veuillez verifier l'orthographe</li>
+                            }
+                        </ul>
+                    </div>
                 </div>
                 <div className="container-input">
                     <label htmlFor="name">Choisissez un mot de passe</label>
@@ -60,6 +101,6 @@ export default function Register() {
             </form>
 
 
-        </div>
+        </div >
     )
 }
