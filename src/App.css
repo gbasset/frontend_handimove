@@ -127,6 +127,10 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   border-radius: 6px;
 }
 
+.btnUI:hover {
+  box-shadow: 0px 0px 0px 4px #ffcb84e6 inset;
+}
+
 @media screen and (max-width: 900px) {
   .search_type_selection select {
     font-size: 15px;
