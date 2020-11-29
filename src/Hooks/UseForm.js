@@ -4,10 +4,13 @@ export default function UseInputSearch(initialState) {
     const [valueForm, setValueForm] = useState(initialState);
 
     const handleChangeForm = (event) => {
-        const newElementToChange = initialState
-        newElementToChange[event.target.name] = event.target.value
-        console.log("newElementToChange", newElementToChange);
-        setValueForm(newElementToChange)
+
+        event.persist()
+        setValueForm(prevValues => ({
+            ...prevValues,
+            [event.target.name]: event.target.value
+        })
+        )
     }
     return { handleChangeForm, valueForm, setValueForm }
 }

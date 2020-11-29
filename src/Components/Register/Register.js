@@ -16,6 +16,7 @@ export default function Register() {
         mail: "",
         town: "",
         password: "",
+        password_validate: "",
         question: "",
         response_question: ""
     })
@@ -24,6 +25,7 @@ export default function Register() {
     const { handleChangeForm, valueForm, setValueForm } = UseForm(profil);
     const [listOfSites, setListOfStites] = useState([])
     const [noDataFound, setNoDataFound] = useState(false)
+    const [passwordCrypt, setPasswordCrypt] = useState("")
     const [idOfSearchElement, setIdOfSearchElement] = useState()
 
     console.log("valueForm", valueForm);
@@ -35,7 +37,7 @@ export default function Register() {
             } else {
                 setListOfStites([])
             }
-        }, 200)
+        }, 100)
         return () => {
             clearTimeout(timer);
         }
@@ -55,7 +57,6 @@ export default function Register() {
     }, [valueForm])
 
     const clickOnTown = (e, name) => {
-        console.log("e", e);
         handleChange(e, false, name)
         setIdOfSearchElement(e)
         setListOfStites()
@@ -65,14 +66,52 @@ export default function Register() {
         newElementToChange.town = idOfSearchElement
         setValueForm(newElementToChange)
     }, [idOfSearchElement])
-    const changeTheTownId = () => {
+    const changeTheTownId = (e) => {
         const newElementToChange = profil
-        newElementToChange.town = ""
+        newElementToChange.town = undefined
         setValueForm(newElementToChange)
         setNameSite()
     }
-    console.log("value", value);
+    function validateEmail(email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+    function checkIfFormIsValid(e, form) {
+        e.preventDefault()
 
+        if (validateEmail(profil.mail) && profil.name.length > 0 && profil.town.length > 0 && profil.question.length > 0 && profil.response_question
+            //  && validatePassWord(profil.password)
+        ) {
+            // setIsNotValid([])
+            // setIsRealoading(true)
+            //     const subscriber = {
+            //         subscriber: formData
+            //     }
+            //     putTheAccountPromoCode(accountId, subscriber, e => {
+            //         setApiKeyIsCreated(e.config.apiSubscriptionKey)
+            //         setIsRealoading(false)
+            //         getAccountConfiguration()
+            //         setIsCreationMode(false)
+            //     },
+            //         e => {
+            //             setIsRealoading(false)
+            //         })
+            // } else {
+            //     let newArrayOfErrors = []
+            //     if (!validateEmail(formData.email)) {
+            //         newArrayOfErrors.push('email')
+            //     }
+            //     if (!form.firstName.length > 0) {
+            //         newArrayOfErrors.push('firstName')
+            //     }
+            //     if (!form.lastName.length > 0) {
+            //         newArrayOfErrors.push('lastName')
+            //     }
+            //     setIsNotValid(newArrayOfErrors)
+            // }
+        }
+    }
+    console.log("profil", profil);
     return (
         <div className="register-container">
             <h1>Bienvenue parmis nous ! </h1>
@@ -84,6 +123,7 @@ export default function Register() {
                         type="text"
                         name="name"
                         onChange={(e) => handleChangeForm(e)}
+                        value={profil.name}
                     />
                 </div>
                 <div className="container-input">
@@ -92,6 +132,7 @@ export default function Register() {
                         type="mail"
                         name="mail"
                         onChange={(e) => handleChangeForm(e)}
+                        value={profil.mail}
                     />
                 </div>
                 <div className="container-input">
@@ -99,10 +140,13 @@ export default function Register() {
                     <input
                         type="text"
                         name="town"
-                        value={nameSite}
-                        onChange={(e) => { handleChange(e); changeTheTownId() }}
+                        value={nameSite ? nameSite : value}
+                        onChange={(e) => { handleChange(e); changeTheTownId(e) }}
                     />
-                    {/* <div>{`Nous ne trouvons pas cette ville, veuillez recommencer`}</div> */}
+                    {
+                        profil.town === undefined &&
+                        <div>Nous ne trouvons pas cette ville, veuillez recommencer</div>
+                    }
                     <div className={listOfSites && listOfSites.length ? "container_list_of_town_register" : "displayNone"}>
                         <ul>
                             {!noDataFound ?
@@ -125,23 +169,47 @@ export default function Register() {
                 <div className="container-input">
                     <label htmlFor="password">Choisissez un mot de passe</label>
                     <input
-                        type="text"
                         name="password"
+                        value={profil.password}
+                        type="password"
+                        onChange={(e) => handleChangeForm(e)}
                     />
                 </div>
                 <div className="container-input">
-                    <label htmlFor="pass_validate">Valider votre mot de passe</label>
-                    <input type="password" />
+                    <label htmlFor="password_validate">Valider votre mot de passe</label>
+                    <input
+                        type="password"
+                        name="password_validate"
+                        value={profil.password_validate}
+                        onChange={(e) => handleChangeForm(e)}
+                    />
                 </div>
                 <div className="container-input">
                     <label htmlFor="question">Question secrète</label>
-                    <input type="text" />
+                    <input
+                        type="text"
+                        name="question"
+                        value={profil.question}
+                        onChange={(e) => handleChangeForm(e)}
+                    />
                 </div>
                 <div className="container-input">
                     <label htmlFor="response_question">Réponse question secrète</label>
-                    <input type="text" />
+                    <input
+                        type="text"
+                        name="response_question"
+                        value={profil.response_question}
+                        onChange={(e) => handleChangeForm(e)}
+                    />
                 </div>
-                <button>Valider</button>
+                <div className="container-btn-validate-register">
+                    <button
+                        className="btnUI"
+                        onClick={(e) => checkIfFormIsValid(e, profil)}
+                    >
+                        Valider
+                            </button>
+                </div>
             </form>
 
 

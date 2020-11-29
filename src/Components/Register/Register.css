@@ -67,3 +67,8 @@
 .container_list_of_town_register ul li:hover {
     color: #ffd0ad;
 }
+
+.container-btn-validate-register {
+    margin: 15px auto;
+    width: 100%;
+}
