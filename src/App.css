@@ -127,3 +127,7 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   background-color: #eee;
   text-decoration: none;
 }
+
+.displayNone {
+  display: none;
+}
