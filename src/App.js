@@ -26,12 +26,12 @@ function App() {
 
   const checkIfTokenExist = () => {
     const token = JSON.parse(localStorage.getItem('user'))
-    let tokenToVerify = token.token
     if (token) {
+      const tokenToVerify = token.token
       jwt.verify(tokenToVerify, process.env.REACT_APP_SECRET, function (err, decoded) {
         if (err) {
           console.log("err", err);
-          StatusAlertService.showSuccess("Un problème est survenu")
+          StatusAlertService.showSuccess("Nous n'avons pas pu vous connecter, veuillez recommencer")
         }
         else {
           StatusAlertService.showSuccess(`Heureux de vous retrouver ${token.username} !`)

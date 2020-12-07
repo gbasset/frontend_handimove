@@ -124,7 +124,7 @@ function Header() {
                                 }
                                 {user &&
                                     <li>
-                                        <NavLink onClick={() => { setMenuOppen(!oppenMenuAccount); setUser() }} className="item" to="/authentication" >
+                                        <NavLink onClick={() => { setMenuOppen(!oppenMenuAccount); setUser(); window.localStorage.removeItem('user'); }} className="item" to="/authentication" >
                                             Me deconnecter
                                     </NavLink>
                                     </li>
