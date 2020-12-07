@@ -1,3 +1,5 @@
 .user_container {
     margin-top: 75px;
+    display: flex;
+    /* height: 150vh; */
 }

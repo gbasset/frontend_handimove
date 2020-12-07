@@ -19,6 +19,7 @@ export default function User() {
     return (
         <div className="user_container">
             <Navigation />
+            <div>kjklj</div>
         </div>
     )
 }
