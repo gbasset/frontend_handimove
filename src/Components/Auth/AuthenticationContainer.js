@@ -36,9 +36,6 @@ export default function AuthenticationContainer() {
             setRedirect(true)
         }
     }, [data])
-    console.log("data", data);
-    console.log("redirect", redirect);
-    //authentification
 
     if (redirect) {
         //Affichage de la redirection

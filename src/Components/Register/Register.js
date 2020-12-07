@@ -94,24 +94,26 @@ export default function Register() {
         }
     }
     function checkRequired(inputArray) {
-        Object.values(inputArray).forEach(input => {
-            if (input && input.toString().trim().length !== 0) {
-                return true
+        for (let i = 0; i < Object.values(inputArray).length; i++) {
+            if (Object.values(inputArray)[i] && Object.values(inputArray)[i].toString().trim().length === 0) {
+                return false
+            } else if (!Object.values(inputArray)[i]) {
+                return false
             }
-        })
-        return false
+        }
+        return true
     }
     function checkIfFormIsValid(e) {
         e.preventDefault()
-        if (validateEmail(profil.mail) && !checkRequired(profil) && getPasswordsMatch(profil.password, profil.password_validate) && profil.password.length >= 8
+        const validate = checkRequired(profil)
+        if (validateEmail(profil.mail) && validate && getPasswordsMatch(profil.password, profil.password_validate) && profil.password.length >= 8
         ) {
             setIsNotValid([])
             setIsRealoading(true)
             axios.post("/register", profil)
                 .then(res => {
-                    StatusAlertService.showSuccess(`Bienvenue parmis nous ${profil.username}`)
+                    StatusAlertService.showSuccess(`Bienvenue parmis nous ${profil.username}, vous pouvez maintenant vous connecter`)
                     setIsRealoading(false)
-                    setUser(res.data[0])
                     setRedirect(true)
                 })
                 .catch(error => {
@@ -153,7 +155,7 @@ export default function Register() {
     ]
     if (redirect) {
         //Affichage de la redirection
-        return <Redirect to={`/user`} />;
+        return <Redirect to={`/authentication`} />;
     }
     return (
         <div className="register-container">

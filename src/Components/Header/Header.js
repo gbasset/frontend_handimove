@@ -11,11 +11,11 @@ function Header() {
         user,
         setUser
     } = useContext(Context)
-    console.log("user", user);
+
     const [menu, showMenu] = useState(false);
     const [smallScreen, setSmallScreen] = useState(false);
     const [oppenMenuAccount, setMenuOppen] = useState(false)
-    console.log("oppenMenuAccount", oppenMenuAccount);
+
     useEffect(() => {
         const mediaQuery = window.matchMedia("(max-width: 900px)");
         // addlistener c'est comme addeventlisterner pour les medias queries en JS

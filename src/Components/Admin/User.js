@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import './User.css'
 import { Context } from '../../Context/Context'
 import { Redirect } from 'react-router-dom';
+import Navigation from './../Navigation/Navigation';
 export default function User() {
     const {
         user,
@@ -17,7 +18,7 @@ export default function User() {
 
     return (
         <div className="user_container">
-            Utilisateur
+            <Navigation />
         </div>
     )
 }
