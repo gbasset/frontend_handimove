@@ -7,16 +7,16 @@ import UseFetch from '../../Hooks/UseFetch'
 function Home(props) {
     // console.log(props);
     const { status, data, fetchData } = UseFetch();
-    const url = "search/establishment/department/charente"
+    // const url = "search/establishment/department/charente"
 
-    useEffect(() => {
-        fetchData(url)
-    }, [])
-    useEffect(() => {
-        if (data) {
-            StatusAlertService.showSuccess("WELCOME !")
-        }
-    }, [data])
+    // useEffect(() => {
+    //     fetchData(url)
+    // }, [])
+    // useEffect(() => {
+    //     if (data) {
+    //         StatusAlertService.showSuccess("WELCOME !")
+    //     }
+    // }, [data])
     return (
 
         <div className="home_container">

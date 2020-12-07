@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import './App.css';
 import { StatusAlertService } from 'react-status-alert'
 import UseFetch from './Hooks/UseFetch'
@@ -14,20 +14,36 @@ import Help from './Components/Help/Help';
 import AuthenticationContainer from './Components/Auth/AuthenticationContainer';
 import ChangePassword from './Components/Auth/ChangePassword';
 import Register from './Components/Register/Register';
-function App() {
+import { Context } from './Context/Context'
+let jwt = require('jsonwebtoken');
 
+function App() {
+  const {
+    user,
+    setUser
+  } = useContext(Context)
   const { status, data, fetchData } = UseFetch();
 
-  // const url = "messages/all"
+  const checkIfTokenExist = () => {
+    const token = JSON.parse(localStorage.getItem('user'))
+    let tokenToVerify = token.token
+    if (token) {
+      jwt.verify(tokenToVerify, process.env.REACT_APP_SECRET, function (err, decoded) {
+        if (err) {
+          console.log("err", err);
+          StatusAlertService.showSuccess("Un problème est survenu")
+        }
+        else {
+          StatusAlertService.showSuccess(`Heureux de vous retrouver ${token.username} !`)
+          setUser(token)
+        }
+      })
+    }
+  }
+  useEffect(() => {
+    checkIfTokenExist()
+  }, [])
 
-  // useEffect(() => {
-  //   fetchData(url)
-  // }, [])
-  // useEffect(() => {
-  //   if (data) {
-  //     StatusAlertService.showSuccess("WELCOME !")
-  //   }
-  // }, [data])
   return (
     <BrowserRouter>
       <div className="App">

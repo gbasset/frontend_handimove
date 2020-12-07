@@ -14,9 +14,10 @@ export default function AuthenticationContainer() {
         password: ''
     })
     const [isClick, setIsClick] = useState(false)
+    const [redirect, setRedirect] = useState(false)
 
     const { status, error, setError, data, postData } = UseFetch();
-    console.log("resultForm", resultForm);
+
     const handleChangeForm = (e) => {
         let prevState = { ...resultForm }
         prevState[e.target.name] = e.target.value
@@ -31,12 +32,18 @@ export default function AuthenticationContainer() {
     }, [isClick])
     useEffect(() => {
         if (data) {
-            setUser(data.userInformations[0])
             StatusAlertService.showSuccess(`Heureux de vous retrouver ${data.userInformations[0].username} !!`)
+            setRedirect(true)
         }
     }, [data])
     console.log("data", data);
+    console.log("redirect", redirect);
     //authentification
+
+    if (redirect) {
+        //Affichage de la redirection
+        return <Redirect to={`/user`} />;
+    }
     return (
         <div className="auth_container">
             <h1>Authentication</h1>

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { StatusAlertService } from 'react-status-alert'
 import Loader from 'react-loader-spinner'
 import { Context } from '../../Context/Context'
+import { Redirect } from 'react-router-dom';
+
 import UseInputSearch from '../../Hooks/UseInputSearch'
 import UseForm from '../../Hooks/UseForm'
 import UseFetch from '../../Hooks/UseFetch'
@@ -31,6 +33,7 @@ export default function Register() {
     const [idOfSearchElement, setIdOfSearchElement] = useState()
     const [isNotValid, setIsNotValid] = useState([])
     const [isRealoading, setIsRealoading] = useState(false)
+    const [redirect, setRedirect] = useState(false)
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -91,20 +94,16 @@ export default function Register() {
         }
     }
     function checkRequired(inputArray) {
-        Object.values(inputArray).forEach((input) => {
-            console.log("inputArray", input);
-            if (!input) {
-                return false
-            }
-            if (input && input.toString().trim() === '') {
-                return false
+        Object.values(inputArray).forEach(input => {
+            if (input && input.toString().trim().length !== 0) {
+                return true
             }
         })
-        return true
+        return false
     }
     function checkIfFormIsValid(e) {
         e.preventDefault()
-        if (validateEmail(profil.mail) && checkRequired(profil) && getPasswordsMatch(profil.password, profil.password_validate) && profil.password.length >= 8
+        if (validateEmail(profil.mail) && !checkRequired(profil) && getPasswordsMatch(profil.password, profil.password_validate) && profil.password.length >= 8
         ) {
             setIsNotValid([])
             setIsRealoading(true)
@@ -112,6 +111,8 @@ export default function Register() {
                 .then(res => {
                     StatusAlertService.showSuccess(`Bienvenue parmis nous ${profil.username}`)
                     setIsRealoading(false)
+                    setUser(res.data[0])
+                    setRedirect(true)
                 })
                 .catch(error => {
                     StatusAlertService.showError(error.response.data)
@@ -135,7 +136,7 @@ export default function Register() {
             if (!profil.town) {
                 newArrayOfErrors.push('town')
             }
-            if (!profil.question.length > 0) {
+            if (profil.question.length === 0 || profil.question === null) {
                 newArrayOfErrors.push('question')
             }
             if (!profil.response_question.length > 0) {
@@ -145,12 +146,15 @@ export default function Register() {
         }
     }
 
-
     const listOption = [
         { value: "born", label: "Quel est votre ville de naissance ? " },
         { value: "mother", label: "Quel est le nom de naissance de votre mère  ? " },
         { value: "mother", label: "Quel est le prénom de votre premier animal de compagnie ? " },
     ]
+    if (redirect) {
+        //Affichage de la redirection
+        return <Redirect to={`/user`} />;
+    }
     return (
         <div className="register-container">
             <h1>Bienvenue parmis nous ! </h1>

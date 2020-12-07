@@ -7,7 +7,7 @@ const ContextProvider = (props) => {
     const [user, setUser] = useState()
 
 
-
+    console.log("user", user);
     return (
         <Context.Provider value={{
             user,
