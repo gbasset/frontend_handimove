@@ -7,7 +7,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Home from './Components/Home/Home';
 import AboutUs from './Components/AboutUs/AboutUs';
-import User from './Components/Admin/User';
+import User from './Components/User/User';
 import Events from './Components/Events/Events';
 import Search from './Components/Search/Search';
 import Help from './Components/Help/Help';

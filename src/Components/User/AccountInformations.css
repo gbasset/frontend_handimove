@@ -1,0 +1,24 @@
+.container-account-info {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 95%;
+}
+
+.container-account-info form {
+    display: flex;
+    flex-direction: column;
+    margin: 5% auto;
+    width: 70%;
+    height: 450px;
+    border-radius: 6px;
+    box-shadow: 1px 2px 0px 5px #7070700d;
+}
+
+.container-account-info form .input-container {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

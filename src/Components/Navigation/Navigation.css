@@ -10,3 +10,49 @@
     background-color: #6a89cc;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.33);
 }
+
+.container-navigation-user header {
+    height: 80px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid;
+    padding: 3px;
+}
+
+.container-navigation-user header img {
+    max-height: 60px;
+    border-radius: 25%;
+}
+
+.container-user-infos {
+    width: 80%;
+    height: 80px;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5px;
+}
+
+.container-name-user {
+    display: block;
+    height: 50px;
+}
+
+.container-navigation-user ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.container-navigation-user ul li {
+    margin: 30px auto;
+    width: 80%;
+    height: 35px;
+    text-align: left;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.container-navigation-user ul li:hover {
+    color: #f8c291;
+}
