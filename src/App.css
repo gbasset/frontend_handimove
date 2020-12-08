@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   width: 100%;
+  /* https://flatuicolors.com/palette/fr */
 }
 
 .search_bar_container i {
@@ -29,7 +30,7 @@ input[type="text"].searchbar {
 
 input[type="text"].searchbar:focus {
   outline: none;
-  box-shadow: 0px 0px 0px 4px #ffcb84e6 inset;
+  box-shadow: 0px 0px 0px 4px #fad390 inset;
 }
 
 input[type="text"].searchbar::-webkit-input-placeholder {

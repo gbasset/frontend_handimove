@@ -46,7 +46,7 @@ export default function AuthenticationContainer() {
             <h1>Authentication</h1>
             <div className="poppin">
                 <h1>Hello</h1>
-                <form className="mail">
+                <form >
                     <label htmlFor="">
                         <i className="fa fa-envelope"></i>
                         <input

@@ -65,7 +65,7 @@ function Header() {
                                     // hash: 'test',
                                     // search: '?lalala'
                                 }}
-                                activeStyle={{ color: "#ffcb84e6" }}
+                                activeStyle={{ color: "#f6b93b" }}
                             >Home</NavLink>
                         </li>
                         <li
@@ -76,7 +76,7 @@ function Header() {
                                 {
                                     pathname: "/search"
                                 }}
-                                activeStyle={{ color: "#ffcb84e6" }}
+                                activeStyle={{ color: "#f6b93b" }}
                             >Rechercher</NavLink>
                         </li>
                         {/* <li
@@ -87,7 +87,7 @@ function Header() {
                         {
                             pathname: "/events"
                         }}
-                        activeStyle={{ color: "#ffcb84e6" }}
+                        activeStyle={{ color: "#f6b93b" }}
                     >Evenements</NavLink>
                 </li> */}
                         <li
@@ -98,7 +98,7 @@ function Header() {
                                 {
                                     pathname: "/help"
                                 }}
-                                activeStyle={{ color: "#ffcb84e6" }}
+                                activeStyle={{ color: "#f6b93b" }}
                             >Aides</NavLink>
                         </li>
                         <li
@@ -109,7 +109,7 @@ function Header() {
                                 {
                                     pathname: "/user"
                                 }}
-                                activeStyle={{ color: "#ffcb84e6" }}
+                                activeStyle={{ color: "#f6b93b" }}
                             >Mon Compte</NavLink> */}
                             Mon Compte
                         </li>

@@ -25,7 +25,7 @@
     justify-content: space-between;
     width: 90%;
     margin: auto;
-    background-color: rgba(109, 114, 112, 0.294);
+    background-color: #4a69bd38;
 }
 
 .container_list_of_town {
@@ -68,7 +68,7 @@
     width: 50%;
     font-weight: bold;
     font-size: 25px;
-    background-color: #b3b3b314;
+    background-color: #b3b3b336;
     line-height: 1.125;
     outline: none;
     border-width: 2px;
@@ -78,6 +78,7 @@
     cursor: pointer;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    color: #f3f3f3;
 }
 
 .btn_type_of_search_container button:active {
@@ -91,12 +92,12 @@
 }
 
 .btn_type_of_search_container button:hover {
-    background-color: #ffd090;
+    background-color: #fad390;
     color: #fff;
 }
 
 .isActive_btn {
-    border-bottom: 3px solid #ffd0ad !important;
+    border-bottom: 3px solid #fad390 !important;
     color: #fff;
 }
 
@@ -105,9 +106,9 @@
     width: 30%;
     line-height: 11px;
     padding: 5px;
-    color: #ffd4b3;
+    color: #fad390;
     border-radius: 8px;
-    background-color: #8585854a;
+    background-color: #6a89cc00;
 }
 
 .establishment_list {

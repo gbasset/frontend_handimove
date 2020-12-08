@@ -9,7 +9,7 @@
     padding: 10px 0px;
     z-index: 1000;
     top: 0;
-    background-color: white;
+    background-color: #f4f4f4;
     box-shadow: #2624247d 0px 2px 1px 0px;
     text-align: center;
 }
@@ -19,10 +19,12 @@
     list-style-type: none;
     height: 50px;
     display: flex;
-    align-items: center;
     flex-direction: row;
     overflow: auto;
     font-family: 'Pacifico', cursive;
+    color: #60a3bc;
+    font-size: 25px;
+    margin: 11px auto;
 }
 
 .lienNav {

@@ -56,11 +56,12 @@
 }
 
 .container_list_of_town_register ul {
+    width: 40%;
     height: auto;
     max-height: 80%;
-    margin: 0px 0px 0px 17%;
+    margin: -20px 0px 0px 6%;
     background-color: #b3b3b34f;
-    color: #ffcb84e6;
+    color: #fa983a;
     overflow: auto;
 }
 

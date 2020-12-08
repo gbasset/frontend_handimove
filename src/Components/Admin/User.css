@@ -1,5 +1,15 @@
 .user_container {
     margin-top: 75px;
     display: flex;
+    width: 100%;
+    justify-content: space-between;
     /* height: 150vh; */
+}
+
+.user-container-data {
+    width: 80%;
+}
+
+.user-container-data h1 {
+    text-align: center;
 }

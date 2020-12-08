@@ -8,7 +8,7 @@ export default function Navigation() {
     } = useContext(Context)
     return (
         <nav className="container-navigation-user">
-            <div>Bienvenue {user.username}</div>
+            <div>Bienvenue {user && user.username}</div>
             <ul>
                 <li>Mes informations</li>
                 <li>Changer mon mot de passe</li>

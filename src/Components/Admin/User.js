@@ -18,8 +18,14 @@ export default function User() {
 
     return (
         <div className="user_container">
-            <Navigation />
-            <div>kjklj</div>
+            <div>
+
+                <Navigation />
+
+            </div>
+            <div className="user-container-data">
+                <h1>Mon Compte </h1>
+            </div>
         </div>
     )
 }
