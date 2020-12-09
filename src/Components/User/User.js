@@ -4,6 +4,7 @@ import { Context } from '../../Context/Context'
 import { Redirect } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import AccountInformations from './AccountInformations';
+import AccountEditInformations from './AccountEditInformations';
 export default function User() {
     const {
         user,
@@ -32,7 +33,12 @@ export default function User() {
                         <h1> Mes informations  de compte</h1>
                         <AccountInformations />
                     </>
-
+                }
+                {activeLink === 2 &&
+                    <>
+                        <h1> Modifier mes informations de compte</h1>
+                        <AccountEditInformations />
+                    </>
                 }
             </div>
         </div>

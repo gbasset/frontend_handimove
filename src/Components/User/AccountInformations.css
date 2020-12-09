@@ -12,7 +12,21 @@
     width: 70%;
     height: 450px;
     border-radius: 6px;
-    box-shadow: 1px 2px 0px 5px #7070700d;
+    box-shadow: 4px 3px 43px 5px #70707045;
+}
+
+.image-user {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    margin: auto;
+}
+
+.image-user img {
+    height: 100%;
+    width: auto;
+    margin: auto;
 }
 
 .container-account-info form .input-container {
@@ -21,4 +35,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.container-account-info form .input-container label {
+    margin-right: 5%
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from '../../Context/Context'
 import Input from './../UI/Input';
 import './AccountInformations.css'
+import pictureAvatar from '../../Assets/blank-profile-picture-973460_640.png'
 export default function AccountInformations() {
     const {
         user,
@@ -10,6 +11,9 @@ export default function AccountInformations() {
     return (
         <div className="container-account-info">
             <form>
+                <div className="image-user">
+                    <img src={user && user.avatar ? user.avatar : pictureAvatar} alt="avatar du compte" />
+                </div>
                 <Input
                     name="login"
                     label="Nom"
