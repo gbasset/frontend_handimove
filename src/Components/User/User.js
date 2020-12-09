@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import AccountInformations from './AccountInformations';
 import AccountEditInformations from './AccountEditInformations';
+import EstablishmentsFav from './EstablishmentsFav'
 export default function User() {
     const {
         user,
@@ -39,6 +40,12 @@ export default function User() {
                     <>
                         <h1> Modifier mes informations de compte</h1>
                         <AccountEditInformations />
+                    </>
+                }
+                {activeLink === 3 &&
+                    <>
+                        <h1> Mes établissements favoris</h1>
+                        <EstablishmentsFav />
                     </>
                 }
             </div>

@@ -25,7 +25,9 @@ export default function Navigation({ setActiveLink, activeLink }) {
                 <li onClick={(e) => setActiveLink(2)}
                     className={activeLink === 2 ? "isActive" : ""}
                 >Changer mes informations</li>
-                <li>Mes etablissements favoris</li>
+                <li onClick={(e) => setActiveLink(3)}
+                    className={activeLink === 3 ? "isActive" : ""}
+                >Mes etablissements favoris</li>
                 <li>Mes événements favoris</li>
                 <li>Mes commentaires</li>
                 <li>Contacter un administrateur</li>

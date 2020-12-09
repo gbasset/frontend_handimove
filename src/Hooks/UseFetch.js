@@ -57,6 +57,7 @@ export default function useFetch() {
                 setError(error.response && error.response.data)
             })
     }
+
     return { status, data, error, setError, fetchData, setData, postData }
 };
 

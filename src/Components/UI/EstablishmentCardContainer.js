@@ -1,15 +1,24 @@
 import React from 'react'
 import Handicaps from './Handicaps';
 
-export default function EstablishmentCardContainer({ data, naturOfSearch, favEstablishments, favEvents, addEventToFavorites }) {
+export default function EstablishmentCardContainer({ data, naturOfSearch, favEstablishments, favEvents, addEventToFavorites, removeEventToFav }) {
 
     if (naturOfSearch === "establishment")
         return (
             <div className="establishment_container_card">
-                <div> {data.name} <i className="far fa-heart"
-                    onClick={(e) => addEventToFavorites(data.id_etablishment)}
-                ></i></div>
-                {/* <i className="fas fa-heart"></i> */}
+                {
+                    addEventToFavorites &&
+                    <div> {data.name} <i className="far fa-heart"
+                        onClick={(e) => addEventToFavorites(data.id_etablishment)}
+                    ></i></div>
+                }
+                {
+                    removeEventToFav &&
+                    <div>
+                        <i className="fas fa-heart" onClick={(e) => removeEventToFav(data.ID_fav)}  ></i>
+                    </div>
+
+                }
                 <div>{data.address}</div>
                 <div> {data.town}  {data.zip_code}</div>
                 <div>{data.region}</div>
