@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from '../../Context/Context'
 import './Navigation.css'
 import pictureAvatar from '../../Assets/blank-profile-picture-973460_640.png'
-export default function Navigation({ setActiveLink }) {
+export default function Navigation({ setActiveLink, activeLink }) {
     const {
         user,
         setUser
@@ -19,8 +19,12 @@ export default function Navigation({ setActiveLink }) {
                 </div>
             </header>
             <ul>
-                <li onClick={(e) => setActiveLink(1)}>Mes informations</li>
-                <li onClick={(e) => setActiveLink(2)}>Changer mes informations</li>
+                <li onClick={(e) => setActiveLink(1)}
+                    className={activeLink === 1 ? "isActive" : ""}
+                >Mes informations</li>
+                <li onClick={(e) => setActiveLink(2)}
+                    className={activeLink === 2 ? "isActive" : ""}
+                >Changer mes informations</li>
                 <li>Mes etablissements favoris</li>
                 <li>Mes événements favoris</li>
                 <li>Mes commentaires</li>

@@ -25,6 +25,7 @@ export default function User() {
             <div>
                 <Navigation
                     setActiveLink={(e) => setActiveLink(e)}
+                    activeLink={activeLink}
                 />
             </div>
             <div className="user-container-data">

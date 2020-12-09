@@ -61,9 +61,12 @@ input[type="text"].searchbar::-webkit-input-placeholder {
 
 .establishment_container_card {
   width: 800px;
-  height: 120px;
+  height: auto;
+  min-height: 230px;
   margin: 10px auto;
   display: flex;
+  align-items: center;
+  flex-direction: column;
   justify-content: center;
   box-shadow: 1px 6px 14px 1px #ccc;
 }
@@ -126,6 +129,31 @@ input[type="text"].searchbar::-webkit-input-placeholder {
 
 .btnUI:hover {
   box-shadow: 0px 0px 0px 4px #ffcb84e6 inset;
+}
+
+.isActive {
+  color: #fa983a;
+}
+
+.handicap-container {
+  display: flex;
+  margin: auto;
+}
+
+.handicap-container span {
+  width: 80px;
+  height: 40px;
+  color: #212529;
+  text-align: center;
+}
+
+.handicap-container span p {
+  margin: 2px auto;
+}
+
+.handicap-container i {
+  color: #212529;
+  font-size: 25px;
 }
 
 @media screen and (max-width: 900px) {

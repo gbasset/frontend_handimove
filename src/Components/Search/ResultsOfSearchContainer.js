@@ -35,7 +35,7 @@ export default function ResultsOfSearchContainer({ listOfSites, setListOfStites,
             }
         }
     }, [data])
-    console.log("searchType", searchType);
+
     return (
         <div className="container_list_of_town">
             <ul>

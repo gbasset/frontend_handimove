@@ -40,7 +40,7 @@ export default function AccountEditInformations() {
                     value={user && form.mail}
                     onChanheFunction={handleChange}
                 />
-
+                <button>Envoyer</button>
             </form>
         </div>
     )

@@ -8,8 +8,12 @@ import ResultsOfSearchContainer from './ResultsOfSearchContainer';
 import EstablishmentCardContainer from './../UI/EstablishmentCardContainer';
 import Loader from 'react-loader-spinner'
 import { Context } from '../../Context/Context'
-
+import axios from 'axios';
 export default function Search() {
+    const {
+        user,
+        setUser
+    } = useContext(Context)
     const INITIAL_STATE = ""
     const { value, handleChange, notReload } = UseInputSearch(INITIAL_STATE);
     const { status, data, fetchData } = UseFetch();
@@ -18,7 +22,48 @@ export default function Search() {
     const [searchType, setSearchType] = useState('department')
     const [naturOfSearch, setNatureOfSearch] = useState('establishment')
     const [noDataFound, setNoDataFound] = useState(false)
+    const [favEstablishments, setFavEstablishment] = useState([])
+    const [favEvents, setFavEvents] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const [reloadTheFavEstablishment, setReloadTheFavEstablishment] = useState(false)
+
+    useEffect(() => {
+        if (user) {
+            axios.get(`fav/establishments/${user.id_user}`)
+                .then(res => {
+                    setFavEstablishment(res.data)
+                    setReloadTheFavEstablishment(false)
+                })
+                .catch(error => {
+                    StatusAlertService.showError(error.response.data)
+                })
+        }
+    }, [user, reloadTheFavEstablishment])
+    useEffect(() => {
+        if (user) {
+            axios.get(`fav/event/${user.id_user}`)
+                .then(res => {
+                    setFavEvents(res.data)
+                })
+                .catch(error => {
+                    StatusAlertService.showError(error.response.data)
+                })
+        }
+    }, [user])
+    const addEventToFavorites = (e) => {
+        axios.post(`fav/establishment/${user.id_user}/${e}`)
+            .then(res => {
+                console.log(res.data)
+                StatusAlertService.showSuccess("Etablissement ajouté avec succès à vos favoris !")
+                setReloadTheFavEstablishment(true)
+            })
+            .catch(error => {
+                StatusAlertService.showError(error.response.data)
+            })
+    }
+
+    console.log("favEstablishments", favEstablishments);
+    console.log("favEvents", favEvents);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -69,10 +114,8 @@ export default function Search() {
             placeholder: 'Chercher une region'
         },
     ]
-    const {
-        user
-    } = useContext(Context)
-    console.log("user", user);
+
+
     return (
         <div className="search_container">
             <div className="search_header">
@@ -120,11 +163,14 @@ export default function Search() {
             <div>
                 <h1>Résultats</h1>
                 <div className="establishment_list">
-
                     {results && results.map((x, i) =>
                         <EstablishmentCardContainer
                             data={x}
                             key={i}
+                            naturOfSearch={naturOfSearch}
+                            favEstablishments={favEstablishments}
+                            favEvents={favEvents}
+                            addEventToFavorites={(e) => addEventToFavorites(e)}
                         />
 
                     )}
