@@ -48,7 +48,6 @@ export default function ResultsOfSearchContainer({ listOfSites, setListOfStites,
                                     onClick={(e) => clickOnTown(site.name)}
                                 > {site.name}
                                     {searchType === 'town' && <> - {site.zipcode} </>}
-
                                 </li>
                             )}
                         </>

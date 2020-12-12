@@ -88,7 +88,17 @@ export default function Search() {
             }
         }
     }, [data])
-
+    const removeEvent = (e) => {
+        console.log("e", e);
+        axios.delete(`fav/establishments/${e}`)
+            .then(res => {
+                StatusAlertService.showSuccess("Etablissement supprimé des favoris avec succès")
+                setReloadTheFavEstablishment(true)
+            })
+            .catch(error => {
+                StatusAlertService.showError('une erreur est survenue')
+            })
+    }
     const onChangeFunction = (e) => {
         handleChange('', true)
         setSearchType(e.target.value)
@@ -161,7 +171,10 @@ export default function Search() {
                 </section>
             </div>
             <div>
-                <h1>Résultats</h1>
+                {
+                    results && results.length !== 0 &&
+                    <h1> Voici les {results.length > 1 ? `${results.length} résultats` : `${results.length} résultat`} </h1>
+                }
                 <div className="establishment_list">
                     {results && results.map((x, i) =>
                         <EstablishmentCardContainer
@@ -171,6 +184,8 @@ export default function Search() {
                             favEstablishments={favEstablishments}
                             favEvents={favEvents}
                             addEventToFavorites={(e) => addEventToFavorites(e)}
+                            removeEventToFav={(e) => removeEvent(e)}
+                            mode="search"
                         />
 
                     )}

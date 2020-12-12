@@ -52,9 +52,9 @@ export default function useFetch() {
                 setData(res.data);
             })
             .catch(error => {
-                console.log("error", error);
-                StatusAlertService.showError(error.response && error.response.data)
-                setError(error.response && error.response.data)
+                console.log("error", error.response);
+                StatusAlertService.showError(error.response && error.response.statusText)
+                setError(error.response && error.response.statusText)
             })
     }
 

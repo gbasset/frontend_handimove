@@ -23,7 +23,7 @@ function App() {
     setUser
   } = useContext(Context)
   const { status, data, fetchData } = UseFetch();
-
+  console.log("process.env.REACT_APP_SECRET", process.env.REACT_APP_SECRET);
   const checkIfTokenExist = () => {
     const token = JSON.parse(localStorage.getItem('user'))
     if (token) {
