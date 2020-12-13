@@ -6,6 +6,7 @@ import Navigation from '../Navigation/Navigation';
 import AccountInformations from './AccountInformations';
 import AccountEditInformations from './AccountEditInformations';
 import EstablishmentsFav from './EstablishmentsFav'
+import EventsFav from './EventsFav'
 export default function User() {
     const {
         user,
@@ -46,6 +47,12 @@ export default function User() {
                     <>
                         <h1> Mes établissements favoris</h1>
                         <EstablishmentsFav />
+                    </>
+                }
+                {activeLink === 4 &&
+                    <>
+                        <h1> Mes événements favoris</h1>
+                        <EventsFav />
                     </>
                 }
             </div>

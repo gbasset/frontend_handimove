@@ -23,7 +23,6 @@ function App() {
     setUser
   } = useContext(Context)
   const { status, data, fetchData } = UseFetch();
-  console.log("process.env.REACT_APP_SECRET", process.env.REACT_APP_SECRET);
   const checkIfTokenExist = () => {
     const token = JSON.parse(localStorage.getItem('user'))
     if (token) {
@@ -31,7 +30,7 @@ function App() {
       jwt.verify(tokenToVerify, process.env.REACT_APP_SECRET, function (err, decoded) {
         if (err) {
           console.log("err", err);
-          StatusAlertService.showSuccess("Nous n'avons pas pu vous connecter, veuillez recommencer")
+          StatusAlertService.showInfo("Nous n'avons pas pu vous connecter, veuillez recommencer")
         }
         else {
           StatusAlertService.showSuccess(`Heureux de vous retrouver ${token.username} !`)

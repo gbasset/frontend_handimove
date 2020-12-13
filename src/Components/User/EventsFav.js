@@ -4,14 +4,15 @@ import UseFetch from '../../Hooks/UseFetch'
 import { Context } from '../../Context/Context'
 import { StatusAlertService } from 'react-status-alert'
 import axios from 'axios';
-export default function EstablishmentsFav() {
+
+export default function EventsFav() {
     const {
         user,
     } = useContext(Context)
     const [reload, setReload] = useState(false)
     const { data, fetchData } = UseFetch();
     const removeEstablishment = (e) => {
-        axios.delete(`fav/establishments/${e}`)
+        axios.delete(`fav/event/${e}`)
             .then(res => {
                 StatusAlertService.showSuccess("Etablissement supprimé des favoris avec succès")
                 setReload(true)
@@ -21,7 +22,7 @@ export default function EstablishmentsFav() {
             })
     }
     useEffect(() => {
-        fetchData(`fav/establishments/${user.id_user}`)
+        fetchData(`fav/event/${user.id_user}`)
         setReload(false)
     }, [user, reload])
     console.log("data", data);

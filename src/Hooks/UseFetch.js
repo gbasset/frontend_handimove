@@ -53,7 +53,11 @@ export default function useFetch() {
             })
             .catch(error => {
                 console.log("error", error.response);
-                StatusAlertService.showError(error.response && error.response.statusText)
+                if (error.response.data) {
+                    StatusAlertService.showError(error.response && error.response.data)
+                } else {
+                    StatusAlertService.showError(error.response && error.response.statusText)
+                }
                 setError(error.response && error.response.statusText)
             })
     }

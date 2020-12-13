@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Handicaps from './Handicaps';
 
-export default function EstablishmentCardContainer({ data, mode, naturOfSearch, favEstablishments, favEvents, addEventToFavorites, removeEventToFav }) {
-    console.log("favEstablishments", favEstablishments);
+export default function EstablishmentCardContainer({ data, mode, naturOfSearch, favEstablishments, favEvents, addEventToFav, removeEventsToFav, addEstablishToFavorites, removeEstablishmentToFav }) {
+
     const [arrayOfIds, setArrayOfIds] = useState()
     useEffect(() => {
         if (naturOfSearch === "establishment") {
             setArrayOfIds(favEstablishments.map(el => el.id_establishment))
         } else {
-            // faire la même pour les events
+            setArrayOfIds(favEvents.map(el => el.id_event))
         }
-    }, [favEstablishments, favEvents])
-    console.log("arrayOfIds", arrayOfIds)
+    }, [favEstablishments, favEvents, naturOfSearch])
+
     if (naturOfSearch === "establishment")
         return (
             <div className="establishment_container_card">
@@ -23,13 +23,12 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                     {data.name}
                                     <i className="fas fa-heart"
                                         onClick={mode === "search" ?
-                                            (e) => removeEventToFav(favEstablishments.find(el => el.id_establishment === data.id_etablishment).ID_fav) :
-                                            (e) => removeEventToFav(data.ID_fav)
+                                            (e) => removeEstablishmentToFav(favEstablishments.find(el => el.id_establishment === data.id_etablishment).ID_fav) :
+                                            (e) => removeEstablishmentToFav(data.ID_fav)
                                         }></i>
-                                    <> sisi</>
                                 </div> :
                                 <div> {data.name} <i className="far fa-heart"
-                                    onClick={(e) => addEventToFavorites(data.id_etablishment)}
+                                    onClick={(e) => addEstablishToFavorites(data.id_etablishment)}
                                 ></i>
                                 </div>
                         }
@@ -38,18 +37,16 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     <>
                         {
                             arrayOfIds && arrayOfIds.includes(data.id_establishment) ?
-
                                 <div>
                                     {data.name}
                                     <i className="fas fa-heart"
                                         onClick={mode === "search" ?
-                                            (e) => removeEventToFav(favEstablishments.find(el => el.id_establishment === data.id_establishment).ID_fav) :
-                                            (e) => removeEventToFav(data.ID_fav)
+                                            (e) => removeEstablishmentToFav(favEstablishments.find(el => el.id_establishment === data.id_establishment).ID_fav) :
+                                            (e) => removeEstablishmentToFav(data.ID_fav)
                                         }></i>
-                                    <> sisi</>
                                 </div> :
                                 <div> {data.name} <i className="far fa-heart"
-                                    onClick={(e) => addEventToFavorites(data.id_establishment)}
+                                    onClick={(e) => addEstablishToFavorites(data.id_establishment)}
                                 ></i>
                                 </div>
                         }
@@ -61,7 +58,6 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                 {
                     data.url_website && <div>
                         <a href={data.url_website} target="_blank" rel="noopener noreferrer"> {data.url_website}</a>
-
                     </div>
                 }
                 { data.phone && <div>Téléphone : {data.phone}</div>}
@@ -74,9 +70,43 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
     else {
         return (
             <div className="establishment_container_card">
-                <div> {data.title}</div>
-                <div> {data.name} <i className="far fa-heart"></i></div>
-                {/* <i className="fas fa-heart"></i> */}
+                { mode === "search" ?
+                    <>
+                        {
+                            arrayOfIds && arrayOfIds.includes(data.id_event) ?
+                                <div>
+                                    {data.name}
+                                    <i className="fas fa-heart"
+                                        onClick={mode === "search" ?
+                                            (e) => removeEventsToFav(favEvents.find(el => el.id_event === data.id_event).ID_fav) :
+                                            (e) => removeEventsToFav(data.ID_fav)
+                                        }></i>
+                                </div> :
+                                <div> {data.name} <i className="far fa-heart"
+                                    onClick={(e) => addEventToFav(data.id_event)}
+                                ></i>
+                                </div>
+                        }
+                    </>
+                    :
+                    <>
+                        {
+                            arrayOfIds && arrayOfIds.includes(data.id_event) ?
+                                <div>
+                                    {data.name}
+                                    <i className="fas fa-heart"
+                                        onClick={mode === "search" ?
+                                            (e) => removeEventsToFav(favEvents.find(el => el.id_event === data.id_event).ID_fav) :
+                                            (e) => removeEventsToFav(data.ID_fav)
+                                        }></i>
+                                </div> :
+                                <div> {data.name} <i className="far fa-heart"
+                                    onClick={(e) => addEventToFav(data.id_event)}
+                                ></i>
+                                </div>
+                        }
+                    </>
+                }
                 <div>{data.date_begin} - {data.date_end} </div>
                 <div>{data.address}</div>
                 <div> {data.town} </div>

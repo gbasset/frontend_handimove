@@ -1,13 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react'
 import './Search.css'
 import InputSearch from './../UI/InputSearch';
+import Modal from './../UI/Modal';
 import UseInputSearch from '../../Hooks/UseInputSearch'
+import Btn from './../UI/Btn'
 import UseFetch from '../../Hooks/UseFetch'
 import { StatusAlertService } from 'react-status-alert'
 import ResultsOfSearchContainer from './ResultsOfSearchContainer';
-import EstablishmentCardContainer from './../UI/EstablishmentCardContainer';
+import FavCardContainer from '../UI/FavCardContainer';
 import Loader from 'react-loader-spinner'
 import { Context } from '../../Context/Context'
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 export default function Search() {
     const {
@@ -26,6 +29,9 @@ export default function Search() {
     const [favEvents, setFavEvents] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [reloadTheFavEstablishment, setReloadTheFavEstablishment] = useState(false)
+    const [reloadTheFavEvents, setReloadTheFavEvents] = useState(false)
+    const [modalIsOppen, setModalIsOppen] = useState(false)
+    const [redirectTo, setredirectTo] = useState()
 
     useEffect(() => {
         if (user) {
@@ -44,26 +50,43 @@ export default function Search() {
             axios.get(`fav/event/${user.id_user}`)
                 .then(res => {
                     setFavEvents(res.data)
+                    setReloadTheFavEvents(false)
                 })
                 .catch(error => {
                     StatusAlertService.showError(error.response.data)
                 })
         }
-    }, [user])
-    const addEventToFavorites = (e) => {
-        axios.post(`fav/establishment/${user.id_user}/${e}`)
-            .then(res => {
-                console.log(res.data)
-                StatusAlertService.showSuccess("Etablissement ajouté avec succès à vos favoris !")
-                setReloadTheFavEstablishment(true)
-            })
-            .catch(error => {
-                StatusAlertService.showError(error.response.data)
-            })
+    }, [user, reloadTheFavEvents])
+    const addEstablishToFavorites = (e) => {
+        if (user) {
+            axios.post(`fav/establishment/${user.id_user}/${e}`)
+                .then(res => {
+                    console.log(res.data)
+                    StatusAlertService.showSuccess("Etablissement ajouté avec succès à vos favoris !")
+                    setReloadTheFavEstablishment(true)
+                })
+                .catch(error => {
+                    StatusAlertService.showError(error.response.data)
+                })
+        } else {
+            setModalIsOppen(true)
+        }
     }
-
-    console.log("favEstablishments", favEstablishments);
-    console.log("favEvents", favEvents);
+    const addEventToFav = (e) => {
+        if (user) {
+            axios.post(`fav/event/${user.id_user}/${e}`)
+                .then(res => {
+                    console.log(res.data)
+                    StatusAlertService.showSuccess("L'événement à été  ajouté avec succès à vos favoris !")
+                    setReloadTheFavEvents(true)
+                })
+                .catch(error => {
+                    StatusAlertService.showError(error.response.data)
+                })
+        } else {
+            setModalIsOppen(true)
+        }
+    }
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -88,12 +111,21 @@ export default function Search() {
             }
         }
     }, [data])
-    const removeEvent = (e) => {
-        console.log("e", e);
+    const removeEstablishmentToFav = (e) => {
         axios.delete(`fav/establishments/${e}`)
             .then(res => {
                 StatusAlertService.showSuccess("Etablissement supprimé des favoris avec succès")
                 setReloadTheFavEstablishment(true)
+            })
+            .catch(error => {
+                StatusAlertService.showError('une erreur est survenue')
+            })
+    }
+    const removeEventsToFav = (e) => {
+        axios.delete(`fav/event/${e}`)
+            .then(res => {
+                StatusAlertService.showSuccess("L'événement à été supprimé des favoris avec succès")
+                setReloadTheFavEvents(true)
             })
             .catch(error => {
                 StatusAlertService.showError('une erreur est survenue')
@@ -125,9 +157,34 @@ export default function Search() {
         },
     ]
 
-
+    if (redirectTo) {
+        return <Redirect to={`${redirectTo}`} />
+    }
     return (
         <div className="search_container">
+
+            <Modal
+                isOpen={modalIsOppen}
+                width="900"
+                height="150"
+                onClose={() => setModalIsOppen(false)}
+            >
+                <div className="modal_body">
+                    <h3>Vous devez être connecté pour ajouter un élément aux favoris</h3>
+                    <div className="modal_footer_center ">
+                        <Btn
+                            onClickFunction={() => setredirectTo("/authentication")}
+                            message="Me connecter"
+                            color="success"
+                        />
+                        <Btn
+                            onClickFunction={() => setredirectTo("/register")}
+                            message="Créer un compte"
+                        />
+                    </div>
+                </div>
+            </Modal>
+
             <div className="search_header">
                 <section>
                     <div className="btn_type_of_search_container">
@@ -177,14 +234,16 @@ export default function Search() {
                 }
                 <div className="establishment_list">
                     {results && results.map((x, i) =>
-                        <EstablishmentCardContainer
+                        <FavCardContainer
                             data={x}
                             key={i}
                             naturOfSearch={naturOfSearch}
                             favEstablishments={favEstablishments}
                             favEvents={favEvents}
-                            addEventToFavorites={(e) => addEventToFavorites(e)}
-                            removeEventToFav={(e) => removeEvent(e)}
+                            addEstablishToFavorites={(e) => addEstablishToFavorites(e)}
+                            removeEstablishmentToFav={(e) => removeEstablishmentToFav(e)}
+                            addEventToFav={(e) => addEventToFav(e)}
+                            removeEventsToFav={(e) => removeEventsToFav(e)}
                             mode="search"
                         />
 
