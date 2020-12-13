@@ -3,6 +3,8 @@ import FavCardContainer from '../UI/FavCardContainer';
 import UseFetch from '../../Hooks/UseFetch'
 import { Context } from '../../Context/Context'
 import { StatusAlertService } from 'react-status-alert'
+import Loader from 'react-loader-spinner'
+
 import axios from 'axios';
 export default function EstablishmentsFav() {
     const {
@@ -10,24 +12,44 @@ export default function EstablishmentsFav() {
     } = useContext(Context)
     const [reload, setReload] = useState(false)
     const { data, fetchData } = UseFetch();
+    const [isRealoading, setIsRealoading] = useState(true)
     const removeEstablishment = (e) => {
         axios.delete(`fav/establishments/${e}`)
+        setIsRealoading(true)
             .then(res => {
                 StatusAlertService.showSuccess("Etablissement supprimé des favoris avec succès")
                 setReload(true)
+                setIsRealoading(false)
             })
             .catch(error => {
                 StatusAlertService.showError('une erreur est survenue')
+                setIsRealoading(false)
             })
     }
     useEffect(() => {
         fetchData(`fav/establishments/${user.id_user}`)
         setReload(false)
     }, [user, reload])
+    useEffect(() => {
+        if (data) {
+            setIsRealoading(false)
+        }
+    }, [data])
     console.log("data", data);
     return (
         <div className="establishment_list">
-            {data && data.map((x, i) =>
+            {
+                isRealoading &&
+                <Loader
+                    type="TailSpin"
+                    color="#ffd0ad"
+                    height={100}
+                    width={100}
+                    timeout={3000}
+                />
+            }
+
+            {!isRealoading && data && data.map((x, i) =>
                 <FavCardContainer
                     key={x.id_establishment}
                     data={x}

@@ -5,10 +5,7 @@ import UseFetch from '../../Hooks/UseFetch'
 import { Switch, Link, NavLink, Redirect, withRouter } from 'react-router-dom';
 import { StatusAlertService } from 'react-status-alert'
 export default function AuthenticationContainer() {
-    const {
-        user,
-        setUser
-    } = useContext(Context)
+
     const [resultForm, setResultForm] = useState({
         mail: '',
         password: ''
@@ -16,7 +13,7 @@ export default function AuthenticationContainer() {
     const [isClick, setIsClick] = useState(false)
     const [redirect, setRedirect] = useState(false)
 
-    const { status, error, setError, data, postData } = UseFetch();
+    const { error, setError, data, postData } = UseFetch();
 
     const handleChangeForm = (e) => {
         let prevState = { ...resultForm }
