@@ -49,7 +49,7 @@ export default function EventsFav() {
 
             {!isRealoading && data && data.map((x, i) =>
                 <FavCardContainer
-                    key={x.id_establishment}
+                    key={i}
                     data={x}
                     naturOfSearch="establishment"
                     favEstablishments={data}

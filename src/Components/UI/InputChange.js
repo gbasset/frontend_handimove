@@ -1,6 +1,6 @@
 import React from 'react'
 import './Input.css'
-export default function Input({ name, value, label, onChanheFunction }) {
+export default function Input({ name, value, label, onChangeFunction }) {
     return (
         <div className="input-container">
             <label htmlFor="name">{label}</label>
@@ -10,7 +10,7 @@ export default function Input({ name, value, label, onChanheFunction }) {
                 name={name}
                 type="text"
                 value={value ? value : ''}
-                onChange={(e) => onChanheFunction(e)}
+                onChange={(e) => onChangeFunction(e)}
             />
         </div>
     )

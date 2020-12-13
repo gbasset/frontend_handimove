@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import UseFetch from '../../Hooks/UseFetch'
 import { StatusAlertService } from 'react-status-alert'
+
 export default function ResultsOfSearchContainer({ listOfSites, setListOfStites, handleChange, setResults, searchType, naturOfSearch, noDataFound, setIsLoading }) {
 
     const { status, data, fetchData } = UseFetch();

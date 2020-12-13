@@ -32,13 +32,13 @@ export default function AccountEditInformations() {
                     name="username"
                     label="Nom"
                     value={user && form.username}
-                    onChanheFunction={handleChange}
+                    onChangeFunction={handleChange}
                 />
                 <InputChange
                     name="mail"
                     label="Email"
                     value={user && form.mail}
-                    onChanheFunction={handleChange}
+                    onChangeFunction={handleChange}
                 />
                 <button>Envoyer</button>
             </form>
