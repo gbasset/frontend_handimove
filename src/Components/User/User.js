@@ -11,6 +11,10 @@ import UserComments from './UserComments'
 import EditPassWord from './EditPassWord'
 import Contact from '../Contact/Contact'
 import AdminComments from '../Admin/AdminComments'
+import EstablishmentContainer from '../Admin/EstablishmentContainer'
+import EventsContainer from '../Admin/EventsContainer'
+import MessageContainer from '../Admin/MessageContainer'
+import UsersContainer from '../Admin/UsersContainer'
 export default function User() {
     const {
         user,
@@ -96,6 +100,38 @@ export default function User() {
                         <h1> Gestion des commentaires</h1>
                         <div className="container-data-user">
                             <AdminComments />
+                        </div>
+                    </>
+                }
+                {activeLink === 9 &&
+                    <>
+                        <h1> Gestion des utilisateurs</h1>
+                        <div className="container-data-user">
+                            <UsersContainer />
+                        </div>
+                    </>
+                }
+                {activeLink === 10 &&
+                    <>
+                        <h1> Gestion des Etablissements</h1>
+                        <div className="container-data-user">
+                            <EventsContainer />
+                        </div>
+                    </>
+                }
+                {activeLink === 11 &&
+                    <>
+                        <h1> Gestion des événements </h1>
+                        <div className="container-data-user">
+                            <EstablishmentContainer />
+                        </div>
+                    </>
+                }
+                {activeLink === 12 &&
+                    <>
+                        <h1> Gestion des messages </h1>
+                        <div className="container-data-user">
+                            <MessageContainer />
                         </div>
                     </>
                 }

@@ -1,0 +1,36 @@
+.container-switch-admin {
+    display: flex;
+    position: absolute;
+    right: 35px;
+    top: 85px;
+    width: 200px;
+    height: 50px;
+}
+
+.span-user-edit {
+    padding: 5px;
+    line-height: 35px;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    border: 2px solid #60a3bc;
+    width: 50%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.span-user-create {
+    padding: 5px;
+    line-height: 35px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border: 2px solid #60a3bc;
+    width: 50%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.isActivedMode {
+    background-color: #78e08f;
+    color: white;
+    font-weight: bold;
+}

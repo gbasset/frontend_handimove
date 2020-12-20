@@ -42,6 +42,8 @@
 .container-navigation-user ul {
     list-style-type: none;
     padding: 0px;
+    height: 80vh;
+    overflow: auto;
 }
 
 .container-navigation-user ul li {
@@ -55,4 +57,18 @@
 
 .container-navigation-user ul li:hover {
     color: #f8c291;
+}
+
+.navigation-admin-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: absolute;
+    width: 100%;
+}
+
+.navigation-admin-container i {
+    font-weight: bold;
+    font-size: 28px;
+    cursor: pointer;
 }

@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import SwitchAdmin from '../UI/SwitchAdmin'
-export default function AdminComments() {
+export default function EventsContainer() {
     const [mode, setMode] = useState("Edit")
-
-
     return (
         <div>
             <SwitchAdmin

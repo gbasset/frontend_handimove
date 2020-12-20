@@ -21,11 +21,17 @@ export default function AccountEditInformations() {
     const [isRealoading, setIsRealoading] = useState(true)
 
     const [form, setForm] = useState({
-        username: user.username,
-        mail: user.mail,
-
-        avatar_url: user.avatar_url
+        username: '',
+        mail: '',
+        avatar_url: ''
     })
+    useEffect(() => {
+        setForm({
+            username: user && user.username,
+            mail: user && user.mail,
+            avatar_url: user && user.avatar_url
+        })
+    }, [user])
     const handleChange = (e) => {
         setForm(prevValues => ({
             ...prevValues,
