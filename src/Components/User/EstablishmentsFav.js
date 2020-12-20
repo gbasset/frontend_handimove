@@ -30,12 +30,12 @@ export default function EstablishmentsFav() {
         fetchData(`fav/establishments/${user.id_user}`)
         setReload(false)
     }, [user, reload])
+
     useEffect(() => {
         if (data) {
             setIsRealoading(false)
         }
     }, [data])
-    console.log("data", data);
     return (
         <div className="establishment_list">
             {

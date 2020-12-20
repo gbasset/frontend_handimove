@@ -7,6 +7,7 @@ import AccountInformations from './AccountInformations';
 import AccountEditInformations from './AccountEditInformations';
 import EstablishmentsFav from './EstablishmentsFav'
 import EventsFav from './EventsFav'
+import UserComments from './UserComments'
 export default function User() {
     const {
         user,
@@ -34,27 +35,46 @@ export default function User() {
                 {activeLink === 1 &&
                     <>
                         <h1> Mes informations  de compte</h1>
-                        <AccountInformations />
+                        <div className="container-data-user">
+                            <AccountInformations />
+                        </div>
                     </>
                 }
                 {activeLink === 2 &&
                     <>
                         <h1> Modifier mes informations de compte</h1>
-                        <AccountEditInformations />
+                        <div className="container-data-user">
+                            <AccountEditInformations />
+                        </div>
                     </>
                 }
                 {activeLink === 3 &&
                     <>
                         <h1> Mes établissements favoris</h1>
-                        <EstablishmentsFav />
+                        <div className="container-data-user">
+                            <EstablishmentsFav />
+                        </div>
                     </>
                 }
                 {activeLink === 4 &&
                     <>
                         <h1> Mes événements favoris</h1>
-                        <EventsFav />
+                        <div className="container-data-user">
+                            <EventsFav />
+                        </div>
                     </>
                 }
+                {activeLink === 5 &&
+                    <>
+                        <h1> Mes commentaires</h1>
+                        <div className="container-data-user">
+                            <UserComments />
+                        </div>
+                    </>
+                }
+
+
+
             </div>
         </div>
     )

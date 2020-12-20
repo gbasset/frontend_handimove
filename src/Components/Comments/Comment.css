@@ -1,0 +1,6 @@
+.comment-container {
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    margin: 5px auto;
+}

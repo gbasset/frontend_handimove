@@ -3,6 +3,8 @@ import Handicaps from './Handicaps';
 import CommentContainer from '../Comments/CommentContainer'
 import FormComment from '../Comments/FormComment'
 import axios from 'axios';
+import Loader from 'react-loader-spinner'
+
 import { StatusAlertService } from 'react-status-alert'
 export default function EstablishmentCardContainer({ data, mode, naturOfSearch, favEstablishments, favEvents, addEventToFav, removeEventsToFav, addEstablishToFavorites, removeEstablishmentToFav }) {
 
@@ -10,6 +12,7 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
     const [comments, setComments] = useState()
     const [commentIsOppen, setCommentIsOppen] = useState(false)
     const [newCommentIsOppen, setNewCommentIsOppen] = useState(false)
+    const [isRealoading, setIsRealoading] = useState(true)
     useEffect(() => {
         if (naturOfSearch === "establishment") {
             setArrayOfIds(favEstablishments.map(el => el.id_establishment))
@@ -19,12 +22,15 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
     }, [favEstablishments, favEvents, naturOfSearch])
     useEffect(() => {
         if (commentIsOppen) {
+            setIsRealoading(true)
             axios.get(`/comments/establishment/${data.id_etablishment}`)
                 .then(res => {
                     setComments(res.data)
+                    setIsRealoading(false)
                 })
                 .catch(error => {
                     StatusAlertService.showError(error.response.data)
+                    setIsRealoading(false)
                 })
         }
     }, [commentIsOppen])
@@ -72,31 +78,42 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                 <div>{data.address}</div>
                 <div> {data.town}  {data.zip_code}</div>
                 <div>{data.region}</div>
-                <div>
+                { mode === "search" &&
                     <div>
-                        commentaires
-                             <i className="fas fa-eye"
-                            onClick={() => { setCommentIsOppen(true); setNewCommentIsOppen(false) }}
-                        ></i>
-                        <i className="fas fa-comment-medical"
-                            onClick={() => { setCommentIsOppen(false); setNewCommentIsOppen(true) }}
-                        ></i>
-                    </div>
-                    {commentIsOppen &&
                         <div>
-                            <CommentContainer
-                                commentsList={comments}
-                                setCommentIsOppen={() => setCommentIsOppen(false)}
-                            />
+                            Commentaires
+                             <i className="fas fa-eye"
+                                onClick={() => { setCommentIsOppen(true); setNewCommentIsOppen(false) }}
+                            ></i>
+                            <i className="fas fa-comment-medical"
+                                onClick={() => { setCommentIsOppen(false); setNewCommentIsOppen(true) }}
+                            ></i>
                         </div>
-                    }
-                    {newCommentIsOppen &&
-                        <FormComment
-                            idEstablishment={data.id_etablishment}
-                            setNewCommentIsOppen={() => setNewCommentIsOppen(false)}
-                        />
-                    }
-                </div>
+                        {commentIsOppen &&
+                            <div>
+                                {
+                                    isRealoading &&
+                                    <Loader
+                                        type="TailSpin"
+                                        color="#ffd0ad"
+                                        height={100}
+                                        width={100}
+                                        timeout={3000}
+                                    />
+                                }
+                                <CommentContainer
+                                    commentsList={comments}
+                                    setCommentIsOppen={() => setCommentIsOppen(false)}
+                                />
+                            </div>
+                        }
+                        {newCommentIsOppen &&
+                            <FormComment
+                                idEstablishment={data.id_etablishment}
+                                setNewCommentIsOppen={() => setNewCommentIsOppen(false)}
+                            />
+                        }
+                    </div>}
                 {
                     data.url_website && <div>
                         <a href={data.url_website} target="_blank" rel="noopener noreferrer"> {data.url_website}</a>

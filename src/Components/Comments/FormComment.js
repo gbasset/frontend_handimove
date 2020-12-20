@@ -40,7 +40,7 @@ export default function FormComment({ idEstablishment, setNewCommentIsOppen }) {
     }
     return (
         <div>
-            <h3>Créer un commentaire</h3>
+            <h3>Ajouter un commentaire</h3>
             <div>
                 <InputChange
                     name="name"
@@ -50,7 +50,7 @@ export default function FormComment({ idEstablishment, setNewCommentIsOppen }) {
                 />
                 <InputChange
                     name="comment"
-                    label="ommentaire"
+                    label="Commentaire"
                     value={user && form.comment}
                     onChangeFunction={handleChange}
                 />

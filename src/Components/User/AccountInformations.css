@@ -30,13 +30,11 @@
 }
 
 .container-account-info form .input-container {
-    width: 50%;
+    width: 70%;
     margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .container-account-info form .input-container label {
-    margin-right: 5%
+    margin-right: 5%;
+    margin-bottom: 10px
 }
