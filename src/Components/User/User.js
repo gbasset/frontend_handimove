@@ -8,13 +8,16 @@ import AccountEditInformations from './AccountEditInformations';
 import EstablishmentsFav from './EstablishmentsFav'
 import EventsFav from './EventsFav'
 import UserComments from './UserComments'
+import EditPassWord from './EditPassWord'
+import Contact from '../Contact/Contact'
+import AdminComments from '../Admin/AdminComments'
 export default function User() {
     const {
         user,
         setUser
     } = useContext(Context)
     console.log("user", user);
-    const [activeLink, setActiveLink] = useState(1)
+    const [activeLink, setActiveLink] = useState(2)
 
     if (!user) {
         const token = JSON.parse(localStorage.getItem('user'))
@@ -69,6 +72,30 @@ export default function User() {
                         <h1> Mes commentaires</h1>
                         <div className="container-data-user">
                             <UserComments />
+                        </div>
+                    </>
+                }
+                {activeLink === 6 &&
+                    <>
+                        <h1> Changer mon mot de passe</h1>
+                        <div className="container-data-user">
+                            <EditPassWord />
+                        </div>
+                    </>
+                }
+                {activeLink === 7 &&
+                    <>
+                        <h1> Contacter un administrateur</h1>
+                        <div className="container-data-user">
+                            <Contact />
+                        </div>
+                    </>
+                }
+                {activeLink === 8 &&
+                    <>
+                        <h1> Gestion des commentaires</h1>
+                        <div className="container-data-user">
+                            <AdminComments />
                         </div>
                     </>
                 }

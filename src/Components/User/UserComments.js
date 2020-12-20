@@ -3,7 +3,7 @@ import { Context } from '../../Context/Context'
 import { StatusAlertService } from 'react-status-alert'
 import axios from 'axios';
 import Loader from 'react-loader-spinner'
-
+import Empty from '../UI/Empty'
 import Comment from '../Comments/Comment'
 export default function UserComments() {
     const {
@@ -28,6 +28,17 @@ export default function UserComments() {
     console.log("commentList", commentList);
     return (
         <div>
+
+            {!isRealoading && commentList && commentList.map(comment =>
+                <Comment
+                    key={comment.id_comment}
+                    comment={comment}
+                />
+            )}
+            {
+                !isRealoading && commentList && commentList.length === 0 &&
+                <Empty name=" écrit de commentaire, vous pouvez en créer pour les retrouver sur cette page ." />
+            }
             {
                 isRealoading &&
                 <Loader
@@ -38,13 +49,6 @@ export default function UserComments() {
                     timeout={3000}
                 />
             }
-            {!isRealoading && commentList && commentList.map(comment =>
-                <Comment
-                    key={comment.id_comment}
-                    comment={comment}
-                />
-            )}
-
         </div>
     )
 }

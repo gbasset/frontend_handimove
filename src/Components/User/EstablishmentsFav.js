@@ -4,7 +4,7 @@ import UseFetch from '../../Hooks/UseFetch'
 import { Context } from '../../Context/Context'
 import { StatusAlertService } from 'react-status-alert'
 import Loader from 'react-loader-spinner'
-
+import Empty from '../UI/Empty'
 import axios from 'axios';
 export default function EstablishmentsFav() {
     const {
@@ -58,6 +58,11 @@ export default function EstablishmentsFav() {
                     removeEstablishmentToFav={(e) => removeEstablishment(e)}
                 />)
             }
+            {
+                !isRealoading && data && data.length === 0 &&
+                <Empty name="d'établissements favoris, vous pouvez en créer pour les retrouver sur cette page ." />
+            }
+
         </div>
     )
 }

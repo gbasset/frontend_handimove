@@ -15,6 +15,7 @@ import AuthenticationContainer from './Components/Auth/AuthenticationContainer';
 import ChangePassword from './Components/Auth/ChangePassword';
 import Register from './Components/Register/Register';
 import { Context } from './Context/Context'
+import EditPassWord from './Components/User/EditPassWord'
 let jwt = require('jsonwebtoken');
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/about" component={AboutUs} />
           <Route exact path="/user" component={User} />
+          <Route exact path="/changeMyPassword" component={EditPassWord} />
           {/* <Route exact path="/events" component={Events} /> */}
           <Route exact path="/search" component={Search} />
           <Route exact path="/help" component={Help} />

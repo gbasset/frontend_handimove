@@ -19,12 +19,12 @@ export default function Navigation({ setActiveLink, activeLink }) {
                 </div>
             </header>
             <ul>
-                <li onClick={(e) => setActiveLink(1)}
-                    className={activeLink === 1 ? "isActive" : ""}
-                >Mes informations</li>
                 <li onClick={(e) => setActiveLink(2)}
                     className={activeLink === 2 ? "isActive" : ""}
-                >Changer mes informations</li>
+                >Mes informations</li>
+                <li onClick={(e) => setActiveLink(6)}
+                    className={activeLink === 6 ? "isActive" : ""}
+                >Changer mon mot de passe</li>
                 <li onClick={(e) => setActiveLink(3)}
                     className={activeLink === 3 ? "isActive" : ""}
                 >Mes etablissements favoris</li>
@@ -36,7 +36,31 @@ export default function Navigation({ setActiveLink, activeLink }) {
                     onClick={(e) => setActiveLink(5)}
                     className={activeLink === 5 ? "isActive" : ""}
                 >Mes commentaires</li>
-                <li>Contacter un administrateur</li>
+                <li
+                    onClick={(e) => setActiveLink(7)}
+                    className={activeLink === 7 ? "isActive" : ""}
+                >Contacter un administrateur</li>
+                {
+                    user && user.is_admin === 0 &&
+                    <>
+                        <li
+                            onClick={(e) => setActiveLink(8)}
+                            className={activeLink === 8 ? "isActive" : ""}
+                        >Gestion des commentaires</li>
+                        <li
+
+                        >Gestion des Utilisateurs</li>
+                        <li
+
+                        >Gestion des Etablissements</li>
+                        <li
+
+                        >Gestion des événements</li>
+                        <li
+
+                        >Messages</li>
+                    </>
+                }
             </ul>
         </nav>
     )

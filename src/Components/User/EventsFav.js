@@ -5,6 +5,8 @@ import { Context } from '../../Context/Context'
 import { StatusAlertService } from 'react-status-alert'
 import axios from 'axios';
 import Loader from 'react-loader-spinner'
+import Empty from '../UI/Empty'
+
 export default function EventsFav() {
     const {
         user,
@@ -33,7 +35,7 @@ export default function EventsFav() {
             setIsRealoading(false)
         }
     }, [data])
-    console.log("data", data);
+
     return (
         <div className="establishment_list">
             {
@@ -55,6 +57,10 @@ export default function EventsFav() {
                     favEstablishments={data}
                     removeEstablishmentToFav={(e) => removeEstablishment(e)}
                 />)
+            }
+            {
+                !isRealoading && data && data.length === 0 &&
+                <Empty name="d'événement favoris, vous pouvez en créer pour les retrouver sur cette page ." />
             }
         </div>
     )

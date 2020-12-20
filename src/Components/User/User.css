@@ -13,3 +13,23 @@
 .user-container-data h1 {
     text-align: center;
 }
+
+.password-form-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5% auto;
+    width: 70%;
+    height: 250px;
+    border-radius: 6px;
+    box-shadow: 4px 3px 43px 5px #70707045;
+}
+
+.password-form-container form .input-container {
+    width: 70%;
+    margin: auto;
+}
+
+.password-form-container form .input-container label {
+    margin-right: 5%;
+    margin-bottom: 10px
+}
