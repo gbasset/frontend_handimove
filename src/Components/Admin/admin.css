@@ -1,0 +1,16 @@
+.establishment_container {
+    margin-top: 37px;
+    height: 100%;
+}
+
+.react-bootstrap-table {
+    height: 650px;
+    overflow: auto;
+}
+
+.center-div {
+    width: 50%;
+    margin: 10px auto;
+    font-size: 18px;
+    font-weight: bold;
+}

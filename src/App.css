@@ -10,6 +10,7 @@
   /* position: relative;
   left: 5%; */
   width: 10%;
+  height: auto;
   font-size: 44px;
 }
 
@@ -61,7 +62,6 @@ input[type="text"].searchbar::-webkit-input-placeholder {
 
 .establishment_container_card {
   width: 800px;
-  height: auto;
   min-height: 230px;
   margin: 10px auto;
   display: flex;
@@ -178,6 +178,11 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   font-size: 25px;
   font-weight: bold;
   color: #525252;
+}
+
+.leaflet-container {
+  width: 50%;
+  height: 600px;
 }
 
 @media screen and (max-width: 900px) {

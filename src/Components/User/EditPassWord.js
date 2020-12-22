@@ -57,10 +57,6 @@ export default function EditPassWord() {
                         setIsRealoading(true)
                         axios.put(`/users/pass/${user.id_user}`, form)
                             .then(res => {
-                                console.log("res", res.data[0]);
-                                console.log("env", process.env.REACT_APP_SECRET);
-                                // localStorage.setItem('user', process.env.REACT_APP_SECRET
-                                //     , JSON.stringify(res.data[0]))
                                 StatusAlertService.showSuccess(`Le mot de passe a été changé avec succès`)
                                 setIsRealoading(false)
                             })
@@ -91,7 +87,7 @@ export default function EditPassWord() {
     return (
         <div className="password-form-container">
             <form>
-                <div>
+                <div className="center-div">
                     Vous pouvez changer votre mot de passe avec ce formulaire.
                     Il dois cependant être constitué d'au minimum 8 caractères.
                 </div>

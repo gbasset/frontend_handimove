@@ -115,7 +115,7 @@ export default function User() {
                     <>
                         <h1> Gestion des Etablissements</h1>
                         <div className="container-data-user">
-                            <EventsContainer />
+                            <EstablishmentContainer />
                         </div>
                     </>
                 }
@@ -123,7 +123,7 @@ export default function User() {
                     <>
                         <h1> Gestion des événements </h1>
                         <div className="container-data-user">
-                            <EstablishmentContainer />
+                            <EventsContainer />
                         </div>
                     </>
                 }

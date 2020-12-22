@@ -12,6 +12,7 @@ import Loader from 'react-loader-spinner'
 import { Context } from '../../Context/Context'
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+
 export default function Search() {
     const {
         user,
@@ -32,7 +33,8 @@ export default function Search() {
     const [reloadTheFavEvents, setReloadTheFavEvents] = useState(false)
     const [modalIsOppen, setModalIsOppen] = useState(false)
     const [redirectTo, setredirectTo] = useState()
-
+    const [establishmentSelected, setEstablishmentSelected] = useState()
+    console.log("listOfSites", listOfSites);
     useEffect(() => {
         if (user) {
             axios.get(`fav/establishments/${user.id_user}`)
@@ -162,7 +164,12 @@ export default function Search() {
     }
     return (
         <div className="search_container">
-
+            <link
+                rel="stylesheet"
+                href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+                integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+                crossOrigin=""
+            />
             <Modal
                 isOpen={modalIsOppen}
                 width="900"
@@ -232,6 +239,7 @@ export default function Search() {
                     results && results.length !== 0 &&
                     <h1> Voici les {results.length > 1 ? `${results.length} résultats` : `${results.length} résultat`} </h1>
                 }
+
                 <div className="establishment_list">
                     {results && results.map((x, i) =>
                         <FavCardContainer

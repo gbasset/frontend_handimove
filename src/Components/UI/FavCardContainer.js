@@ -6,7 +6,7 @@ import axios from 'axios';
 import Loader from 'react-loader-spinner'
 
 import { StatusAlertService } from 'react-status-alert'
-export default function EstablishmentCardContainer({ data, mode, naturOfSearch, favEstablishments, favEvents, addEventToFav, removeEventsToFav, addEstablishToFavorites, removeEstablishmentToFav }) {
+export default function EstablishmentCardContainer({ data, mode, naturOfSearch, favEstablishments, favEvents, addEventToFav, removeEventsToFav, addEstablishToFavorites, removeEstablishmentToFav, setEstablishmentSelected }) {
 
     const [arrayOfIds, setArrayOfIds] = useState()
     const [comments, setComments] = useState()

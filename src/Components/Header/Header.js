@@ -66,7 +66,7 @@ function Header() {
                                     // search: '?lalala'
                                 }}
                                 activeStyle={{ color: "#f6b93b" }}
-                            >Home</NavLink>
+                            >Accueil</NavLink>
                         </li>
                         <li
                             onClick={hideMenu}
@@ -77,7 +77,7 @@ function Header() {
                                     pathname: "/search"
                                 }}
                                 activeStyle={{ color: "#f6b93b" }}
-                            >Rechercher</NavLink>
+                            >Se divertir</NavLink>
                         </li>
                         {/* <li
                     // onClick={hideMenu} 
@@ -99,7 +99,7 @@ function Header() {
                                     pathname: "/help"
                                 }}
                                 activeStyle={{ color: "#f6b93b" }}
-                            >Aides</NavLink>
+                            >S'informer</NavLink>
                         </li>
                         <li
                             onClick={() => { setMenuOppen(!oppenMenuAccount); hideMenu() }}

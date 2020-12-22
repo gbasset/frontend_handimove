@@ -26,7 +26,6 @@ export default function ResultsOfSearchContainer({ listOfSites, setListOfStites,
     useEffect(() => {
         if (data) {
             setIsLoading(false)
-            console.log("data", data);
             if (data.length !== 0) {
                 StatusAlertService.showSuccess(`Nous avons trouvé ${data.length} résultats pour votre recherche `)
                 setResults(data)
