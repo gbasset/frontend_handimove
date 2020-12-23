@@ -7,40 +7,62 @@ import UseFetch from '../../Hooks/UseFetch'
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import paginationFactory, { PaginationProvider } from 'react-bootstrap-table2-paginator';
-
+import EventCreateContainer from './EventCreateContainer'
 import './admin.css'
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import options from './optionsTable'
+import moment from 'moment'
+
 require('react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css');
 export default function EventsContainer() {
     const [mode, setMode] = useState("Edit")
     const { data, setData, fetchData } = UseFetch();
     const [value, setValue] = useState()
     const [isLoading, setIsLoading] = useState(false)
+    const [idOfEvent, setIdOfEvent] = useState()
 
     const changeValue = (e) => {
         setValue(e.target.value)
     }
     useEffect(() => {
-        const timer = setTimeout(() => {
-            if (value && value.length !== 0) {
-                setIsLoading(true)
-                fetchData(`admin/event/${value}`)
-            } else {
-                setData([])
+        if (!idOfEvent) {
+            const timer = setTimeout(() => {
+                if (value && value.length !== 0) {
+                    setIsLoading(true)
+                    fetchData(`/admin/event/${value}`)
+                } else {
+                    setData([])
+                }
+            }, 500)
+            return () => {
+                clearTimeout(timer);
             }
-        }, 500)
-        return () => {
-            clearTimeout(timer);
         }
     }, [value])
-    console.log("mode", mode);
+
     useEffect(() => {
         setIsLoading(false)
     }, [data])
+    function urlFormatter(cell, row) {
+        return (
+            <div className="container-link">
+                <span className="link-to-element" onClick={(e) => { setIdOfEvent(cell); setValue(); setData() }}>{cell}
+                </span>
+                <span className="link-to-element" onClick={(e) => { setIdOfEvent(cell); setValue(); setData() }}>
+                    <i className="fas fa-pen"></i>
+                </span>
+            </div >
+        );
+    }
+    function dateFormatter(cell, row) {
+        return (
+            <> {moment(cell).format('DD-MM-YYYY')}</>
+        );
+    }
     const columns = [{
         dataField: 'id',
         text: 'ID',
+        formatter: urlFormatter
     },
     {
         dataField: 'name',
@@ -57,10 +79,12 @@ export default function EventsContainer() {
     {
         dataField: 'date_begin',
         text: 'Date Début',
+        formatter: dateFormatter
     },
     {
         dataField: 'date_end',
         text: 'Date fin',
+        formatter: dateFormatter
     },
     {
         dataField: 'address',
@@ -68,14 +92,14 @@ export default function EventsContainer() {
     },
     ]
 
-    console.log("data", data);
     return (
         <div className="establishment_container">
-            <SwitchAdmin
-                mode={mode}
-                setMode={(e) => setMode(e)}
-            />
-            {mode === "Edit" &&
+            { !idOfEvent &&
+                <SwitchAdmin
+                    mode={mode}
+                    setMode={(e) => setMode(e)}
+                />}
+            {mode === "Edit" && !idOfEvent &&
                 <>
                     <SearchBar
                         onChangeValue={(e) => changeValue(e)}
@@ -91,6 +115,16 @@ export default function EventsContainer() {
                         }
                     </div>
                 </>
+            }
+            {mode !== "Edit" && !idOfEvent &&
+                <EventCreateContainer
+                />
+            }
+            {idOfEvent &&
+                <EventCreateContainer
+                    idOfEvent={idOfEvent}
+                    setIdOfEvent={(e) => setIdOfEvent(e)}
+                />
             }
             {
                 isLoading &&

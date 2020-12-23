@@ -53,8 +53,8 @@ export default function EventsFav() {
                 <FavCardContainer
                     key={i}
                     data={x}
-                    naturOfSearch="establishment"
-                    favEstablishments={data}
+                    naturOfSearch=""
+                    favEvents={data}
                     removeEstablishmentToFav={(e) => removeEstablishment(e)}
                 />)
             }

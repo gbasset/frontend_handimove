@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import SwitchAdmin from '../UI/SwitchAdmin'
 
 import Loader from 'react-loader-spinner'
 import { Context } from '../../Context/Context'
@@ -13,17 +12,14 @@ import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import options from './optionsTable'
 require('react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css');
 export default function AdminComments() {
-    const [mode, setMode] = useState("Edit")
     const { data, setData, fetchData } = UseFetch();
-
     const [isLoading, setIsLoading] = useState(false)
-
 
     useEffect(() => {
         fetchData(`admin/comments/`)
 
     }, [])
-    console.log("mode", mode);
+
     useEffect(() => {
         setIsLoading(false)
     }, [data])
@@ -60,21 +56,17 @@ export default function AdminComments() {
     console.log("data", data);
     return (
         <div className="establishment_container">
-            <SwitchAdmin
-                mode={mode}
-                setMode={(e) => setMode(e)}
-            />
-            {mode === "Edit" &&
-                <>
-                    <div className="col-lg-12 mb-4 mt-4 scrollTable">
-                        {data && data.length !== 0 &&
-                            <BootstrapTable minHeight="600px" keyField='id' data={data} columns={columns} pagination={paginationFactory(options)} />
-                        }
-                        {data && data.length === 0 &&
-                            <div className="center-div"> Il n'y a pas de résultats avec cette recherche </div>
-                        }
-                    </div>
-                </>
+
+            <>
+                <div className="col-lg-12 mb-4 mt-4 scrollTable">
+                    {data && data.length !== 0 &&
+                        <BootstrapTable minHeight="600px" keyField='id' data={data} columns={columns} pagination={paginationFactory(options)} />
+                    }
+                    {data && data.length === 0 &&
+                        <div className="center-div"> Il n'y a pas de résultats avec cette recherche </div>
+                    }
+                </div>
+            </>
             }
             {
                 isLoading &&

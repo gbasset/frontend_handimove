@@ -14,3 +14,123 @@
     font-size: 18px;
     font-weight: bold;
 }
+
+.form-creation {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 5px 12px 30px #d0d0d0;
+}
+
+.form-creation label {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.form-creation .css-2b097c-container {
+    width: 80%;
+    margin: 5px auto auto auto;
+}
+
+.form-creation h2 {
+    color: #60a3bc;
+    text-align: center;
+}
+
+.form-creation .input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.form-creation .input-container label {
+    text-align: center;
+}
+
+.form-creation .input-container .input-text-name-zone {
+    outline: none !important;
+    padding: 10px !important;
+    border: 1px solid #DEDEDE;
+    border-radius: 5px;
+    margin: auto;
+    width: 80%;
+}
+
+.marginTop {
+    margin-top: 50px;
+}
+
+.returnBtn {
+    font-size: 28px;
+}
+
+.returnBtn:hover {
+    font-size: 28px;
+    color: #6a89cc;
+    cursor: pointer;
+}
+
+.container-link {
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    width: 100%;
+}
+
+.link-to-element:hover {
+    color: #0051ff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-container-modification {
+    display: flex;
+    width: 60%;
+    margin: auto;
+}
+
+.container_list_of_town-adm {
+    width: 90%;
+    position: absolute;
+    height: 250px;
+}
+
+.container_list_of_town-adm ul {
+    width: 40%;
+    height: auto;
+    max-height: 80%;
+    margin: 0px 0px 0px 55px;
+    background-color: #0e0d0d4f;
+    color: #ffffffe6;
+    overflow: auto;
+}
+
+.container_list_of_town-adm ul li {
+    list-style-type: none;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.container_list_of_town-adm ul li:hover {
+    color: #ffd0ad;
+}
+
+.event-dates-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+}
+
+.event-dates-container .DateRangePicker {
+    margin: auto;
+}

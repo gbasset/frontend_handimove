@@ -4,7 +4,7 @@ import CommentContainer from '../Comments/CommentContainer'
 import FormComment from '../Comments/FormComment'
 import axios from 'axios';
 import Loader from 'react-loader-spinner'
-
+import moment from 'moment'
 import { StatusAlertService } from 'react-status-alert'
 export default function EstablishmentCardContainer({ data, mode, naturOfSearch, favEstablishments, favEvents, addEventToFav, removeEventsToFav, addEstablishToFavorites, removeEstablishmentToFav, setEstablishmentSelected }) {
 
@@ -61,7 +61,7 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                         {
                             arrayOfIds && arrayOfIds.includes(data.id_establishment) ?
                                 <div>
-                                    {data.name}
+                                    {data.establishment_name}
                                     <i className="fas fa-heart heart full-heart"
                                         onClick={mode === "search" ?
                                             (e) => removeEstablishmentToFav(favEstablishments.find(el => el.id_establishment === data.id_establishment).ID_fav) :
@@ -150,23 +150,18 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     :
                     <>
                         {
-                            arrayOfIds && arrayOfIds.includes(data.id_event) ?
-                                <div>
-                                    {data.name}
-                                    <i className="fas fa-heart heart full-heart"
-                                        onClick={mode === "search" ?
-                                            (e) => removeEventsToFav(favEvents.find(el => el.id_event === data.id_event).ID_fav) :
-                                            (e) => removeEventsToFav(data.ID_fav)
-                                        }></i>
-                                </div> :
-                                <div> {data.name} <i className="far fa-heart heart"
-                                    onClick={(e) => addEventToFav(data.id_event)}
-                                ></i>
-                                </div>
+                            arrayOfIds && arrayOfIds.includes(data.id_event) &&
+                            <div>
+                                {data.name} <i className="fas fa-heart heart full-heart"
+                                    onClick={mode === "search" ?
+                                        (e) => removeEventsToFav(favEvents.find(el => el.id_event === data.id_event).ID_fav) :
+                                        (e) => removeEventsToFav(data.ID_fav)
+                                    }></i>
+                            </div>
                         }
                     </>
                 }
-                <div>{data.date_begin} - {data.date_end} </div>
+                <div>{moment(data.date_begin).format('DD/MM/YYYY')} - {moment(data.date_end).format('DD/MM/YYYY')} </div>
                 <div>{data.address}</div>
                 <div> {data.town} </div>
                 <div>{data.region_name}</div>

@@ -16,6 +16,7 @@ import ChangePassword from './Components/Auth/ChangePassword';
 import Register from './Components/Register/Register';
 import { Context } from './Context/Context'
 import EditPassWord from './Components/User/EditPassWord'
+import EstablishmentCreateContainer from './Components/Admin/EstablishmentCreateContainer'
 let jwt = require('jsonwebtoken');
 
 function App() {
@@ -29,11 +30,7 @@ function App() {
     if (token) {
       const tokenToVerify = token.token
       jwt.verify(tokenToVerify, process.env.REACT_APP_SECRET, function (err, decoded) {
-        if (err) {
-          console.log("err", err);
-          StatusAlertService.showInfo("Nous n'avons pas pu vous connecter, veuillez recommencer")
-        }
-        else {
+        if (!err) {
           StatusAlertService.showSuccess(`Heureux de vous retrouver ${token.username} !`)
           setUser(token)
         }
@@ -57,6 +54,7 @@ function App() {
           <Route exact path="/about" component={AboutUs} />
           <Route exact path="/user" component={User} />
           <Route exact path="/changeMyPassword" component={EditPassWord} />
+          <Route exact path="/editEstablishment/:id" component={EstablishmentCreateContainer} />
           {/* <Route exact path="/events" component={Events} /> */}
           <Route exact path="/search" component={Search} />
           <Route exact path="/help" component={Help} />

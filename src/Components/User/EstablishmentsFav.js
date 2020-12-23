@@ -14,8 +14,8 @@ export default function EstablishmentsFav() {
     const { data, fetchData } = UseFetch();
     const [isRealoading, setIsRealoading] = useState(true)
     const removeEstablishment = (e) => {
-        axios.delete(`fav/establishments/${e}`)
         setIsRealoading(true)
+        axios.delete(`fav/establishments/${e}`)
             .then(res => {
                 StatusAlertService.showSuccess("Etablissement supprimé des favoris avec succès")
                 setReload(true)

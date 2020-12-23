@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from '../../Context/Context'
+import { Redirect } from 'react-router-dom';
 import './Navigation.css'
 import pictureAvatar from '../../Assets/blank-profile-picture-973460_640.png'
 export default function Navigation({ setActiveLink, activeLink }) {
@@ -7,6 +8,7 @@ export default function Navigation({ setActiveLink, activeLink }) {
         user,
         setUser
     } = useContext(Context)
+
     return (
         <nav className="container-navigation-user">
             <header>

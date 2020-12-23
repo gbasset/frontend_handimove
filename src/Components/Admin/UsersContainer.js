@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import SwitchAdmin from '../UI/SwitchAdmin'
 import SearchBar from '../UI/SearchBar'
 import Loader from 'react-loader-spinner'
 import { Context } from '../../Context/Context'
@@ -13,7 +12,7 @@ import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import options from './optionsTable'
 require('react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css');
 export default function UserContainer() {
-    const [mode, setMode] = useState("Edit")
+
     const { data, setData, fetchData } = UseFetch();
     const [value, setValue] = useState()
     const [isLoading, setIsLoading] = useState(false)
@@ -34,7 +33,7 @@ export default function UserContainer() {
             clearTimeout(timer);
         }
     }, [value])
-    console.log("mode", mode);
+
     useEffect(() => {
         setIsLoading(false)
     }, [data])
@@ -59,27 +58,23 @@ export default function UserContainer() {
     console.log("data", data);
     return (
         <div className="establishment_container">
-            <SwitchAdmin
-                mode={mode}
-                setMode={(e) => setMode(e)}
-            />
-            {mode === "Edit" &&
-                <>
-                    <SearchBar
-                        onChangeValue={(e) => changeValue(e)}
-                        value={value}
-                        placeholder="Rechercher un utilisateur"
-                    />
-                    <div className="col-lg-12 mb-4 mt-4 scrollTable">
-                        {data && data.length !== 0 &&
-                            <BootstrapTable minHeight="600px" keyField='id' data={data} columns={columns} pagination={paginationFactory(options)} />
-                        }
-                        {data && data.length === 0 &&
-                            <div className="center-div"> Il n'y a pas de résultats avec cette recherche </div>
-                        }
-                    </div>
-                </>
-            }
+
+            <>
+                <SearchBar
+                    onChangeValue={(e) => changeValue(e)}
+                    value={value}
+                    placeholder="Rechercher un utilisateur"
+                />
+                <div className="col-lg-12 mb-4 mt-4 scrollTable">
+                    {data && data.length !== 0 &&
+                        <BootstrapTable minHeight="600px" keyField='id' data={data} columns={columns} pagination={paginationFactory(options)} />
+                    }
+                    {data && data.length === 0 &&
+                        <div className="center-div"> Il n'y a pas de résultats avec cette recherche </div>
+                    }
+                </div>
+            </>
+
             {
                 isLoading &&
                 <div className="center-div">
