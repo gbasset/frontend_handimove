@@ -16,7 +16,7 @@ const options = {
     // showTotal: true,
     disablePageTitle: true,
     sizePerPageList: [{
-        text: '9th', value: 9
+        text: '9th', value: 7
     }]
 };
 export default options

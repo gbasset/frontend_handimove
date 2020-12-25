@@ -35,10 +35,11 @@ export default function useFetch() {
                 let user = { ...res.data.userInformations[0], token }
                 token && localStorage.setItem('user', JSON.stringify(user))
                 if (token) {
-                    const tokenToVerify = token.token
+                    const tokenToVerify = token
                     jwt.verify(tokenToVerify, process.env.REACT_APP_SECRET, function (err, decoded) {
                         if (err) {
                             console.log("err", err);
+                            console.log();
                             StatusAlertService.showSuccess("Nous n'avons pas pu vous connecter, veuillez recommencer")
                         }
                         else {

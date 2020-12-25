@@ -1,29 +1,47 @@
 .auth_container {
     margin-top: 75px;
+    text-align: center;
 }
 
 .poppin {
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     top: 25%;
-    left: -webkit-calc(50% - 235px);
-    left: -moz-calc(50% - 235px);
+    height: 360px;
     left: calc(50% - 235px);
     overflow: hidden;
     width: 470px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
     border-radius: 5px;
     background: #FAFAFA;
-    -webkit-box-shadow: 0 3px 11px 0 rgba(74, 74, 74, .36);
-    -moz-box-shadow: 0 3px 11px 0 rgba(74, 74, 74, .36);
     box-shadow: 0 3px 11px 0 rgba(74, 74, 74, .36);
+}
+
+.poppin label {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+}
+
+.poppin label i {
+    line-height: 26px;
+    font-size: 24px;
+}
+
+.poppin label input {
+    width: 80%;
+    border-radius: 8px;
+    border: 1px solid #60a3bc;
+    background-color: #fafafa;
+    outline: none;
 }
 
 .poppin form {
     display: flex;
     flex-direction: column;
     width: 80%;
-    margin: auto;
 }
 
 .connexionform .popin form {
@@ -32,6 +50,18 @@
     padding: 6% 16% 6%;
 }
 
+.signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 140px;
+    margin: auto;
+    background-color: #ececec;
+}
+
 .changepassword_container {
     margin-top: 75px;
 }
+
+.btt-second {}

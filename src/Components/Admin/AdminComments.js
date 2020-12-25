@@ -6,7 +6,7 @@ import UseFetch from '../../Hooks/UseFetch'
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import paginationFactory, { PaginationProvider } from 'react-bootstrap-table2-paginator';
-
+import AdminValidateComment from './AdminValidateComments'
 import './admin.css'
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import options from './optionsTable'
@@ -14,18 +14,35 @@ require('react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.
 export default function AdminComments() {
     const { data, setData, fetchData } = UseFetch();
     const [isLoading, setIsLoading] = useState(false)
+    const [idOfComment, setIdOfComment] = useState()
+
 
     useEffect(() => {
-        fetchData(`admin/comments/`)
+        if (!idOfComment) {
 
-    }, [])
+            fetchData(`admin/comments/`)
+        }
+
+    }, [idOfComment])
 
     useEffect(() => {
         setIsLoading(false)
     }, [data])
+    function urlFormatter(cell, row) {
+        return (
+            <div className="container-link">
+                <span className="link-to-element" onClick={() => { setIdOfComment(cell); setData() }}>{cell}
+                </span>
+                <span className="link-to-element" onClick={() => { setIdOfComment(cell); setData() }}>
+                    <i className="fas fa-pen"></i>
+                </span>
+            </div>
+        );
+    }
     const columns = [{
         dataField: 'comment_id',
         text: 'ID commentaire',
+        formatter: urlFormatter
     },
     {
         dataField: 'date',
@@ -56,17 +73,24 @@ export default function AdminComments() {
     console.log("data", data);
     return (
         <div className="establishment_container">
-
-            <>
-                <div className="col-lg-12 mb-4 mt-4 scrollTable">
-                    {data && data.length !== 0 &&
-                        <BootstrapTable minHeight="600px" keyField='id' data={data} columns={columns} pagination={paginationFactory(options)} />
-                    }
-                    {data && data.length === 0 &&
-                        <div className="center-div"> Il n'y a pas de résultats avec cette recherche </div>
-                    }
-                </div>
-            </>
+            {!idOfComment &&
+                <>
+                    <div className="col-lg-12 mb-4 mt-4 scrollTable">
+                        {data && data.length !== 0 &&
+                            <BootstrapTable minHeight="600px" keyField='comment_id' data={data} columns={columns} pagination={paginationFactory(options)} />
+                        }
+                        {data && data.length === 0 &&
+                            <div className="center-div"> Il n'y a pas de résultats avec cette recherche </div>
+                        }
+                    </div>
+                </>
+            }
+            {
+                idOfComment &&
+                <AdminValidateComment
+                    idOfComment={idOfComment}
+                    setIdOfComment={(e) => setIdOfComment(e)}
+                />
             }
             {
                 isLoading &&

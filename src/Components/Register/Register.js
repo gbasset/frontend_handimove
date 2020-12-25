@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 import UseInputSearch from '../../Hooks/UseInputSearch'
 import UseForm from '../../Hooks/UseForm'
 import UseFetch from '../../Hooks/UseFetch'
-
+import Btn from '../UI/Btn'
 import './Register.css'
 import InputSearch from './../UI/InputSearch';
 export default function Register() {
@@ -269,14 +269,13 @@ export default function Register() {
                     />
                     {isNotValid.includes('response_question') && <p className="information_error_message">Le champs est requis ou invalide</p>}
                 </div>
-                <div className="container-btn-validate-register">
-                    <button
-                        className="btnUI"
-                        onClick={(e) => checkIfFormIsValid(e, profil)}
-                    >
-                        Valider
-                            </button>
-                </div>
+
+                <Btn
+                    onClickFunction={(e) => checkIfFormIsValid(e, profil)}
+                    message="Valider"
+                    color="success"
+                />
+
             </form>
 
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from '../../Context/Context'
 import './AuthenticationContainer.css'
 import UseFetch from '../../Hooks/UseFetch'
+import Btn from '../UI/Btn'
 import { Switch, Link, NavLink, Redirect, withRouter } from 'react-router-dom';
 import { StatusAlertService } from 'react-status-alert'
 export default function AuthenticationContainer() {
@@ -40,9 +41,9 @@ export default function AuthenticationContainer() {
     }
     return (
         <div className="auth_container">
-            <h1>Authentication</h1>
+            <h1>Me connecter</h1>
             <div className="poppin">
-                <h1>Hello</h1>
+                <h1>Bienvenue </h1>
                 <form >
                     <label htmlFor="">
                         <i className="fa fa-envelope"></i>
@@ -76,29 +77,34 @@ export default function AuthenticationContainer() {
                             <p className="login-error-message">{error}</p>
                         </>
                     }
-                    <button
-                        type="submit"
-                        className="btt-second btt-blue"
-                        onClick={(e) => { e.preventDefault(); setIsClick(true) }}
-                    >Log In</button>
-                    <NavLink to={
-                        {
-                            pathname: "/changePassword"
-                        }}
-                        activeStyle={{ color: "#ffcb84e6" }}
-                    >J'ai oublié mon Mot de passe</NavLink>
+                    <div style={{ display: 'flex', margin: '5px auto' }}>
+                        <Btn
+                            onClickFunction={(e) => { e.preventDefault(); setIsClick(true) }}
+                            message="Me Connecter"
+                        />
+                    </div>
+                    <div style={{ color: "#60a3bc", display: 'flex', margin: 'auto' }}>
+                        <NavLink to={
+                            {
+                                pathname: "/changePassword"
+                            }}
+                            activeStyle={{ color: "#ffcb84e6" }}
+                        >J'ai oublié mon Mot de passe</NavLink>
+                    </div>
 
                 </form>
                 <div className="signup">
                     <p>Je n'ai pas encore de compte</p>
-                    <button className="btt-second">
-                        <NavLink to={
-                            {
-                                pathname: "/register"
-                            }}
-                            activeStyle={{ color: "#ffcb84e6" }}
-                        >Créer un compte</NavLink>
-                    </button>
+                    <div>
+                        <button className="btt-second btnUi btn_primary">
+                            <NavLink to={
+                                {
+                                    pathname: "/register"
+                                }}
+                                activeStyle={{ color: "#ffcb84e6" }}
+                            >Créer un compte</NavLink>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

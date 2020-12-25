@@ -102,7 +102,7 @@ export default function EstablishmentContainer() {
                     />
                     <div className="col-lg-12 mb-4 mt-4 scrollTable">
                         {data && data.length !== 0 &&
-                            <BootstrapTable minHeight="600px" keyField='id' data={data} columns={columns} pagination={paginationFactory(options)} />
+                            <BootstrapTable minHeight="600px" keyField='id_etablishment' data={data} columns={columns} pagination={paginationFactory(options)} />
                         }
 
                         {data && data.length === 0 &&

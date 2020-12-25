@@ -1,6 +1,47 @@
 .comment-container {
     display: flex;
+    width: 60%;
+    border-radius: 8px;
     flex-direction: column;
-    background-color: antiquewhite;
+    align-items: flex-start;
+    background-color: #6a89ccb0;
+    padding: 10px;
     margin: 5px auto;
+}
+
+.comment-container h5 {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.comment-container-content {
+    padding: 6px;
+    background-color: #fefeffb0;
+    width: 100%;
+    min-height: 120px;
+}
+
+.comment-name {
+    display: flex;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.user-name-comment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.user-name-comment i {
+    color: white;
+    font-size: 24px;
+    margin-right: 10px;
+    font-weight: bold;
 }

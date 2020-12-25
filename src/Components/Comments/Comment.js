@@ -6,31 +6,26 @@ export default function Comment({ comment, searchMode }) {
             {
                 searchMode &&
                 <>
-                    <div>nom
-                {comment.comment_name}
+                    <div className="user-name-comment">
+                        <i className="fas fa-user"></i>
+                    @{comment.username}
                     </div>
-                    <div> commentaire {comment.comment}</div>
-                    <div>
-                        utilisateur
-                {comment.username}
-                    </div>
+                    <div className="comment-name">{comment.comment_name}</div>
+                    <div className="comment-container-content"> {comment.comment}</div>
                 </>
             }
             {
                 !searchMode &&
                 <>
-                    <div>
-                        nom
-                {comment.comment_name}
+                    <div className="user-name-comment">
+                        <i className="fas fa-user"></i>
+                        @{comment.username}
                     </div>
-                    <div> commentaire {comment.comment}</div>
+                    <div className="comment-name">{comment.comment_name}</div>
+                    <div className="comment-container-content"> {comment.comment}</div>
+                    <h5>Nom de l'établissement</h5>
                     <div>
-                        utilisateur
-                {comment.username}
-                    </div>
-                    <div>
-                        nom de l'etablissement
-                {comment.establish_name}
+                        {comment.establish_name}
                     </div>
                 </>
             }

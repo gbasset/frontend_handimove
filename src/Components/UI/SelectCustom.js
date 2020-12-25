@@ -1,6 +1,6 @@
 import React from 'react'
 import './SelectCustom.css'
-export default function CreationFeedContainer({ optionsList, name, label, onChangeFunction, defaultValueDisabled, defaultValue, value }) {
+export default function SelectCustom({ optionsList, name, label, onChangeFunction, defaultValueDisabled, defaultValue, value }) {
     return (
         <div>
             <div className="input_select_container">

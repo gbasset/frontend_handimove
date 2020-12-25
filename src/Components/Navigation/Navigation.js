@@ -8,7 +8,18 @@ export default function Navigation({ setActiveLink, activeLink }) {
         user,
         setUser
     } = useContext(Context)
-
+    const [isAdmin, setIsAdmin] = useState(false)
+    useEffect(() => {
+        if (user) {
+            console.log("iciiii");
+            if (user.is_admin === 0) {
+                setIsAdmin(true)
+            } else {
+                setIsAdmin(false)
+            }
+        }
+    }, [user])
+    console.log("isAdmin", isAdmin);
     return (
         <nav className="container-navigation-user">
             <header>
@@ -44,7 +55,7 @@ export default function Navigation({ setActiveLink, activeLink }) {
                 >Contacter un administrateur</li>
                 <div className="navigation-admin-container">
                     {
-                        user && user.is_admin === 0 &&
+                        isAdmin &&
                         <>
                             <div title="Gestion des commentaires"
                                 onClick={(e) => setActiveLink(8)}
