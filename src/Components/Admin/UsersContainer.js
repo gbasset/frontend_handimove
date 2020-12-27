@@ -6,7 +6,7 @@ import UseFetch from '../../Hooks/UseFetch'
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import paginationFactory, { PaginationProvider } from 'react-bootstrap-table2-paginator';
-
+import UserCreateContainer from './UserCreateContainer'
 import './admin.css'
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import options from './optionsTable'
@@ -16,6 +16,7 @@ export default function UserContainer() {
     const { data, setData, fetchData } = UseFetch();
     const [value, setValue] = useState()
     const [isLoading, setIsLoading] = useState(false)
+    const [idOfUser, setIdOfUser] = useState()
 
     const changeValue = (e) => {
         setValue(e.target.value)
@@ -37,9 +38,21 @@ export default function UserContainer() {
     useEffect(() => {
         setIsLoading(false)
     }, [data])
+    function urlFormatter(cell, row) {
+        return (
+            <div className="container-link">
+                <span className="link-to-element" onClick={() => { setIdOfUser(cell); setValue(); setData() }}>{cell}
+                </span>
+                <span className="link-to-element" onClick={() => { setIdOfUser(cell); setValue(); setData() }}>
+                    <i className="fas fa-pen"></i>
+                </span>
+            </div>
+        );
+    }
     const columns = [{
         dataField: 'id',
         text: 'ID',
+        formatter: urlFormatter
     },
     {
         dataField: 'username',
@@ -58,22 +71,30 @@ export default function UserContainer() {
     console.log("data", data);
     return (
         <div className="establishment_container">
-
-            <>
-                <SearchBar
-                    onChangeValue={(e) => changeValue(e)}
-                    value={value}
-                    placeholder="Rechercher un utilisateur"
+            {!idOfUser &&
+                <>
+                    <SearchBar
+                        onChangeValue={(e) => changeValue(e)}
+                        value={value}
+                        placeholder="Rechercher un utilisateur"
+                    />
+                    <div className="col-lg-12 mb-4 mt-4 scrollTable">
+                        {data && data.length !== 0 &&
+                            <BootstrapTable minHeight="600px" keyField='id' data={data} columns={columns} pagination={paginationFactory(options)} />
+                        }
+                        {data && data.length === 0 &&
+                            <div className="center-div"> Il n'y a pas de résultats avec cette recherche </div>
+                        }
+                    </div>
+                </>
+            }
+            {
+                idOfUser &&
+                < UserCreateContainer
+                    idOfUser={idOfUser}
+                    setIdOfUser={(e) => setIdOfUser(e)}
                 />
-                <div className="col-lg-12 mb-4 mt-4 scrollTable">
-                    {data && data.length !== 0 &&
-                        <BootstrapTable minHeight="600px" keyField='id' data={data} columns={columns} pagination={paginationFactory(options)} />
-                    }
-                    {data && data.length === 0 &&
-                        <div className="center-div"> Il n'y a pas de résultats avec cette recherche </div>
-                    }
-                </div>
-            </>
+            }
 
             {
                 isLoading &&
@@ -87,6 +108,6 @@ export default function UserContainer() {
                     />
                 </div>
             }
-        </div>
+        </div >
     )
 }

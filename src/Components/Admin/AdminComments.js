@@ -8,21 +8,35 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import paginationFactory, { PaginationProvider } from 'react-bootstrap-table2-paginator';
 import AdminValidateComment from './AdminValidateComments'
 import './admin.css'
+import SwitchComments from '../UI/SwitchComments'
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import options from './optionsTable'
+import moment from 'moment'
+
 require('react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css');
 export default function AdminComments() {
     const { data, setData, fetchData } = UseFetch();
     const [isLoading, setIsLoading] = useState(false)
     const [idOfComment, setIdOfComment] = useState()
+    const [mode, setMode] = useState("unRead")
+    const [unreadList, setUntreadList] = useState([])
 
-
+    useEffect(() => {
+        if (data) {
+            const arrayOfUnread = [];
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].status !== 0) {
+                    arrayOfUnread.push(data[i])
+                }
+            }
+            setUntreadList(arrayOfUnread)
+        }
+    }, [data])
     useEffect(() => {
         if (!idOfComment) {
 
             fetchData(`admin/comments/`)
         }
-
     }, [idOfComment])
 
     useEffect(() => {
@@ -39,6 +53,11 @@ export default function AdminComments() {
             </div>
         );
     }
+    function dateFormatter(cell, row) {
+        return (
+            <> {moment(cell).format('DD-MM-YYYY')}</>
+        );
+    }
     const columns = [{
         dataField: 'comment_id',
         text: 'ID commentaire',
@@ -47,6 +66,7 @@ export default function AdminComments() {
     {
         dataField: 'date',
         text: 'Date',
+        formatter: dateFormatter
     },
     {
         dataField: 'comment_name',
@@ -70,14 +90,17 @@ export default function AdminComments() {
     },
     ]
 
-    console.log("data", data);
     return (
         <div className="establishment_container">
+            <SwitchComments
+                mode={mode}
+                setMode={(e) => setMode(e)}
+            />
             {!idOfComment &&
                 <>
                     <div className="col-lg-12 mb-4 mt-4 scrollTable">
                         {data && data.length !== 0 &&
-                            <BootstrapTable minHeight="600px" keyField='comment_id' data={data} columns={columns} pagination={paginationFactory(options)} />
+                            <BootstrapTable minHeight="600px" keyField='comment_id' data={mode === "unRead" ? unreadList : data} columns={columns} pagination={paginationFactory(options)} />
                         }
                         {data && data.length === 0 &&
                             <div className="center-div"> Il n'y a pas de résultats avec cette recherche </div>

@@ -11,7 +11,6 @@ export default function Navigation({ setActiveLink, activeLink }) {
     const [isAdmin, setIsAdmin] = useState(false)
     useEffect(() => {
         if (user) {
-            console.log("iciiii");
             if (user.is_admin === 0) {
                 setIsAdmin(true)
             } else {

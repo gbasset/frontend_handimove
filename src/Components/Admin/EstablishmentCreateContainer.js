@@ -55,7 +55,6 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
         setDefaultSelect(e)
         setForm(prevState => ({ ...prevState, handicaps: newValue ? newValue.join(';') : '' }))
     }
-
     const handicapsList = [
         { value: "auditif", label: "auditif" },
         { value: "mental", label: "mental" },
@@ -76,7 +75,6 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
             })
     }
     const changeDataEstablishment = () => {
-        console.log("icii");
         setIsLoading(true)
         axios.put(`/admin/establisments/${idOfEstablishment}`, form)
             .then(res => {

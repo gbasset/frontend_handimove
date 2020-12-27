@@ -15,8 +15,7 @@ export default function EstablishmentCreateContainer({ idOfComment, setIdOfComme
     const [form, setForm] = useState({
         status: "",
     })
-    const [defaultSelect, setDefaultSelect] = useState()
-    console.log("idOfComment", idOfComment);
+
     useEffect(() => {
         if (idOfComment && idOfComment) {
             console.log("idOfComment", idOfComment);
@@ -43,7 +42,6 @@ export default function EstablishmentCreateContainer({ idOfComment, setIdOfComme
         })
         )
     }
-    console.log("form", form);
 
     const changeStatusComment = () => {
         setIsLoading(true)
@@ -106,7 +104,6 @@ export default function EstablishmentCreateContainer({ idOfComment, setIdOfComme
                     label="Status"
                     value={form && form.status_comment ? form.status_comment : ""}
                     onChangeFunction={(e) => handleChange(e)}
-
                 />
                 <div>
                     <Comment

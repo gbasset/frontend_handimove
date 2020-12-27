@@ -213,7 +213,7 @@ export default function EventCreateContainer({ idOfEvent, setIdOfEvent }) {
         delete newObj.town
         axios.post(`admin/event/`, newObj)
             .then(res => {
-                StatusAlertService.showSuccess("Etablissement créé avec succès")
+                StatusAlertService.showSuccess("événement créé avec succès")
                 setIsLoading(false)
             })
             .catch(error => {

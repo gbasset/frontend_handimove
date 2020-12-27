@@ -134,3 +134,22 @@
 .event-dates-container .DateRangePicker {
     margin: auto;
 }
+
+.container-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    margin: 15px auto;
+    padding: 5px;
+    background-color: rgba(124, 124, 124, 0.932);
+    border-radius: 8px;
+    color: white;
+}
+
+.container-user div {
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+    margin: 15px auto;
+}
