@@ -153,3 +153,19 @@
     width: 60%;
     margin: 15px auto;
 }
+
+.container-btn-modif {
+    display: flex;
+    width: 14%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.upload-icon {
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.upload-icon:hover {
+    color: #6a89cc;
+}

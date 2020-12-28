@@ -34,18 +34,19 @@ const rejectStyle = {
 
 const thumbsContainer = {
     display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginTop: 16
+    flexDirection: "column",
+    marginTop: 16,
+    height: 360,
+    overflow: "auto",
 };
 
 const thumb = {
-    display: "inline-flex",
+    display: "flex",
     borderRadius: 2,
     border: "1px solid #eaeaea",
     marginBottom: 8,
     marginRight: 8,
-    width: "auto",
+    width: "300",
     height: 200,
     padding: 4,
     boxSizing: "border-box"
@@ -53,17 +54,19 @@ const thumb = {
 
 const thumbInner = {
     display: "flex",
+    flexDirection: "column",
     minWidth: 0,
-    overflow: "hidden"
+    overflow: "hidden",
+    margin: "auto",
 };
 
 const img = {
     display: "block",
     width: "auto",
-    height: "100%"
+    maxHeight: 165,
 };
 
-function StyledDropzone({ idOfEstablishment, setModalIsOppen }) {
+function StyledDropzone({ idOfEstablishment, setModalIsOppen, url }) {
     const [isLoading, setIsLoading] = useState(false)
     const [uploadPercentage, setUploadPercentage] = useState(0)
     const [files, setFiles] = useState([]);
@@ -91,15 +94,13 @@ function StyledDropzone({ idOfEstablishment, setModalIsOppen }) {
     });
     const uploadImages = () => {
         setIsLoading(true)
-        let formData = new FormData()
-        formData.append(
-            'file',
-            files
-        )
-        axios.post(`/images/upload/establish/${idOfEstablishment}`, formData, {
+        const formFiles = new FormData();
+        for (const key of Object.keys(files)) {
+            formFiles.append("file", files[key]);
+        }
+        axios.post(`/images/upload/${url}/${idOfEstablishment}`, formFiles, {
             onUploadProgress: progressEvent => {
                 setUploadPercentage(Math.round(progressEvent.loaded / progressEvent.total) * 100)
-
             }
         }, { headers: { 'Content-Type': 'multipart/form-data' } })
             .then(res => {
@@ -128,10 +129,13 @@ function StyledDropzone({ idOfEstablishment, setModalIsOppen }) {
         <div style={thumb} key={file.name}>
             <div style={thumbInner}>
                 <img src={file.preview} style={img} />
+                <div>
+                    {file.path} - {file.size} bytes
+                </div>
             </div>
         </div>
     ));
-
+    console.log("files", files);
     useEffect(
         () => () => {
             // Make sure to revoke the data uris to avoid memory leaks
@@ -156,22 +160,34 @@ function StyledDropzone({ idOfEstablishment, setModalIsOppen }) {
                     Ouvrir un fichier
         </button>
             </div>
-            <aside>
-                <h4>Fichier</h4>
-                <ul>{filepath}</ul>
-            </aside>
-            <aside style={thumbsContainer}>{thumbs}</aside>
+
+            <aside style={thumbsContainer}>
+
+                {thumbs}</aside>
             <Progress percentage={uploadPercentage} />
-            <Btn
-                onClickFunction={() => console.log("/register")}
-                message="Annuler"
-                color="warning"
-            />
-            <Btn
-                onClickFunction={() => uploadImages()}
-                message="Uploader mes images"
-                color="success"
-            />
+            <div className="container-btn-upload">
+
+                <Btn
+                    onClickFunction={() => setModalIsOppen(false)}
+                    message="Annuler"
+                    color="warning"
+                />
+                {files.length === 0 &&
+                    <Btn
+                        onClickFunction={() => console.log()}
+                        message="Uploader mes images"
+                        color="desabled"
+                    />
+                }
+                {files.length !== 0 &&
+                    <Btn
+                        onClickFunction={() => uploadImages()}
+                        message="Uploader mes images"
+                        color="success"
+                    />
+                }
+            </div>
+
         </div>
     )
 }

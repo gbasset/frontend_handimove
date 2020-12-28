@@ -108,7 +108,7 @@
 }
 
 .modal_body {
-    margin: 24px 0;
+    margin: 24px 0!important;
     padding: 0 30px;
     overflow-y: auto;
     -ms-flex: 1 1 auto;
@@ -116,7 +116,6 @@
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     flex: 1 1 auto;
-    margin: 15px auto;
 }
 
 .modal_section {

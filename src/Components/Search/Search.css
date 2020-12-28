@@ -114,9 +114,14 @@
 
 .establishment_list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+}
+
+.containerSearch {
+    background-color: #ffffffc7;
 }
 
 @media screen and (max-width: 900px) {

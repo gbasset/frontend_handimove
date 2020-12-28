@@ -234,7 +234,7 @@ export default function Search() {
                     }
                 </section>
             </div>
-            <div>
+            <div className="containerSearch">
                 {
                     results && results.length !== 0 &&
                     <h1> Voici les {results.length > 1 ? `${results.length} résultats` : `${results.length} résultat`} </h1>

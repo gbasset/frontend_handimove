@@ -19,7 +19,7 @@
     flex-direction: column;
     margin: 5% auto;
     width: 70%;
-    height: 310px;
+    min-height: 330px;
     border-radius: 6px;
     box-shadow: 4px 3px 43px 5px #70707045;
 }
@@ -37,4 +37,10 @@
 .password-form-container form .input-container label {
     margin-right: 5%;
     margin-bottom: 10px
+}
+
+.container-btn {
+    width: 100px;
+    display: flex;
+    margin: 10px auto;
 }

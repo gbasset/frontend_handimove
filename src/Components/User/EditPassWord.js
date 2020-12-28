@@ -106,11 +106,13 @@ export default function EditPassWord() {
                     onChangeFunction={handleChange}
                 />
                 {isNotValid.includes('password') && <p className="information_error_message">Les mots de passes doivent êtres identiques et comporter au moins 8 caractères </p>}
-                <Btn
-                    message="Envoyer"
-                    onClickFunction={(e) => checkIfFormIsValid(e)}
-                >
-                </Btn>
+                <div className="container-btn">
+                    <Btn
+                        message="Envoyer"
+                        onClickFunction={(e) => checkIfFormIsValid(e)}
+                    >
+                    </Btn>
+                </div>
             </form>
             {
                 isRealoading &&

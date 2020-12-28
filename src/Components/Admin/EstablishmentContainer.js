@@ -133,6 +133,7 @@ export default function EstablishmentContainer() {
                     <UploadContainer
                         idOfEstablishment={idOfEstablishment}
                         setModalIsOppen={(e) => setModalIsOppen(e)}
+                        url="establish"
                     />
                     <div className="modal_footer_center ">
 

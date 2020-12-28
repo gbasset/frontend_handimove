@@ -61,14 +61,16 @@ input[type="text"].searchbar::-webkit-input-placeholder {
 }
 
 .establishment_container_card {
-  width: 800px;
-  min-height: 230px;
+  width: 350px;
+  min-height: 280px;
   margin: 10px auto;
+  padding: 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   box-shadow: 1px 6px 14px 1px #ccc;
+  background-color: #c5c5c545;
 }
 
 .listbox {
@@ -183,6 +185,12 @@ input[type="text"].searchbar::-webkit-input-placeholder {
 .leaflet-container {
   width: 50%;
   height: 600px;
+}
+
+.container-btn-upload {
+  display: flex;
+  width: 280px;
+  margin: 5px auto;
 }
 
 @media screen and (max-width: 900px) {

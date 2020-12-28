@@ -120,12 +120,14 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
             }
 
             <div className="form-creation" >
-                {idOfEstablishment && <i className="fas fa-arrow-left returnBtn"
-                    title="Retour"
-                    onClick={() => setIdOfEstablishment()}></i>}
-                {idOfEstablishment && <i className="fas fa-cloud-upload-alt"
-                    title="Uploader Une image"
-                    onClick={() => setModalIsOppen(true)}></i>}
+                <div className="container-btn-modif">
+                    {idOfEstablishment && <i className="fas fa-arrow-left returnBtn"
+                        title="Retour"
+                        onClick={() => setIdOfEstablishment()}></i>}
+                    {idOfEstablishment && <i className="fas fa-cloud-upload-alt upload-icon"
+                        title="Uploader Une image"
+                        onClick={() => setModalIsOppen(true)}></i>}
+                </div>
 
                 <h2> {idOfEstablishment ? "Modification d'un établissement" : "Création d'un établissement"}</h2>
                 <InputChange
