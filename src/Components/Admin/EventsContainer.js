@@ -11,10 +11,13 @@ import EventCreateContainer from './EventCreateContainer'
 import './admin.css'
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import options from './optionsTable'
+import UploadContainer from '../Upload/UploadContainer'
 import moment from 'moment'
+import Modal from '../UI/Modal'
 
 require('react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css');
 export default function EventsContainer() {
+    const [modalIsOppen, setModalIsOppen] = useState(false)
     const [mode, setMode] = useState("Edit")
     const { data, setData, fetchData } = UseFetch();
     const [value, setValue] = useState()
@@ -124,8 +127,26 @@ export default function EventsContainer() {
                 <EventCreateContainer
                     idOfEvent={idOfEvent}
                     setIdOfEvent={(e) => setIdOfEvent(e)}
+                    setModalIsOppen={(e) => setModalIsOppen(e)}
                 />
             }
+            <Modal
+                isOpen={modalIsOppen}
+                width="1200"
+                height="650"
+                onClose={() => setModalIsOppen(false)}
+            >
+                <div className="modal_body">
+                    <UploadContainer
+                        idOfEstablishment={idOfEvent}
+                        setModalIsOppen={(e) => setModalIsOppen(e)}
+                        url="event"
+                    />
+                    <div className="modal_footer_center ">
+
+                    </div>
+                </div>
+            </Modal>
             {
                 isLoading &&
                 <div className="center-div">

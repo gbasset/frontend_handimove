@@ -62,15 +62,33 @@ input[type="text"].searchbar::-webkit-input-placeholder {
 
 .establishment_container_card {
   width: 350px;
-  min-height: 280px;
-  margin: 10px auto;
-  padding: 10px;
+  min-height: 305px;
+  max-height: 305px;
+  margin: 15px 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   box-shadow: 1px 6px 14px 1px #ccc;
-  background-color: #c5c5c545;
+  background-color: #6a89cc0d;
+  border-radius: 10px;
+}
+
+.header-card {
+  background-color: #82ccdd;
+  width: 100%;
+  height: 65px;
+  text-align: center;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.header-card p {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px auto;
+  width: 90%;
 }
 
 .listbox {

@@ -12,7 +12,7 @@ import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import moment from 'moment'
-export default function EventCreateContainer({ idOfEvent, setIdOfEvent }) {
+export default function EventCreateContainer({ idOfEvent, setIdOfEvent, setModalIsOppen }) {
     const animatedComponents = makeAnimated();
     const [isLoading, setIsLoading] = useState(false)
     const [form, setForm] = useState({
@@ -272,9 +272,14 @@ export default function EventCreateContainer({ idOfEvent, setIdOfEvent }) {
                 </div>
             }
             <div className="form-creation" >
-                {idOfEvent && <i className="fas fa-arrow-left returnBtn"
-                    title="Retour"
-                    onClick={() => setIdOfEvent()}></i>}
+                <div className="container-btn-modif">
+                    {idOfEvent && <i className="fas fa-arrow-left returnBtn"
+                        title="Retour"
+                        onClick={() => setIdOfEvent()}></i>}
+                    {idOfEvent && <i className="fas fa-cloud-upload-alt upload-icon"
+                        title="Uploader Une image"
+                        onClick={() => setModalIsOppen(true)}></i>}
+                </div>
                 <h2> {idOfEvent ? "Modification d'un événement" : "Création d'un événement"}</h2>
                 <div className="event-dates-container">
                     <label>Dates de l'événement</label>

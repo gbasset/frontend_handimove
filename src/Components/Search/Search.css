@@ -114,6 +114,8 @@
 
 .establishment_list {
     display: flex;
+    width: 95%;
+    margin: auto;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;

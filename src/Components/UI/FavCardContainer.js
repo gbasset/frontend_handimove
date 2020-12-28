@@ -42,17 +42,17 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     <>
                         {
                             arrayOfIds && arrayOfIds.includes(data.id_etablishment) ?
-                                <div>
-                                    {data.name}
-                                    <i className="fas fa-heart heart full-heart"
+                                <div className="header-card">
+                                    <p> {data.name}   <i className="fas fa-heart heart full-heart"
                                         onClick={mode === "search" ?
                                             (e) => removeEstablishmentToFav(favEstablishments.find(el => el.id_establishment === data.id_etablishment).ID_fav) :
                                             (e) => removeEstablishmentToFav(data.ID_fav)
-                                        }></i>
+                                        }></i></p>
                                 </div> :
-                                <div> {data.name} <i className="far fa-heart heart"
-                                    onClick={(e) => addEstablishToFavorites(data.id_etablishment)}
-                                ></i>
+                                <div className="header-card">
+                                    <p>{data.name} <i className="far fa-heart heart"
+                                        onClick={(e) => addEstablishToFavorites(data.id_etablishment)}
+                                    ></i></p>
                                 </div>
                         }
                     </>
@@ -60,17 +60,22 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     <>
                         {
                             arrayOfIds && arrayOfIds.includes(data.id_establishment) ?
-                                <div>
-                                    {data.establishment_name}
-                                    <i className="fas fa-heart heart full-heart"
-                                        onClick={mode === "search" ?
-                                            (e) => removeEstablishmentToFav(favEstablishments.find(el => el.id_establishment === data.id_establishment).ID_fav) :
-                                            (e) => removeEstablishmentToFav(data.ID_fav)
-                                        }></i>
+                                <div className="header-card">
+                                    <p>
+                                        {data.establishment_name}
+                                        <i className="fas fa-heart heart full-heart"
+                                            onClick={mode === "search" ?
+                                                (e) => removeEstablishmentToFav(favEstablishments.find(el => el.id_establishment === data.id_establishment).ID_fav) :
+                                                (e) => removeEstablishmentToFav(data.ID_fav)
+                                            }></i>
+                                    </p>
                                 </div> :
-                                <div> {data.name} <i className="far fa-heart heart"
-                                    onClick={(e) => addEstablishToFavorites(data.id_establishment)}
-                                ></i>
+                                <div className="header-card">
+                                    <p>
+                                        {data.name} <i className="far fa-heart heart"
+                                            onClick={(e) => addEstablishToFavorites(data.id_establishment)}
+                                        ></i>
+                                    </p>
                                 </div>
                         }
                     </>
@@ -133,17 +138,22 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     <>
                         {
                             arrayOfIds && arrayOfIds.includes(data.id_event) ?
-                                <div>
-                                    {data.name}
-                                    <i className="fas fa-heart heart full-heart"
-                                        onClick={mode === "search" ?
-                                            (e) => removeEventsToFav(favEvents.find(el => el.id_event === data.id_event).ID_fav) :
-                                            (e) => removeEventsToFav(data.ID_fav)
-                                        }></i>
+                                <div className="header-card">
+                                    <p>
+                                        {data.name}
+                                        <i className="fas fa-heart heart full-heart"
+                                            onClick={mode === "search" ?
+                                                (e) => removeEventsToFav(favEvents.find(el => el.id_event === data.id_event).ID_fav) :
+                                                (e) => removeEventsToFav(data.ID_fav)
+                                            }></i>
+                                    </p>
                                 </div> :
-                                <div> {data.name} <i className="far fa-heart heart"
-                                    onClick={(e) => addEventToFav(data.id_event)}
-                                ></i>
+                                <div className="header-card">
+                                    <p>
+                                        {data.name} <i className="far fa-heart heart"
+                                            onClick={(e) => addEventToFav(data.id_event)}
+                                        ></i>
+                                    </p>
                                 </div>
                         }
                     </>
@@ -151,12 +161,14 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     <>
                         {
                             arrayOfIds && arrayOfIds.includes(data.id_event) &&
-                            <div>
-                                {data.name} <i className="fas fa-heart heart full-heart"
-                                    onClick={mode === "search" ?
-                                        (e) => removeEventsToFav(favEvents.find(el => el.id_event === data.id_event).ID_fav) :
-                                        (e) => removeEventsToFav(data.ID_fav)
-                                    }></i>
+                            <div className="header-card">
+                                <p>
+                                    {data.name} <i className="fas fa-heart heart full-heart"
+                                        onClick={mode === "search" ?
+                                            (e) => removeEventsToFav(favEvents.find(el => el.id_event === data.id_event).ID_fav) :
+                                            (e) => removeEventsToFav(data.ID_fav)
+                                        }></i>
+                                </p>
                             </div>
                         }
                     </>
