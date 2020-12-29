@@ -10,7 +10,7 @@ import UseForm from '../../Hooks/UseForm'
 import UseFetch from '../../Hooks/UseFetch'
 import Btn from '../UI/Btn'
 import './Register.css'
-import InputSearch from './../UI/InputSearch';
+
 export default function Register() {
     const {
         user,

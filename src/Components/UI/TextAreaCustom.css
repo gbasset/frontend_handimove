@@ -1,0 +1,11 @@
+.container-textarea-custom {
+    width: 80%;
+    height: 210px;
+    display: flex;
+    margin: 10px auto;
+}
+
+.container-textarea-custom:focus {
+    border: 1px solid #82ccdd;
+    outline: none;
+}

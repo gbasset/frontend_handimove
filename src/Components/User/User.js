@@ -43,7 +43,6 @@ export default function User() {
             return <Redirect to={`/authentication`} push />
         }
     }
-    console.log("user", user);
 
     return (
         <div className="user_container">

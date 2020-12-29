@@ -9,7 +9,7 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import SelectCustom from '../UI/SelectCustom'
 import Comment from '../Comments/Comment'
-export default function EstablishmentCreateContainer({ idOfComment, setIdOfComment }) {
+export default function EstablishmentCreateContainer({ idOfMessage, setIdOfMessage }) {
     const animatedComponents = makeAnimated();
     const [isLoading, setIsLoading] = useState(false)
     const [form, setForm] = useState({
@@ -17,8 +17,8 @@ export default function EstablishmentCreateContainer({ idOfComment, setIdOfComme
     })
 
     useEffect(() => {
-        if (idOfComment && idOfComment) {
-            axios.get(`/admin/comment/${idOfComment}`)
+        if (idOfMessage && idOfMessage) {
+            axios.get(`/messages/message/${idOfMessage}`)
                 .then(res => {
                     setIsLoading(false)
                     console.log("res", res.data);
@@ -29,11 +29,11 @@ export default function EstablishmentCreateContainer({ idOfComment, setIdOfComme
                 })
                 .catch(error => {
                     console.log("error", error);
-                    StatusAlertService.showError('une erreur est survenue pendant la récupératio des données')
+                    StatusAlertService.showError('une erreur est survenue pendant la récupération des données')
                     setIsLoading(false)
                 })
         }
-    }, [idOfComment])
+    }, [idOfMessage])
     const handleChange = (e) => {
         setForm(prevValues => ({
             ...prevValues,
@@ -44,14 +44,14 @@ export default function EstablishmentCreateContainer({ idOfComment, setIdOfComme
 
     const changeStatusComment = () => {
         setIsLoading(true)
-        const status = { status: form.status_comment }
+        const status = { status: form.status }
         console.log("status", status);
-        axios.put(`/admin/comment/${idOfComment}`, status)
+        axios.put(`/messages/message/${idOfMessage}`, status)
             .then(res => {
-                StatusAlertService.showSuccess("Commentaire modifié avec succès")
+                StatusAlertService.showSuccess("Message modifié avec succès")
                 setIsLoading(false)
                 setTimeout(() => {
-                    setIdOfComment()
+                    setIdOfMessage()
                 }, 1000)
             })
             .catch(error => {
@@ -61,12 +61,12 @@ export default function EstablishmentCreateContainer({ idOfComment, setIdOfComme
     }
     const deleteComment = () => {
         setIsLoading(true)
-        axios.delete(`/admin/comment/${idOfComment}`, form)
+        axios.delete(`/messages/message/${idOfMessage}`, form)
             .then(res => {
-                StatusAlertService.showSuccess("Commentaire supprimé avec succès")
+                StatusAlertService.showSuccess("Message supprimé avec succès")
                 setIsLoading(false)
                 setTimeout(() => {
-                    setIdOfComment()
+                    setIdOfMessage()
                 }, 1000)
             })
             .catch(error => {
@@ -74,8 +74,8 @@ export default function EstablishmentCreateContainer({ idOfComment, setIdOfComme
                 setIsLoading(false)
             })
     }
-    const optionCommentValidate = [{ value: 0, label: "visible" },
-    { value: 1, label: "invisible" }]
+    const options = [{ value: "unread", label: "Non lu" },
+    { value: "read", label: "lu" }]
     return (
         <div className="establishment_container">
             {
@@ -92,28 +92,29 @@ export default function EstablishmentCreateContainer({ idOfComment, setIdOfComme
             }
 
             <div className="form-creation" >
-                {idOfComment && <i className="fas fa-arrow-left returnBtn"
+                {idOfMessage && <i className="fas fa-arrow-left returnBtn"
                     title="Retour"
-                    onClick={() => setIdOfComment()}></i>}
+                    onClick={() => setIdOfMessage()}></i>}
 
                 <h2> Validation de commentaires</h2>
                 <SelectCustom
-                    name="status_comment"
-                    optionsList={optionCommentValidate}
+                    name="status"
+                    optionsList={options}
                     label="Status"
-                    value={form && form.status_comment ? form.status_comment : ""}
+                    value={form && form.status ? form.status : ""}
                     onChangeFunction={(e) => handleChange(e)}
                 />
-                <div>
-                    <Comment
-                        comment={form}
-                    />
+                <div className="container-message-admin">
+                    <p>    {form.message}</p>
+                    <p>   {form.name}</p>
+                    <p> {form.contact}</p>
+                    <p>   {form.date}</p>
                 </div>
                 <div className="btn-container-modification">
                     <div style={{ display: 'flex', margin: '10px auto' }}>
                         <Btn
                             onClickFunction={() => deleteComment()}
-                            message="Supprimer le commentaire"
+                            message="Supprimer le message"
                             color="warning"
                         />
                     </div>

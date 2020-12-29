@@ -169,3 +169,15 @@
 .upload-icon:hover {
     color: #6a89cc;
 }
+
+.message-form {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container-message-admin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
