@@ -128,7 +128,6 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
                         title="Uploader Une image"
                         onClick={() => setModalIsOppen(true)}></i>}
                 </div>
-
                 <h2> {idOfEstablishment ? "Modification d'un établissement" : "Création d'un établissement"}</h2>
                 <InputChange
                     name="name"

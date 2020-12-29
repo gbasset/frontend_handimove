@@ -18,7 +18,7 @@ export default function Navigation({ setActiveLink, activeLink }) {
             }
         }
     }, [user])
-    console.log("isAdmin", isAdmin);
+
     return (
         <nav className="container-navigation-user">
             <header>
@@ -78,6 +78,10 @@ export default function Navigation({ setActiveLink, activeLink }) {
                                 onClick={(e) => setActiveLink(12)}
                                 className={activeLink === 12 ? "isActive" : ""}
                             ><i className="fas fa-envelope-open-text"></i></div>
+                            <div title="Gestion des images"
+                                onClick={(e) => setActiveLink(13)}
+                                className={activeLink === 13 ? "isActive" : ""}
+                            ><i className="fas fa-images"></i></div>
                         </>
                     }
                 </div>

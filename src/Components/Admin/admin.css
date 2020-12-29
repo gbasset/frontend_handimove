@@ -181,3 +181,18 @@
     flex-direction: column;
     justify-content: space-evenly;
 }
+
+.container-avatars {
+    width: 90%;
+    margin: auto;
+}
+
+.picture-avatar-container {
+    width: 500px;
+    margin: 10px auto;
+}
+
+.picture-avatar-container img {
+    width: 70%;
+    height: auto;
+}

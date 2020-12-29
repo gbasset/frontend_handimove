@@ -17,6 +17,7 @@ import EstablishmentContainer from '../Admin/EstablishmentContainer'
 import EventsContainer from '../Admin/EventsContainer'
 import MessageContainer from '../Admin/MessageContainer'
 import UsersContainer from '../Admin/UsersContainer'
+import ImagesAdmin from '../Admin/ImagesAdmin'
 let jwt = require('jsonwebtoken');
 
 export default function User() {
@@ -146,6 +147,14 @@ export default function User() {
                         <h1> Gestion des messages </h1>
                         <div className="container-data-user">
                             <MessageContainer />
+                        </div>
+                    </>
+                }
+                {activeLink === 13 &&
+                    <>
+                        <h1> Gestion des images </h1>
+                        <div className="container-data-user">
+                            <ImagesAdmin />
                         </div>
                     </>
                 }
