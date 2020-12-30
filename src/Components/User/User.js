@@ -152,7 +152,7 @@ export default function User() {
                 }
                 {activeLink === 13 &&
                     <>
-                        <h1> Gestion des images </h1>
+                        <h1> Gestion des avatars </h1>
                         <div className="container-data-user">
                             <ImagesAdmin />
                         </div>
