@@ -3,6 +3,7 @@ import Comment from './Comment'
 export default function CommentContainer({ commentsList, setCommentIsOppen }) {
     return (
         <div className="comment-container">
+            <h2>Commentaires</h2>
             <ul>
                 {commentsList && commentsList.length === 0 ?
                     <li>

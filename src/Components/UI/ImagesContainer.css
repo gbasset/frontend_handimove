@@ -1,0 +1,23 @@
+.image-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+    height: 250px;
+    overflow: auto;
+    margin: auto;
+}
+
+.image-container h2 {
+    text-align: center;
+}
+
+.image-container img {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 120px;
+    margin: auto;
+}

@@ -1,7 +1,10 @@
 .comment-container {
     display: flex;
-    width: 100%;
+    width: 80%;
     min-width: 400px;
+    min-height: 260px;
+    max-height: 350px;
+    overflow: auto;
     border-radius: 8px;
     flex-direction: column;
     align-items: flex-start;
@@ -13,6 +16,10 @@
 .comment-container h5 {
     font-size: 19px;
     font-weight: bold;
+}
+
+.comment-container h2 {
+    margin: auto
 }
 
 .comment-container-content {
@@ -56,4 +63,27 @@
 .comment-container li {
     margin: 5px auto;
     list-style-type: none;
+}
+
+.container-comment-add {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+    margin: auto;
+    min-height: 330px;
+    text-align: center;
+}
+
+.container-comment-add .input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-comment-add .input-text-name-zone {
+    margin: auto;
+}
+
+.btn-content {
+    margin: auto;
 }

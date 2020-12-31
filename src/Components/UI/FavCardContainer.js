@@ -6,7 +6,9 @@ import axios from 'axios';
 import Loader from 'react-loader-spinner'
 import Btn from '../UI/Btn'
 import Modal from '../UI/Modal'
-
+import ImagesContainer from './ImagesContainer'
+import { Redirect } from 'react-router-dom';
+import { Context } from '../../Context/Context'
 import moment from 'moment'
 import { StatusAlertService } from 'react-status-alert'
 export default function EstablishmentCardContainer({ data, mode, naturOfSearch, favEstablishments, favEvents, addEventToFav, removeEventsToFav, addEstablishToFavorites, removeEstablishmentToFav, setEstablishmentSelected }) {
@@ -17,7 +19,14 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
     const [newCommentIsOppen, setNewCommentIsOppen] = useState(false)
     const [isRealoading, setIsRealoading] = useState(true)
     const [modalIsOppen, setModalIsOppen] = useState(false)
-    console.log("mode", mode);
+    const [modal2IsOppen, setModal2IsOppen] = useState(false)
+    const [redirectTo, setredirectTo] = useState()
+    const [images, setImages] = useState([])
+    const {
+        user,
+        setUser
+    } = useContext(Context)
+
     useEffect(() => {
         if (naturOfSearch === "establishment") {
             setArrayOfIds(favEstablishments.map(el => el.id_establishment))
@@ -30,6 +39,7 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
             setIsRealoading(true)
             axios.get(`/comments/establishment/${data.id_etablishment}`)
                 .then(res => {
+                    console.log("data", res.data);
                     setComments(res.data)
                     setIsRealoading(false)
                 })
@@ -39,7 +49,19 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                 })
         }
     }, [commentIsOppen])
-
+    useEffect(() => {
+        if (modalIsOppen)
+            axios.get(`/images/establishment/${data.id_etablishment}`)
+                .then(res => {
+                    setImages(res.data)
+                })
+                .catch(error => {
+                    StatusAlertService.showError(error.response.data)
+                })
+    }, [modalIsOppen])
+    if (redirectTo) {
+        return <Redirect to={`${redirectTo}`} />
+    }
     if (naturOfSearch === "establishment")
         return (
             <div className={mode === "search" ? "establishment_container_card_overlay" : "establishment_container_card"}>
@@ -49,6 +71,28 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     height="600"
                     onClose={() => setModalIsOppen(false)}
                 >
+                    <Modal
+                        isOpen={modal2IsOppen}
+                        zindexMax={true}
+                        width="900"
+                        height="150"
+                        onClose={() => setModal2IsOppen(false)}
+                    >
+                        <div className="modal_body">
+                            <h3>Vous devez être connecté pour ajouter un commentaire</h3>
+                            <div className="modal_footer_center ">
+                                <Btn
+                                    onClickFunction={() => setredirectTo("/authentication")}
+                                    message="Me connecter"
+                                    color="success"
+                                />
+                                <Btn
+                                    onClickFunction={() => setredirectTo("/register")}
+                                    message="Créer un compte"
+                                />
+                            </div>
+                        </div>
+                    </Modal>
                     <div className="modal_body">
                         {
                             arrayOfIds && arrayOfIds.includes(data.id_etablishment) ?
@@ -73,6 +117,11 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                 <div>{data.region}</div>
                                 <div>{data.category}</div>
                                 {data.phone && <div> <i className="fas fa-phone"></i> {data.phone}</div>}
+                                {
+                                    data.url_website && <div>
+                                        <a href={data.url_website} target="_blank" rel="noopener noreferrer"> {data.url_website}</a>
+                                    </div>
+                                }
                             </div>
                             <div style={{ textAlign: "center", fontWeight: "bold" }}>
                                 Handicaps
@@ -81,13 +130,15 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                 />
                             </div>
                         </div>
-
+                        {images && images.length !== 0 &&
+                            < ImagesContainer
+                                images={images}
+                            />}
                         <div>
-                            <div>
-                                Commentaires
+                            <div className="container-comments" onClick={user ? () => { setCommentIsOppen(false); setNewCommentIsOppen(true) } : () => setModal2IsOppen(true)}>
                                 <i className="fas fa-comment-medical"
-                                    onClick={() => { setCommentIsOppen(false); setNewCommentIsOppen(true) }}
                                 ></i>
+                                <>Ajouter un commentaire</>
                             </div>
                             {commentIsOppen &&
                                 <div>
@@ -113,12 +164,6 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                     setNewCommentIsOppen={() => { setCommentIsOppen(true); setNewCommentIsOppen(false) }}
                                 />
                             }
-                            {
-                                data.url_website && <div className="url">
-                                    <a href={data.url_website} target="_blank" rel="noopener noreferrer"> {data.url_website}</a>
-                                </div>
-                            }
-
                         </div>
                         <div className="modal_footer_center ">
 

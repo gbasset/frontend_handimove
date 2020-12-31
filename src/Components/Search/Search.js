@@ -172,6 +172,7 @@ export default function Search() {
             />
             <Modal
                 isOpen={modalIsOppen}
+                zindexMax={true}
                 width="900"
                 height="150"
                 onClose={() => setModalIsOppen(false)}

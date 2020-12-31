@@ -1,6 +1,8 @@
 import React from 'react'
 import './Comment.css'
+import moment from 'moment'
 export default function Comment({ comment, searchMode }) {
+    console.log("comment", comment);
     return (
         <div className="comment-container">
             {
@@ -12,6 +14,7 @@ export default function Comment({ comment, searchMode }) {
                     </div>
                     <div className="comment-name">{comment.comment_name}</div>
                     <div className="comment-container-content"> {comment.comment}</div>
+                   Le {moment(comment.date).format('DD/MM/YYYY à HH:MM')}
                 </>
             }
             {
@@ -27,6 +30,7 @@ export default function Comment({ comment, searchMode }) {
                     <div>
                         {comment.establish_name}
                     </div>
+                    Le {moment(comment.date).format('DD/MM/YYYY à HH:MM')}
                 </>
             }
 

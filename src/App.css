@@ -308,6 +308,27 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   margin: 5px auto;
 }
 
+.container-comments {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  padding-right: 10px;
+}
+
+.container-comments:hover {
+  cursor: pointer;
+  color: #60a3bc
+}
+
+.container-comments i {
+  margin-right: 5px;
+}
+
+.zindexMax {
+  z-index: 10000 !important;
+}
+
 @media screen and (max-width: 900px) {
   .search_type_selection select {
     font-size: 15px;

@@ -25,13 +25,12 @@ export default function Modal(props) {
 	if (!isOpen) return '';
 
 	return (
-		<div className="modal_outer" tabIndex="-1">
+		<div className={props.zindexMax ? "modal_outer zindexMax" : "modal_outer"} tabIndex="-1" >
 			<div className="modal_inner" style={style}>
 				{!props.noClose &&
 					<a onClick={(ev) => hide(ev)} className="modal_close" title="Close">
 						<i className="fas fa-times"></i>
 					</a>
-
 				}
 				{props.children}
 			</div>

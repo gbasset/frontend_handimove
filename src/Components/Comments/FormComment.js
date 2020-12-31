@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { StatusAlertService } from 'react-status-alert'
 import InputChange from '../UI/InputChange'
+import TextAreaCustom from '../UI/TextAreaCustom'
 import { Context } from '../../Context/Context'
 import Btn from '../UI/Btn'
 import axios from 'axios';
@@ -39,7 +40,7 @@ export default function FormComment({ idEstablishment, setNewCommentIsOppen }) {
             })
     }
     return (
-        <div>
+        <div className="container-comment-add">
             <h3>Ajouter un commentaire</h3>
             <div>
                 <InputChange
@@ -48,23 +49,25 @@ export default function FormComment({ idEstablishment, setNewCommentIsOppen }) {
                     value={user && form.name}
                     onChangeFunction={handleChange}
                 />
-                <InputChange
+                <label style={{ fontWeight: 'bold' }}>Message</label>
+                <TextAreaCustom
                     name="comment"
-                    label="Commentaire"
-                    value={user && form.comment}
+                    value={form.comment ? form.comment : ""}
                     onChangeFunction={handleChange}
                 />
             </div>
-            <Btn
-                onClickFunction={(e) => sendComment()}
-                message="Envoyer"
+            <div className="btn-content">
+                <Btn
+                    onClickFunction={(e) => sendComment()}
+                    message="Envoyer"
 
-            />
-            <Btn
-                onClickFunction={(e) => setNewCommentIsOppen()}
-                message="Annuler"
-                color="alert"
-            />
+                />
+                <Btn
+                    onClickFunction={(e) => setNewCommentIsOppen()}
+                    message="Annuler"
+                    color="alert"
+                />
+            </div>
 
 
         </div>

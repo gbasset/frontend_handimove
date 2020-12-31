@@ -3,6 +3,7 @@
     height: 210px;
     display: flex;
     margin: 10px auto;
+    border: 1px solid #dddbdb;
 }
 
 .container-textarea-custom:focus {
