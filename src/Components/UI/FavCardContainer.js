@@ -13,7 +13,7 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
 
     const [arrayOfIds, setArrayOfIds] = useState()
     const [comments, setComments] = useState()
-    const [commentIsOppen, setCommentIsOppen] = useState(false)
+    const [commentIsOppen, setCommentIsOppen] = useState(true)
     const [newCommentIsOppen, setNewCommentIsOppen] = useState(false)
     const [isRealoading, setIsRealoading] = useState(true)
     const [modalIsOppen, setModalIsOppen] = useState(false)
@@ -45,35 +45,46 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
             <div className={mode === "search" ? "establishment_container_card_overlay" : "establishment_container_card"}>
                 <Modal
                     isOpen={modalIsOppen}
-                    width="1200"
-                    height="650"
+                    width="1000"
+                    height="600"
                     onClose={() => setModalIsOppen(false)}
                 >
                     <div className="modal_body">
                         {
                             arrayOfIds && arrayOfIds.includes(data.id_etablishment) ?
-                                <div className="header-card">
+                                <div className="header-card-modal">
                                     <p> {data.name}   <i className="fas fa-heart heart full-heart"
                                         onClick={mode === "search" ?
                                             (e) => removeEstablishmentToFav(favEstablishments.find(el => el.id_establishment === data.id_etablishment).ID_fav) :
                                             (e) => removeEstablishmentToFav(data.ID_fav)
                                         }></i></p>
                                 </div> :
-                                <div className="header-card">
+                                <div className="header-card-modal">
                                     <p>{data.name} <i className="far fa-heart heart"
                                         onClick={(e) => addEstablishToFavorites(data.id_etablishment)}
                                     ></i></p>
                                 </div>
                         }
-                        <div>{data.address}</div>
-                        <div> {data.town}  {data.zip_code}</div>
-                        <div>{data.region}</div>
+                        <div className="container-informations-establishment">
+                            <div className="header-adress">
+                                <i className="fas fa-home"></i>
+                                <p>{data.town}  {data.zip_code}</p>
+                                <div> {data.address} </div>
+                                <div>{data.region}</div>
+                                <div>{data.category}</div>
+                                {data.phone && <div> <i className="fas fa-phone"></i> {data.phone}</div>}
+                            </div>
+                            <div style={{ textAlign: "center", fontWeight: "bold" }}>
+                                Handicaps
+                            <Handicaps
+                                    handiList={data.handicaps}
+                                />
+                            </div>
+                        </div>
+
                         <div>
                             <div>
                                 Commentaires
-                              <i className="fas fa-eye"
-                                    onClick={() => { setCommentIsOppen(true); setNewCommentIsOppen(false) }}
-                                ></i>
                                 <i className="fas fa-comment-medical"
                                     onClick={() => { setCommentIsOppen(false); setNewCommentIsOppen(true) }}
                                 ></i>
@@ -99,7 +110,7 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                             {newCommentIsOppen &&
                                 <FormComment
                                     idEstablishment={data.id_etablishment}
-                                    setNewCommentIsOppen={() => setNewCommentIsOppen(false)}
+                                    setNewCommentIsOppen={() => { setCommentIsOppen(true); setNewCommentIsOppen(false) }}
                                 />
                             }
                             {
@@ -107,11 +118,7 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                     <a href={data.url_website} target="_blank" rel="noopener noreferrer"> {data.url_website}</a>
                                 </div>
                             }
-                            {data.phone && <div>Téléphone : {data.phone}</div>}
-                            <div>{data.category}</div>
-                            <Handicaps
-                                handiList={data.handicaps}
-                            />
+
                         </div>
                         <div className="modal_footer_center ">
 
@@ -168,18 +175,19 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                     onClickFunction={() => setModalIsOppen(true)}
                                     message="Voir plus"
                                     icon="fas fa-plus"
+                                    color="success"
                                 />
                             </div>
                         </div>
-                        <div>{data.address}</div>
-                        <div> {data.town}  {data.zip_code}</div>
-                        <div>{data.region}</div>
-                        {
-                            data.url_website && <div className="url">
-                                <a href={data.url_website} target="_blank" rel="noopener noreferrer"> {data.url_website}</a>
+                        <div className="adress-element">
+                            <div className="header-adress">
+                                <i className="fas fa-home"></i>
+                                <p>{data.town}  {data.zip_code}</p>
                             </div>
-                        }
-                        {data.phone && <div>Téléphone : {data.phone}</div>}
+                        </div>
+                        <div> {data.address} </div>
+                        <div>{data.region}</div>
+                        {data.phone && <div> <i className="fas fa-phone"></i> {data.phone}</div>}
                         <div>{data.category}</div>
                         <Handicaps
                             handiList={data.handicaps}
@@ -187,15 +195,15 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     </div>
                     :
                     <>
-                        <div>{data.address}</div>
-                        <div> {data.town}  {data.zip_code}</div>
-                        <div>{data.region}</div>
-                        {
-                            data.url_website && <div className="url">
-                                <a href={data.url_website} target="_blank" rel="noopener noreferrer"> {data.url_website}</a>
+                        <div className="adress-element">
+                            <div className="header-adress">
+                                <i className="fas fa-home"></i>
+                                <p>{data.town}  {data.zip_code}</p>
                             </div>
-                        }
-                        {data.phone && <div>Téléphone : {data.phone}</div>}
+                        </div>
+                        <div> {data.address} </div>
+                        <div>{data.region}</div>
+                        {data.phone && <div> <i className="fas fa-phone"></i> {data.phone}</div>}
                         <div>{data.category}</div>
                         <Handicaps
                             handiList={data.handicaps}
@@ -248,14 +256,19 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     </>
                 }
                 <div>{moment(data.date_begin).format('DD/MM/YYYY')} - {moment(data.date_end).format('DD/MM/YYYY')} </div>
-                <div>{data.address}</div>
-                <div> {data.town} </div>
+                <div className="adress-element">
+                    <div className="header-adress">
+                        <i className="fas fa-home"></i>
+                        <p>{data.town} </p>
+                    </div>
+                </div>
+                <div> {data.address} </div>
                 <div>{data.region_name}</div>
+                {data.phone && <div> <i className="fas fa-phone"></i> {data.phone}</div>}
+                <div> Description : {data.description}</div>
                 {data.event_url && <div className="url">
                     <a href={data.event_url} target="_blank" rel="noopener noreferrer"> {data.event_url}</a>
                 </div>}
-                {data.phone && <div>Téléphone : {data.phone}</div>}
-                <div> Description : {data.description}</div>
                 <Handicaps
                     handiList={data.handicaps}
                 />

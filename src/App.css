@@ -100,6 +100,7 @@ input[type="text"].searchbar::-webkit-input-placeholder {
 .body-card-container {
   width: 100%;
   display: flex;
+  padding: 10px;
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -121,7 +122,7 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   left: 0;
   display: none;
   z-index: 10;
-  background-color: #82ccdd3f;
+  background-color: #82ccdd4a;
 }
 
 #more div {
@@ -149,6 +150,33 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   justify-content: space-between;
   margin: 10px auto;
   width: 90%;
+}
+
+.header-card-modal {
+  width: 100%;
+  height: 65px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.adress-element {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-adress {
+  text-align: center;
+}
+
+.header-adress p {
+  margin: 0px;
 }
 
 .listbox {
@@ -216,9 +244,18 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   font-weight: bold;
 }
 
+.container-informations-establishment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 65%;
+  align-items: center;
+  margin: 10px auto;
+}
+
 .handicap-container {
   display: flex;
-  margin: auto;
+  margin: 10px auto;
 }
 
 .handicap-container span {
