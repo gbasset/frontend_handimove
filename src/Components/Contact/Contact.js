@@ -47,7 +47,7 @@ export default function Contact() {
     }
     const senMessage = () => {
         setIsLoading(true)
-        const message = user ? { ...form, user_id: user.id_user, date: moment().format('YYYY-MM-DD HH:MM:SS') } : form
+        const message = user ? { ...form, user_id: user.id_user } : form
         const check = checkRequired(message)
         if (check) {
             axios.post(`/messages/send`, message)

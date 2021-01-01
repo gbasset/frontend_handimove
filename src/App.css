@@ -173,6 +173,7 @@ input[type="text"].searchbar::-webkit-input-placeholder {
 
 .header-adress {
   text-align: center;
+  width: 300px;
 }
 
 .header-adress p {
@@ -247,10 +248,14 @@ input[type="text"].searchbar::-webkit-input-placeholder {
 .container-informations-establishment {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  width: 65%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 90%;
+  padding: 15px;
   align-items: center;
-  margin: 10px auto;
+  box-shadow: 1px 0px 11px 1px #ccc;
+  border-radius: 8px;
+  margin: 0px auto 5px auto;
 }
 
 .handicap-container {
@@ -298,8 +303,14 @@ input[type="text"].searchbar::-webkit-input-placeholder {
 }
 
 .leaflet-container {
-  width: 50%;
-  height: 600px;
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+
+.leaflet-container-card {
+  width: 300px;
+  height: 150px;
 }
 
 .container-btn-upload {

@@ -36,7 +36,7 @@ export default function UserComments() {
             )}
             {
                 !isRealoading && commentList && commentList.length === 0 &&
-                <Empty name=" écrit de commentaire, vous pouvez en créer pour les retrouver sur cette page ." />
+                <Empty name=" Il n'y a pas de commentaire, vous pouvez en créer pour les retrouver sur cette page ." />
             }
             {
                 isRealoading &&

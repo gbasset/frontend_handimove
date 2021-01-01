@@ -15,7 +15,6 @@ export default function EstablishmentCreateContainer({ idOfMessage, setIdOfMessa
     const [form, setForm] = useState({
         status: "",
     })
-
     useEffect(() => {
         if (idOfMessage && idOfMessage) {
             axios.get(`/messages/message/${idOfMessage}`)
@@ -95,7 +94,6 @@ export default function EstablishmentCreateContainer({ idOfMessage, setIdOfMessa
                 {idOfMessage && <i className="fas fa-arrow-left returnBtn"
                     title="Retour"
                     onClick={() => setIdOfMessage()}></i>}
-
                 <h2> Validation de commentaires</h2>
                 <SelectCustom
                     name="status"
@@ -105,10 +103,10 @@ export default function EstablishmentCreateContainer({ idOfMessage, setIdOfMessa
                     onChangeFunction={(e) => handleChange(e)}
                 />
                 <div className="container-message-admin">
-                    <p>    {form.message}</p>
-                    <p>   {form.name}</p>
+                    <p> {form.message}</p>
+                    <p> {form.name}</p>
                     <p> {form.contact}</p>
-                    <p>   {form.date}</p>
+                    <p> {form.date}</p>
                 </div>
                 <div className="btn-container-modification">
                     <div style={{ display: 'flex', margin: '10px auto' }}>

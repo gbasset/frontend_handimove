@@ -1,3 +1,20 @@
 .help_container {
     margin-top: 75px;
+    height: 84vh;
+    text-align: center;
+}
+
+.name-mdph {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.mdph-contain {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    text-align: center;
+    margin: 10px auto;
+    font-size: 13px;
 }

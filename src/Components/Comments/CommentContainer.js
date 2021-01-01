@@ -10,7 +10,7 @@ export default function CommentContainer({ commentsList, setCommentIsOppen }) {
                         Il n'y a pas encore de commentaire pour cet établissement
                     </li>
                     :
-                    commentsList.map((comment, i) =>
+                    commentsList && commentsList.map((comment, i) =>
                         <li key={i}> <Comment
                             searchMode={true}
                             comment={comment} /></li>

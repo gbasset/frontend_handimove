@@ -11,6 +11,7 @@ import { Redirect } from 'react-router-dom';
 import { Context } from '../../Context/Context'
 import moment from 'moment'
 import { StatusAlertService } from 'react-status-alert'
+import Map from '../Map/Map'
 export default function EstablishmentCardContainer({ data, mode, naturOfSearch, favEstablishments, favEvents, addEventToFav, removeEventsToFav, addEstablishToFavorites, removeEstablishmentToFav, setEstablishmentSelected }) {
 
     const [arrayOfIds, setArrayOfIds] = useState()
@@ -35,11 +36,10 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
         }
     }, [favEstablishments, favEvents, naturOfSearch])
     useEffect(() => {
-        if (commentIsOppen) {
+        if (modalIsOppen && commentIsOppen) {
             setIsRealoading(true)
             axios.get(`/comments/establishment/${data.id_etablishment}`)
                 .then(res => {
-                    console.log("data", res.data);
                     setComments(res.data)
                     setIsRealoading(false)
                 })
@@ -48,7 +48,7 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     setIsRealoading(false)
                 })
         }
-    }, [commentIsOppen])
+    }, [modalIsOppen, commentIsOppen])
     useEffect(() => {
         if (modalIsOppen)
             axios.get(`/images/establishment/${data.id_etablishment}`)
@@ -123,22 +123,30 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                     </div>
                                 }
                             </div>
+                            <div className="leaflet-container-card">
+                                <Map
+                                    isCard={true}
+                                    array={[{ longitude: data.longitude, latitude: data.latitude }]}
+                                />
+                            </div>
                             <div style={{ textAlign: "center", fontWeight: "bold" }}>
                                 Handicaps
-                            <Handicaps
+                                <Handicaps
                                     handiList={data.handicaps}
                                 />
                             </div>
-                        </div>
-                        {images && images.length !== 0 &&
-                            < ImagesContainer
-                                images={images}
-                            />}
-                        <div>
-                            <div className="container-comments" onClick={user ? () => { setCommentIsOppen(false); setNewCommentIsOppen(true) } : () => setModal2IsOppen(true)}>
-                                <i className="fas fa-comment-medical"
-                                ></i>
-                                <>Ajouter un commentaire</>
+                            {images && images.length !== 0 &&
+                                < ImagesContainer
+                                    images={images}
+                                />}
+
+                            <div className="container-comments" >
+                                <Btn
+                                    onClickFunction={user ? () => { setCommentIsOppen(false); setNewCommentIsOppen(true) } : () => setModal2IsOppen(true)}
+                                    message="Ajouter un commentaire"
+                                    color="success"
+                                    icon="fas fa-comment-medical"
+                                />
                             </div>
                             {commentIsOppen &&
                                 <div>
@@ -165,6 +173,7 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                 />
                             }
                         </div>
+
                         <div className="modal_footer_center ">
 
                         </div>
