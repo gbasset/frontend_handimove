@@ -1,3 +1,96 @@
 .home_container {
     margin-top: 75px;
 }
+
+.container-head {
+    height: 90vh;
+    background-color: #f6b93b;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.container-head h2 {
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+
+.main-home {
+    height: 80vh;
+    background-color: #fad390;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.contact-home {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    background-color: #60a3bc;
+}
+
+.container-head-items {
+    display: flex;
+    width: 100%;
+}
+
+.first-item {
+    display: flex;
+    height: 100%;
+    justify-content: space-around;
+    margin: auto;
+    padding: 10px;
+    width: 100%;
+    color: #ffffff;
+}
+
+.first-item img {
+    width: 75%;
+    margin-top: 16px;
+}
+
+.container-first-item {
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-first-item p {
+    width: 75%;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 15px -3px auto auto;
+    text-align: left;
+    background-color: rgb(255 255 255);
+    color: #3a93b4;
+    font-weight: 400;
+    box-shadow: 2px 5px 8px 3px #d5d5d545
+}
+
+.container-first-item span {
+    position: relative;
+    z-index: 1000;
+    top: 40%;
+    right: 7px;
+    color: #18180f;
+}
+
+.container-first-item span i {
+    font-size: 28px;
+    color: #32d055;
+}
+
+.card-container-home {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+}
