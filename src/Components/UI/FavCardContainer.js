@@ -62,6 +62,8 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
     if (redirectTo) {
         return <Redirect to={`${redirectTo}`} />
     }
+    console.log("mode", mode);
+    console.log("data", data);
     if (naturOfSearch === "establishment")
         return (
             <div className={mode === "search" ? "establishment_container_card_overlay" : "establishment_container_card"}>
