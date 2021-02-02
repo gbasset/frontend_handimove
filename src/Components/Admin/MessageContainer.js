@@ -14,7 +14,7 @@ import options from './optionsTable'
 import moment from 'moment'
 
 require('react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css');
-export default function MessagesContainer() {
+export default function MessagesContainer({ load }) {
     const { data, setData, fetchData } = UseFetch();
     const [isLoading, setIsLoading] = useState(false)
     const [idOfMessage, setIdOfMessage] = useState()

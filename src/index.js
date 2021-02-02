@@ -8,7 +8,7 @@ import Home from './Components/Home/Home'
 import AboutUs from './Components/AboutUs/AboutUs';
 import Header from './Components/Header/Header'
 import ContextProvider from './Context/Context'
-import StatusAlert, { StatusAlertService } from 'react-status-alert'
+import StatusAlert from 'react-status-alert'
 import 'react-status-alert/dist/status-alert.css'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
@@ -32,12 +32,10 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 // });
 ReactDOM.render(
-  <>
-    <ContextProvider >
-      <StatusAlert />
-      <App />
-    </ContextProvider>
-  </>
+  <ContextProvider >
+    <StatusAlert />
+    <App />
+  </ContextProvider>
   ,
   document.getElementById('root')
 );

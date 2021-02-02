@@ -7,7 +7,7 @@
     width: 20%;
     border-top-right-radius: 5px;
     color: white;
-    background-color: #6a89cc;
+    background-color: #1F325B;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.33);
 }
 
@@ -26,7 +26,7 @@
 }
 
 .container-user-infos {
-    width: 80%;
+    width: 100%;
     height: 80px;
     margin: auto;
     display: flex;
@@ -35,8 +35,23 @@
 }
 
 .container-name-user {
-    display: block;
+    display: flex;
+    flex-direction: column;
     height: 50px;
+}
+
+.container-name-user span {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-name-user i {
+    color: red;
+    cursor: pointer;
+}
+
+.container-name-user i:hover {
+    color: rgb(255, 92, 92);
 }
 
 .container-navigation-user ul {
@@ -56,7 +71,7 @@
 }
 
 .container-navigation-user ul li:hover {
-    color: #f8c291;
+    color: #F6B93B;
 }
 
 .navigation-admin-container {

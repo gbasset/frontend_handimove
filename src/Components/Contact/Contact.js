@@ -24,6 +24,7 @@ export default function Contact() {
         contact: "",
     })
     const { handleChangeForm, valueForm, setValueForm } = UseForm(form);
+    console.log("valueForm", valueForm);
     const [isLoading, setIsLoading] = useState(false)
     const [isSend, setIsSend] = useState(false)
     useEffect(() => {
@@ -75,9 +76,11 @@ export default function Contact() {
                     <InputChange
                         name="name"
                         label="Nom"
-                        value={user && form.name}
+                        type="text"
+                        value={valueForm.name}
                         onChangeFunction={handleChangeForm}
                     />
+
                     <label>Sujet</label>
                     <SelectCustom
                         name="subject"

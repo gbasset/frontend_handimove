@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from '../../Context/Context'
 import { Redirect } from 'react-router-dom';
 import './Navigation.css'
@@ -6,26 +6,32 @@ import pictureAvatar from '../../Assets/blank-profile-picture-973460_640.png'
 export default function Navigation({ setActiveLink, activeLink }) {
     const {
         user,
-        setUser
+        isAdmin,
+        setUser,
+        setIsAdmin
     } = useContext(Context)
-    const [isAdmin, setIsAdmin] = useState(false)
-    useEffect(() => {
-        if (user) {
-            if (user.is_admin === 0) {
-                setIsAdmin(true)
-            } else {
-                setIsAdmin(false)
-            }
-        }
-    }, [user])
 
+    const [redirect, setRedirect] = useState(false);
+    const disconnect = () => {
+        console.log('tamere');
+        window.localStorage.removeItem('user');
+        setUser();
+        setIsAdmin();
+        setRedirect(true);
+    }
+    if (redirect) {
+        console.log('pipi');
+        return <Redirect to='/authentication' />
+    }
     return (
         <nav className="container-navigation-user">
             <header>
                 <div className="container-user-infos">
                     <img src={user && user.avatar ? user.avatar : pictureAvatar} alt="avatar du compte" />
                     <div className="container-name-user">
-                        <span>{user && user.username} </span>
+                        <span>{user && user.username} <i className="fas fa-sign-out-alt"
+                            onClick={disconnect}
+                        ></i> </span>
                         <span>{user && user.mail}</span>
                     </div>
                 </div>
@@ -53,8 +59,7 @@ export default function Navigation({ setActiveLink, activeLink }) {
                     className={activeLink === 7 ? "isActive" : ""}
                 >Contacter un administrateur</li>
                 <div className="navigation-admin-container">
-                    {
-                        isAdmin &&
+                    {isAdmin &&
                         <>
                             <div title="Gestion des commentaires"
                                 onClick={(e) => setActiveLink(8)}

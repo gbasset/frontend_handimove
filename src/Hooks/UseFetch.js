@@ -3,13 +3,14 @@ import axios from 'axios';
 import { StatusAlertService } from 'react-status-alert'
 import { Context } from '../Context/Context'
 let jwt = require('jsonwebtoken');
+
+
 export default function useFetch() {
     const [status, setStatus] = useState('');
     const [data, setData] = useState();
     const [error, setError] = useState();
     const {
-        user,
-        setUser
+        setUser,
     } = useContext(Context)
     const fetchData = async (url, submit) => {
         if (!url) return;
@@ -17,12 +18,12 @@ export default function useFetch() {
         axios.get(url)
             .then(res => {
                 setStatus('fetched');
-                // StatusAlertService.showSuccess(res.request.responseText)
                 setData(res.data);
             })
             .catch(error => {
                 StatusAlertService.showError(error.response.data)
                 setError(error.response.data)
+                setStatus('error fetch');
             })
     }
     const postData = async (url, postValue) => {
@@ -43,6 +44,11 @@ export default function useFetch() {
                             StatusAlertService.showSuccess("Nous n'avons pas pu vous connecter, veuillez recommencer")
                         }
                         else {
+                            // if (token.is_admin === 0) {
+                            //     setIsAdmin(true)
+                            // } else {
+                            //     setIsAdmin(false)
+                            // }
                             setUser(token)
                         }
                     })

@@ -101,19 +101,29 @@ function Header() {
                                 activeStyle={{ color: "#f6b93b" }}
                             >S'informer</NavLink>
                         </li>
-                        <li
-                            onClick={() => { setMenuOppen(!oppenMenuAccount); hideMenu() }}
-                            className="lienNav"
+                        {user && <li
+                            // onClick={() => { setMenuOppen(!oppenMenuAccount); hideMenu() }}
+                            className="lienNavBtnAccount"
                             title='mon compte'>
-                            {/* <NavLink to={
+                            <NavLink to={
                                 {
                                     pathname: "/user"
                                 }}
                                 activeStyle={{ color: "#f6b93b" }}
-                            >Mon Compte</NavLink> */}
-                            Mon Compte
-                        </li>
-                        <Dropdown isOpen={oppenMenuAccount}>
+                            >Mon Compte</NavLink>
+                        </li>}
+                        {!user && <li
+                            // onClick={() => { setMenuOppen(!oppenMenuAccount); hideMenu() }}
+                            className="lienNavBtnAccount"
+                            title='me connecter'>
+                            <NavLink to={
+                                {
+                                    pathname: "/authentication"
+                                }}
+                                activeStyle={{ color: "#f6b93b" }}
+                            >Me connecter</NavLink>
+                        </li>}
+                        {/* <Dropdown isOpen={oppenMenuAccount}>
                             <ul className="listbox">
                                 {!user &&
                                     <li>
@@ -138,7 +148,7 @@ function Header() {
                                     </li>
                                 }
                             </ul>
-                        </Dropdown>
+                        </Dropdown> */}
                     </ul>
 
 

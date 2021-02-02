@@ -66,8 +66,7 @@ const img = {
     maxHeight: 165,
 };
 
-function StyledDropzone({ idOfEstablishment, setModalIsOppen, url }) {
-    const [isLoading, setIsLoading] = useState(false)
+function StyledDropzone({ id, setModalIsOppen, url }) {
     const [uploadPercentage, setUploadPercentage] = useState(0)
     const [files, setFiles] = useState([]);
     const {
@@ -93,12 +92,11 @@ function StyledDropzone({ idOfEstablishment, setModalIsOppen, url }) {
         }
     });
     const uploadImages = () => {
-        setIsLoading(true)
         const formFiles = new FormData();
         for (const key of Object.keys(files)) {
             formFiles.append("file", files[key]);
         }
-        const finalUrl = idOfEstablishment ? `/images/upload/${url}/${idOfEstablishment}` : `/images/upload/${url}`
+        const finalUrl = id ? `/images/upload/${url}/${id}` : `/images/upload/${url}`
         axios.post(finalUrl, formFiles, {
             onUploadProgress: progressEvent => {
                 setUploadPercentage(Math.round(progressEvent.loaded / progressEvent.total) * 100)
@@ -106,14 +104,12 @@ function StyledDropzone({ idOfEstablishment, setModalIsOppen, url }) {
         }, { headers: { 'Content-Type': 'multipart/form-data' } })
             .then(res => {
                 StatusAlertService.showSuccess("Images uploadées avec succès")
-                setIsLoading(false)
                 setTimeout(() => {
                     setModalIsOppen(false)
                 }, 1500)
             })
             .catch(error => {
                 StatusAlertService.showError('une erreur est survenue pendant le transfert')
-                setIsLoading(false)
             })
     }
     const style = useMemo(
@@ -136,7 +132,7 @@ function StyledDropzone({ idOfEstablishment, setModalIsOppen, url }) {
             </div>
         </div>
     ));
-    console.log("files", files);
+
     useEffect(
         () => () => {
             // Make sure to revoke the data uris to avoid memory leaks
@@ -152,7 +148,6 @@ function StyledDropzone({ idOfEstablishment, setModalIsOppen, url }) {
     ));
 
     return (
-
         <div className="container">
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
@@ -161,13 +156,10 @@ function StyledDropzone({ idOfEstablishment, setModalIsOppen, url }) {
                     Ouvrir un fichier
         </button>
             </div>
-
             <aside style={thumbsContainer}>
-
                 {thumbs}</aside>
             <Progress percentage={uploadPercentage} />
             <div className="container-btn-upload">
-
                 <Btn
                     onClickFunction={() => setModalIsOppen(false)}
                     message="Annuler"
@@ -175,7 +167,7 @@ function StyledDropzone({ idOfEstablishment, setModalIsOppen, url }) {
                 />
                 {files.length === 0 &&
                     <Btn
-                        onClickFunction={() => console.log()}
+                        onClickFunction={() => { }}
                         message="Uploader mes images"
                         color="desabled"
                     />
@@ -188,7 +180,6 @@ function StyledDropzone({ idOfEstablishment, setModalIsOppen, url }) {
                     />
                 }
             </div>
-
         </div>
     )
 }
