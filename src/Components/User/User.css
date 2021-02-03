@@ -44,3 +44,9 @@
     display: flex;
     margin: 10px auto;
 }
+
+@media screen and (max-width: 900px) {
+    .user-container-data {
+        width: 100%;
+    }
+}

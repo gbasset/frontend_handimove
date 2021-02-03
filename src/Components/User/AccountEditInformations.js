@@ -116,12 +116,13 @@ export default function AccountEditInformations() {
                     label="Role"
                     value={user && user.is_admin === 1 ? "Utilisateur" : "Admin"}
                 />
-                <Btn
-                    message="Envoyer"
-                    onClickFunction={(e) => checkIfFormIsValid(e)}
-                >
-
-                </Btn>
+                <div style={{ display: 'flex', margin: 'auto' }}>
+                    <Btn
+                        message="Envoyer"
+                        onClickFunction={(e) => checkIfFormIsValid(e)}
+                    >
+                    </Btn>
+                </div>
             </form>
         </div>
     )

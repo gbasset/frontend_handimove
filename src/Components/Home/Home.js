@@ -39,22 +39,40 @@ function Home(props) {
             </div>
             <div className="main-home">
                 <h2>Une interface minimaliste à votre service .</h2>
-                <div className="container-steps">
-                    <div>
+                <div className="container-steps-desktop">
+                    <div className="container-home-step">
                         <img src={pict1} alt="exemple de la page de recherche" />
                         <p>Recherchez les établissements et activités accessibles à tous les membres de vôtre famille avec des filtres par régions , départements et villes</p>
                     </div>
-                    <div>
+                    <div className="container-home-step">
                         <p> Triez rapidement les établissement et événements qui correspondent à vos critères de recherches </p>
                         <img src={results} alt="résultats exemple" />
                     </div>
-                    <div>
+                    <div className="container-home-step">
                         <img src={favlist} alt="exemple de liste de favoris" />
                         <p>Créez vos listes de favoris pour retrouver facilement les établissements ainsi que les événements qui vous interessents.</p>
                     </div>
-                    <div>
+                    <div className="container-home-step">
                         <p>Partagez vos éxpériences avec d'autres !</p>
                         <img src={comment} alt="résultats exemple" />
+                    </div>
+                </div>
+                <div className="container-steps-mobile">
+                    <div className="container-home-step">
+                        <img src={pict1} alt="exemple de la page de recherche" />
+                        <p>Recherchez les établissements et activités accessibles à tous les membres de vôtre famille avec des filtres par régions , départements et villes</p>
+                    </div>
+                    <div className="container-home-step">
+                        <img src={results} alt="résultats exemple" />
+                        <p> Triez rapidement les établissement et événements qui correspondent à vos critères de recherches </p>
+                    </div>
+                    <div className="container-home-step">
+                        <img src={favlist} alt="exemple de liste de favoris" />
+                        <p>Créez vos listes de favoris pour retrouver facilement les établissements ainsi que les événements qui vous interessents.</p>
+                    </div>
+                    <div className="container-home-step">
+                        <img src={comment} alt="résultats exemple" />
+                        <p>Partagez vos éxpériences avec d'autres !</p>
                     </div>
                 </div>
             </div>

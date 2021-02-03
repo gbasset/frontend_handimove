@@ -36,5 +36,30 @@
 
 .container-account-info form .input-container label {
     margin-right: 5%;
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    width: 5%;
+}
+
+@media screen and (max-width: 900px) {
+    .container-account-info form .input-container {
+        width: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .input-text-name-zone {
+        margin: auto;
+        width: 80%;
+    }
+    .container-account-info form .input-container label {
+        margin: auto;
+        width: auto;
+        text-align: center;
+    }
+    .container-account-info form {
+        margin: 5% auto;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
 }

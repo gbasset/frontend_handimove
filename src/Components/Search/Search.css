@@ -130,4 +130,12 @@
     .search_container section {
         width: 100%;
     }
+    .search_header h1 {
+        font-size: 25px;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .search_title {
+        margin: 20px auto;
+    }
 }

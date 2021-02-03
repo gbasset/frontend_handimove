@@ -59,14 +59,38 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     StatusAlertService.showError(error.response.data)
                 })
     }, [modalIsOppen])
+    const [smallScreen, setSmallScreen] = useState(false);
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(max-width: 900px)");
+        // addlistener c'est comme addeventlisterner pour les medias queries en JS
+        mediaQuery.addListener(handleMediaQueryChange);
+        handleMediaQueryChange(mediaQuery);
+
+        return () => {
+            mediaQuery.removeListener(handleMediaQueryChange);
+        }
+
+    })
+
+    const handleMediaQueryChange = mediaQuery => {
+        if (mediaQuery.matches) {
+            setSmallScreen(true);
+        } else {
+            setSmallScreen(false);
+        }
+    }
     if (redirectTo) {
         return <Redirect to={`${redirectTo}`} />
     }
-    console.log("mode", mode);
-    console.log("data", data);
     if (naturOfSearch === "establishment")
         return (
-            <div className={mode === "search" ? "establishment_container_card_overlay" : "establishment_container_card"}>
+            <div className={mode === "search" ?
+                smallScreen ?
+                    "establishment_container_card_overlay" : "establishment_container_card"
+                :
+                "establishment_container_card"
+
+            }>
                 <Modal
                     isOpen={modalIsOppen}
                     width="1000"

@@ -50,9 +50,6 @@ function Header() {
     return (
         <>
             <nav className="headerTop">
-                {
-                    smallScreen && <h1>test</h1>
-                }
                 {(menu || !smallScreen) && (
                     <ul className="listeMenu">
                         <li
@@ -102,7 +99,7 @@ function Header() {
                             >S'informer</NavLink>
                         </li>
                         {user && <li
-                            // onClick={() => { setMenuOppen(!oppenMenuAccount); hideMenu() }}
+                            onClick={() => { setMenuOppen(!oppenMenuAccount); hideMenu() }}
                             className="lienNavBtnAccount"
                             title='mon compte'>
                             <NavLink to={
@@ -113,7 +110,7 @@ function Header() {
                             >Mon Compte</NavLink>
                         </li>}
                         {!user && <li
-                            // onClick={() => { setMenuOppen(!oppenMenuAccount); hideMenu() }}
+                            onClick={() => { setMenuOppen(!oppenMenuAccount); hideMenu() }}
                             className="lienNavBtnAccount"
                             title='me connecter'>
                             <NavLink to={
@@ -157,6 +154,7 @@ function Header() {
             </nav>
             <div className="menuResBtn">
                 <img onClick={toggleNavRes} src={!menu ? menuIco : croix} alt="icone menu responsive" className="menuIco" />
+
             </div>
         </>
 

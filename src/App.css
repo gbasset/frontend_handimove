@@ -346,9 +346,11 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   }
   input[type="text"].searchbar {
     text-indent: 0px;
+    margin-left: 9px;
   }
   .search_bar_container i {
     font-size: 29px;
+    margin-left: 9px;
   }
   input[type="text"].searchbar::-webkit-input-placeholder {
     font-size: 15px;
@@ -358,5 +360,8 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   }
   .search_type_selection {
     right: 34%;
+  }
+  .search_bar_container {
+    margin-top: 25px;
   }
 }

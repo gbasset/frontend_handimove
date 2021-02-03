@@ -13,14 +13,12 @@ export default function Navigation({ setActiveLink, activeLink }) {
 
     const [redirect, setRedirect] = useState(false);
     const disconnect = () => {
-        console.log('tamere');
         window.localStorage.removeItem('user');
         setUser();
         setIsAdmin();
         setRedirect(true);
     }
     if (redirect) {
-        console.log('pipi');
         return <Redirect to='/authentication' />
     }
     return (

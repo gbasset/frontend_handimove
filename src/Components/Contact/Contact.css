@@ -40,3 +40,9 @@
     display: flex;
     margin: auto;
 }
+
+@media screen and (max-width: 900px) {
+    .form-contact-container {
+        width: 95%;
+    }
+}

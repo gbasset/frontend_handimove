@@ -88,3 +88,9 @@
     font-size: 28px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 900px) {
+    .container-navigation-user {
+        display: none;
+    }
+}
