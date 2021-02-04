@@ -79,18 +79,13 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
             setSmallScreen(false);
         }
     }
+    console.log("smallScreen", smallScreen);
     if (redirectTo) {
         return <Redirect to={`${redirectTo}`} />
     }
     if (naturOfSearch === "establishment")
         return (
-            <div className={mode === "search" ?
-                smallScreen ?
-                    "establishment_container_card_overlay" : "establishment_container_card"
-                :
-                "establishment_container_card"
-
-            }>
+            <div className={mode === "search" ? "establishment_container_card_overlay" : "establishment_container_card"}>
                 <Modal
                     isOpen={modalIsOppen}
                     width="1000"
@@ -248,31 +243,56 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                     </>
                 }
                 {mode === "search" ?
-                    <div className="body-card-container">
-                        <div id="more">
-                            <div>
-                                <Btn
-                                    onClickFunction={() => setModalIsOppen(true)}
-                                    message="Voir plus"
-                                    icon="fas fa-plus"
-                                    color="success"
-                                />
+                    !smallScreen ?
+                        <div className="body-card-container">
+                            <div id="more">
+                                <div>
+                                    <Btn
+                                        onClickFunction={() => setModalIsOppen(true)}
+                                        message="Voir plus"
+                                        icon="fas fa-plus"
+                                        color="success"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="adress-element">
-                            <div className="header-adress">
-                                <i className="fas fa-home"></i>
-                                <p>{data.town}  {data.zip_code}</p>
+                            <div className="adress-element">
+                                <div className="header-adress">
+                                    <i className="fas fa-home"></i>
+                                    <p>{data.town}  {data.zip_code}</p>
+                                </div>
                             </div>
+                            <div> {data.address} </div>
+                            <div>{data.region}</div>
+                            {data.phone && <div> <i className="fas fa-phone"></i> {data.phone}</div>}
+                            <div>{data.category}</div>
+                            <Handicaps
+                                handiList={data.handicaps}
+                            />
                         </div>
-                        <div> {data.address} </div>
-                        <div>{data.region}</div>
-                        {data.phone && <div> <i className="fas fa-phone"></i> {data.phone}</div>}
-                        <div>{data.category}</div>
-                        <Handicaps
-                            handiList={data.handicaps}
-                        />
-                    </div>
+                        :
+                        <>
+                            <div className="adress-element">
+                                <div className="header-adress">
+                                    <i className="fas fa-home"></i>
+                                    <p>{data.town}  {data.zip_code} </p>
+                                </div>
+
+                            </div>
+                            <div> {data.address} </div>
+                            <div>{data.region}</div>
+                            {data.phone && <div> <i className="fas fa-phone"></i> {data.phone}</div>}
+                            <div>{data.category}</div>
+                            <Handicaps
+                                handiList={data.handicaps}
+                            />
+                            <Btn
+                                onClickFunction={() => setModalIsOppen(true)}
+                                message="Plus d'infos"
+                                icon="fas fa-plus"
+                                color="success"
+                            />
+
+                        </>
                     :
                     <>
                         <div className="adress-element">
@@ -281,6 +301,11 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                 <p>{data.town}  {data.zip_code}</p>
                             </div>
                         </div>
+                        {
+                            data.url_website && <div>
+                                <a href={data.url_website} target="_blank" rel="noopener noreferrer"> {data.url_website}</a>
+                            </div>
+                        }
                         <div> {data.address} </div>
                         <div>{data.region}</div>
                         {data.phone && <div> <i className="fas fa-phone"></i> {data.phone}</div>}
