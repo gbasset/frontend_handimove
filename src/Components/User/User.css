@@ -48,5 +48,9 @@
 @media screen and (max-width: 900px) {
     .user-container-data {
         width: 100%;
+        margin-top: 125px;
+    }
+    .password-form-container {
+        width: 95%;
     }
 }

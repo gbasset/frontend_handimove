@@ -364,4 +364,8 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   .search_bar_container {
     margin-top: 25px;
   }
+  .container-informations-establishment {
+    width: 100%;
+    padding: 0px;
+  }
 }

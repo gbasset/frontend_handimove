@@ -3,7 +3,6 @@ import { Switch, Link, NavLink, Redirect, withRouter } from 'react-router-dom';
 import './Header.css'
 import menuIco from './Menuico.svg'
 import croix from './Croix.svg'
-import Dropdown from './../UI/Dropdown';
 import { Context } from '../../Context/Context'
 
 function Header() {
@@ -153,8 +152,11 @@ function Header() {
 
             </nav>
             <div className="menuResBtn">
-                <img onClick={toggleNavRes} src={!menu ? menuIco : croix} alt="icone menu responsive" className="menuIco" />
+                <NavLink to={
+                    { pathname: "/home" }}
+                    activeStyle={{ color: "#f6b93b" }}> Handimove</NavLink>
 
+                <img onClick={toggleNavRes} src={!menu ? menuIco : croix} alt="icone menu responsive" className="menuIco" />
             </div>
         </>
 

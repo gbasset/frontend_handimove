@@ -22,12 +22,12 @@ html, body, #app, #app>div {
 }
 
 a:visited {
-  color: #60a3bc;
+  color: rgba(130, 204, 221, 1);
 }
 
 a {
   text-decoration: none;
-  color: #60a3bc
+  color: rgba(130, 204, 221, 1);
 }
 
 code {

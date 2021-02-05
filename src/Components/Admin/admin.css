@@ -196,3 +196,12 @@
     width: 70%;
     height: auto;
 }
+
+@media screen and (max-width: 900px) {
+    .center-div {
+        width: 85%;
+        margin: 10px auto;
+        font-size: 18px;
+        font-weight: bold;
+    }
+}

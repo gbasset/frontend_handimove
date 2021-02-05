@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import UseFetch from '../../Hooks/UseFetch'
 import { StatusAlertService } from 'react-status-alert'
-
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 export default function ResultsOfSearchContainer({ listOfSites, setListOfStites, handleChange, setResults, searchType, naturOfSearch, noDataFound, setIsLoading }) {
-
+    const animatedComponents = makeAnimated();
     const { status, data, fetchData } = UseFetch();
     const [idOfSearchElement, setIdOfSearchElement] = useState()
 
@@ -13,6 +14,7 @@ export default function ResultsOfSearchContainer({ listOfSites, setListOfStites,
         setIdOfSearchElement(e)
         setListOfStites()
     }
+
     useEffect(() => {
         if (idOfSearchElement) {
             setIsLoading(true)

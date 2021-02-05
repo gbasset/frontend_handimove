@@ -12,7 +12,8 @@ import Loader from 'react-loader-spinner'
 import { Context } from '../../Context/Context'
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 export default function Search() {
     const {
         user,
@@ -23,6 +24,7 @@ export default function Search() {
     const { status, data, fetchData } = UseFetch();
     const [listOfSites, setListOfStites] = useState([])
     const [results, setResults] = useState()
+    const [results2, setResults2] = useState()
     const [searchType, setSearchType] = useState('department')
     const [naturOfSearch, setNatureOfSearch] = useState('establishment')
     const [noDataFound, setNoDataFound] = useState(false)
@@ -34,7 +36,34 @@ export default function Search() {
     const [modalIsOppen, setModalIsOppen] = useState(false)
     const [redirectTo, setredirectTo] = useState()
     const [establishmentSelected, setEstablishmentSelected] = useState()
-    console.log("listOfSites", listOfSites);
+    const [defaultSelect, setDefaultSelect] = useState()
+    const animatedComponents = makeAnimated();
+
+    const handleSelectChange = (e) => {
+        let newValue = e && e.map(elem => elem.value)
+        setDefaultSelect(e)
+    }
+    useEffect(() => {
+        if (defaultSelect && results && results.length !== 0) {
+            const arrayOfValue = defaultSelect.map(x => x.value);
+            let myNewArray = []
+            for (let index = 0; index < results.length; index++) {
+                const handi = results[index].handicaps.split(";");
+                handi.forEach(elem => {
+                    if (arrayOfValue.includes(elem) && !myNewArray.find(el => el.id_etablishment === results[index].id_etablishment)) {
+                        myNewArray.push(results[index])
+                    }
+                })
+            }
+            setResults2(myNewArray)
+        }
+    }, [defaultSelect])
+    const handicapsList = [
+        { value: "auditif", label: "auditif" },
+        { value: "mental", label: "mental" },
+        { value: "visuel", label: "visuel" },
+        { value: "moteur", label: "moteur" },
+    ]
     useEffect(() => {
         if (user) {
             axios.get(`fav/establishments/${user.id_user}`)
@@ -95,8 +124,10 @@ export default function Search() {
             setNoDataFound(false)
             if (value.length !== 0 && !notReload) {
                 fetchData(`searchby/${searchType}/${value}`)
+                setDefaultSelect()
             } else {
                 setListOfStites([])
+                setDefaultSelect()
             }
         }, 500)
         return () => {
@@ -140,6 +171,7 @@ export default function Search() {
     useEffect(() => {
         handleChange('', true)
         setResults()
+        setResults2()
     }, [naturOfSearch])
     const searchTypeList = [
         {
@@ -162,6 +194,14 @@ export default function Search() {
     if (redirectTo) {
         return <Redirect to={`${redirectTo}`} />
     }
+    let dataToMap;
+
+    if (results2 && defaultSelect !== null) {
+        dataToMap = results2
+    } else {
+        dataToMap = results
+    }
+
     return (
         <div className="search_container">
             <link
@@ -237,12 +277,25 @@ export default function Search() {
             </div>
             <div className="containerSearch">
                 {
-                    results && results.length !== 0 &&
-                    <h1> Voici les {results.length > 1 ? `${results.length} résultats` : `${results.length} résultat`} </h1>
+                    dataToMap && dataToMap.length !== 0 && <>
+                        <h1> Voici les {dataToMap.length > 1 ? `${dataToMap.length} résultats` : `${dataToMap.length} résultat`} </h1>
+
+                        <Select
+                            closeMenuOnSelect={true}
+                            value={defaultSelect && defaultSelect}
+                            components={animatedComponents}
+                            menuPortalTarget={document.body}
+                            q
+                            // menuPosition={"fixed"}
+                            isMulti
+                            options={handicapsList}
+                            placeholder={"Filtrer par type de handicap"}
+                            onChange={handleSelectChange}
+                        /> </>
                 }
 
                 <div className="establishment_list">
-                    {results && results.map((x, i) =>
+                    {dataToMap && dataToMap.map((x, i) =>
                         <FavCardContainer
                             data={x}
                             key={i}
@@ -258,7 +311,7 @@ export default function Search() {
 
                     )}
                     {
-                        results && results.length === 0 &&
+                        dataToMap && dataToMap.length === 0 &&
                         <> Nous n'avons pas de résultats pour cette recherche </>
                     }
                 </div>

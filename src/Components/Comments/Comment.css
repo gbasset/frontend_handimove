@@ -87,3 +87,10 @@
 .btn-content {
     margin: auto;
 }
+
+@media screen and (max-width: 900px) {
+    .comment-container {
+        width: 85%;
+        min-width: 250px;
+    }
+}
