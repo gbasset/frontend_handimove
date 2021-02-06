@@ -124,6 +124,13 @@
 
 .containerSearch {
     background-color: #ffffffc7;
+    width: 100%;
+}
+
+.containerSearch .css-2b097c-container {
+    width: 85%;
+    height: 45px;
+    margin: auto;
 }
 
 @media screen and (max-width: 900px) {

@@ -96,7 +96,7 @@ export default function AuthenticationContainer() {
                 <div className="signup">
                     <p>Je n'ai pas encore de compte</p>
                     <div>
-                        <button className="btt-second btnUi btn_primary">
+                        <button className="btt-second btnUi btn_primary btn-create">
                             <NavLink to={
                                 {
                                     pathname: "/register"

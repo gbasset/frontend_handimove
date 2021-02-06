@@ -279,13 +279,12 @@ export default function Search() {
                 {
                     dataToMap && dataToMap.length !== 0 && <>
                         <h1> Voici les {dataToMap.length > 1 ? `${dataToMap.length} résultats` : `${dataToMap.length} résultat`} </h1>
-
                         <Select
                             closeMenuOnSelect={true}
                             value={defaultSelect && defaultSelect}
                             components={animatedComponents}
                             menuPortalTarget={document.body}
-                            q
+                            styles={{ menuPortal: base => ({ ...base, zIndex: 10000 }) }}
                             // menuPosition={"fixed"}
                             isMulti
                             options={handicapsList}
