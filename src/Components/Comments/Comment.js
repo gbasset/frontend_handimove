@@ -2,7 +2,6 @@ import React from 'react'
 import './Comment.css'
 import moment from 'moment'
 export default function Comment({ comment, searchMode }) {
-    console.log("comment", comment);
     return (
         <div className="comment-container">
             {

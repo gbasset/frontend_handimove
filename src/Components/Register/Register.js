@@ -269,12 +269,13 @@ export default function Register() {
                     />
                     {isNotValid.includes('response_question') && <p className="information_error_message">Le champs est requis ou invalide</p>}
                 </div>
-
-                <Btn
-                    onClickFunction={(e) => checkIfFormIsValid(e, profil)}
-                    message="Valider"
-                    color="success"
-                />
+                <div style={{ display: 'flex', margin: 'auto' }}>
+                    <Btn
+                        onClickFunction={(e) => checkIfFormIsValid(e, profil)}
+                        message="Valider"
+                        color="success"
+                    />
+                </div>
 
             </form>
 

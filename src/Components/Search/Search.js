@@ -144,6 +144,7 @@ export default function Search() {
             }
         }
     }, [data])
+    console.log("value", value);
     const removeEstablishmentToFav = (e) => {
         axios.delete(`fav/establishments/${e}`)
             .then(res => {
@@ -262,6 +263,7 @@ export default function Search() {
                         setResults={(e) => setResults(e)}
                         setIsLoading={(e) => setIsLoading(e)}
                         handleChange={(e, elem) => handleChange(e, elem)}
+                        value={value}
                     />
                     {
                         isLoading &&
@@ -278,7 +280,7 @@ export default function Search() {
             <div className="containerSearch">
                 {
                     dataToMap && dataToMap.length !== 0 && <>
-                        <h1> Voici les {dataToMap.length > 1 ? `${dataToMap.length} résultats` : `${dataToMap.length} résultat`} </h1>
+                        <h1> {dataToMap.length > 1 ? `${dataToMap.length} résultats` : `${dataToMap.length} résultat`} </h1>
                         <Select
                             closeMenuOnSelect={true}
                             value={defaultSelect && defaultSelect}

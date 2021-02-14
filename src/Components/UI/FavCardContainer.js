@@ -79,7 +79,6 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
             setSmallScreen(false);
         }
     }
-    console.log("smallScreen", smallScreen);
     if (redirectTo) {
         return <Redirect to={`${redirectTo}`} />
     }

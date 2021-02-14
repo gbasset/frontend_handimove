@@ -11,9 +11,9 @@ export default function Map({ array, isCard }) {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {    array && array.map(elem =>
+            {    array && array.map((elem, i) =>
                 <Marker
-                    position={[elem.latitude, elem.longitude]} key={elem.ID}>
+                    position={[elem.latitude, elem.longitude]} key={i}>
                     <Popup>
                         <span className="name-mdph">{elem.name}</span>
                         <div className="mdph-contain">
