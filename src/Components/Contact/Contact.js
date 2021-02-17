@@ -24,9 +24,10 @@ export default function Contact() {
         contact: "",
     })
     const { handleChangeForm, valueForm, setValueForm } = UseForm(form);
-    console.log("valueForm", valueForm);
+
     const [isLoading, setIsLoading] = useState(false)
     const [isSend, setIsSend] = useState(false)
+    console.log("isSend", isSend);
     useEffect(() => {
         setForm(valueForm)
     }, [valueForm])
@@ -48,20 +49,17 @@ export default function Contact() {
     }
     const senMessage = () => {
         setIsLoading(true)
-        const message = user ? { ...form, user_id: user.id_user } : form
-        const check = checkRequired(message)
-        if (check) {
-            axios.post(`/messages/send`, message)
-                .then(res => {
-                    StatusAlertService.showSuccess("Message envoyé avec succès")
-                    setIsLoading(false)
-                    setIsSend(true)
-                })
-                .catch(error => {
-                    StatusAlertService.showError('une erreur est survenue pendant l\'envoi')
-                    setIsLoading(false)
-                })
-        }
+        const message = user ? { ...form, user_id: user.id_user } : { ...form, user_id: '' }
+        axios.post(`/messages/send`, message)
+            .then(res => {
+                StatusAlertService.showSuccess("Message envoyé avec succès")
+                setIsLoading(false)
+                setIsSend(true)
+            })
+            .catch(error => {
+                StatusAlertService.showError('une erreur est survenue pendant l\'envoi')
+                setIsLoading(false)
+            })
     }
     const options = [
         { value: "Demande de création d'établissement", label: "Je suis un établissement ..." },
@@ -80,6 +78,15 @@ export default function Contact() {
                         value={valueForm.name}
                         onChangeFunction={handleChangeForm}
                     />
+                    {!user &&
+                        <InputChange
+                            name="contact"
+                            label="Contact"
+                            type="mail"
+                            value={valueForm.contact}
+                            onChangeFunction={handleChangeForm}
+                        />
+                    }
 
                     <label>Sujet</label>
                     <SelectCustom
@@ -99,6 +106,7 @@ export default function Contact() {
                         <Btn
                             onClickFunction={() => senMessage()}
                             message="Envoyer"
+                            disabled={form.message.length !== 0 && form.name.length !== 0 ? false : true}
                         />
                     </div>
                 </>

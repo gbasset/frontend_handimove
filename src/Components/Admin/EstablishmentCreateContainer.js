@@ -243,6 +243,6 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
                 }
             </div>
 
-        </div>
+        </div >
     )
 }

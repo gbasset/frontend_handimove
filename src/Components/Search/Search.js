@@ -144,7 +144,7 @@ export default function Search() {
             }
         }
     }, [data])
-    console.log("value", value);
+
     const removeEstablishmentToFav = (e) => {
         axios.delete(`fav/establishments/${e}`)
             .then(res => {

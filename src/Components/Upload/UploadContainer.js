@@ -66,7 +66,8 @@ const img = {
     maxHeight: 165,
 };
 
-function StyledDropzone({ id, setModalIsOppen, url }) {
+function StyledDropzone({ idOfEstablishment, setModalIsOppen, url }) {
+    console.log("id", idOfEstablishment);
     const [uploadPercentage, setUploadPercentage] = useState(0)
     const [files, setFiles] = useState([]);
     const {
@@ -96,7 +97,7 @@ function StyledDropzone({ id, setModalIsOppen, url }) {
         for (const key of Object.keys(files)) {
             formFiles.append("file", files[key]);
         }
-        const finalUrl = id ? `/images/upload/${url}/${id}` : `/images/upload/${url}`
+        const finalUrl = idOfEstablishment ? `/images/upload/${url}/${idOfEstablishment}` : `/images/upload/${url}`
         axios.post(finalUrl, formFiles, {
             onUploadProgress: progressEvent => {
                 setUploadPercentage(Math.round(progressEvent.loaded / progressEvent.total) * 100)

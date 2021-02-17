@@ -17,8 +17,8 @@ import Register from './Components/Register/Register';
 import { Context } from './Context/Context'
 import EditPassWord from './Components/User/EditPassWord'
 import EstablishmentCreateContainer from './Components/Admin/EstablishmentCreateContainer'
+import Footer from './Components/Footer/Footer'
 let jwt = require('jsonwebtoken');
-
 function App() {
   const {
     user,
@@ -55,12 +55,10 @@ function App() {
           <Route exact path="/user" component={User} />
           <Route exact path="/changeMyPassword" component={EditPassWord} />
           <Route exact path="/editEstablishment/:id" component={EstablishmentCreateContainer} />
-          {/* <Route exact path="/events" component={Events} /> */}
           <Route exact path="/search" component={Search} />
           <Route exact path="/help" component={Help} />
-
         </Switch>
-        {/* <Header /> */}
+        {/* <Footer /> */}
       </div>
     </BrowserRouter>
   );

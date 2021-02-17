@@ -84,7 +84,7 @@ export default function EstablishmentContainer() {
         text: 'Code postal',
     },
     ]
-
+    console.log("idOfEstablishment", idOfEstablishment);
     return (
         <div className="establishment_container">
             { !idOfEstablishment &&

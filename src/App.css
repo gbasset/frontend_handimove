@@ -89,6 +89,13 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   position: relative;
 }
 
+.url_esta {
+  max-width: 270px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
 .url {
   width: 90%;
   text-align: center;

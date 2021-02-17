@@ -73,7 +73,7 @@ function Header() {
                                     pathname: "/search"
                                 }}
                                 activeStyle={{ color: "#f6b93b" }}
-                            >Se divertir</NavLink>
+                            >Rechercher</NavLink>
                         </li>
                         {/* <li
                     // onClick={hideMenu} 

@@ -138,7 +138,7 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                 <div>{data.category}</div>
                                 {data.phone && <div> <i className="fas fa-phone"></i> {data.phone}</div>}
                                 {
-                                    data.url_website && <div>
+                                    data.url_website && <div >
                                         <a href={data.url_website} target="_blank" rel="noopener noreferrer"> {data.url_website}</a>
                                     </div>
                                 }
@@ -301,7 +301,7 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                             </div>
                         </div>
                         {
-                            data.url_website && <div>
+                            data.url_website && <div className="url_esta">
                                 <a href={data.url_website} target="_blank" rel="noopener noreferrer"> {data.url_website}</a>
                             </div>
                         }
