@@ -41,9 +41,9 @@ export default function AuthenticationContainer() {
     }
     return (
         <div className="auth_container">
-            <h1>Me connecter</h1>
+            <h1 className="welcome">Me connecter</h1>
             <div className="poppin">
-                <h1>Bienvenue </h1>
+                <h1 className="welcome-connect">Bienvenue </h1>
                 <form >
                     <label htmlFor="">
                         <i className="fa fa-envelope"></i>

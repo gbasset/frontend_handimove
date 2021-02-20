@@ -104,7 +104,7 @@ export default function Contact() {
                     />
                     <div className="btn-send-message">
                         <Btn
-                            onClickFunction={() => senMessage()}
+                            onClickFunction={form.message.length !== 0 && form.name.length !== 0 ? () => senMessage() : function () { }}
                             message="Envoyer"
                             disabled={form.message.length !== 0 && form.name.length !== 0 ? false : true}
                         />

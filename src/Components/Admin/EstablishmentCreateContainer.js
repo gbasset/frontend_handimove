@@ -2,11 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import Btn from '../UI/Btn'
 import Loader from 'react-loader-spinner'
-import UseForm from '../../Hooks/UseForm'
 import InputChange from '../UI/InputChange'
 import { StatusAlertService } from 'react-status-alert'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import Modal from '../UI/Modal';
+import PopinConfirm from '../UI/PopinConfirm'
 export default function EstablishmentCreateContainer({ idOfEstablishment, setIdOfEstablishment, setModalIsOppen }) {
     const animatedComponents = makeAnimated();
     const [isLoading, setIsLoading] = useState(false)
@@ -24,7 +25,11 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
         handicaps: "",
         siret: "",
     })
-    const [defaultSelect, setDefaultSelect] = useState()
+    const [defaultSelect, setDefaultSelect] = useState();
+    const [idOfPicture, setIdOfPicture] = useState();
+    const [modalPicturesIsOppen, setModalPicturesIsOppen] = useState(false);
+    const [popConfirm, setPopConfirm] = useState(false);
+    const [images, setImages] = useState([])
 
     useEffect(() => {
         if (idOfEstablishment && idOfEstablishment) {
@@ -104,6 +109,40 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
                 setIsLoading(false)
             })
     }
+    useEffect(() => {
+        if (modalPicturesIsOppen)
+            axios.get(`/images/establishment/${idOfEstablishment}`)
+                .then(res => {
+                    setImages(res.data)
+                })
+                .catch(error => {
+                    StatusAlertService.showError(error.response.data)
+                })
+    }, [modalPicturesIsOppen])
+
+    const deleteApicture = () => {
+        setIsLoading(true)
+        axios.delete(`/images/img/establish/${idOfPicture}`)
+            .then(res => {
+                StatusAlertService.showSuccess("Image supprimée avec succès")
+                setIsLoading(false)
+                axios.get(`/images/establishment/${idOfEstablishment}`)
+                    .then(res => {
+                        console.log("res", res.data);
+                        setImages(res.data)
+                        setPopConfirm(false)
+                        setIdOfPicture()
+                    })
+                    .catch(error => {
+                        StatusAlertService.showError(error.response.data)
+                    })
+            })
+            .catch(error => {
+                StatusAlertService.showError('une erreur est survenue pendant la suppression')
+                setIsLoading(false)
+            })
+    }
+    console.log("popConfirm", popConfirm);
     return (
         <div className="establishment_container">
             {
@@ -118,7 +157,62 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
                     />
                 </div>
             }
+            <Modal
+                isOpen={modalPicturesIsOppen}
+                width="1200"
+                height="650"
+                onClose={() => setModalPicturesIsOppen(false)}
+            >
+                <div className="modal_body">
+                    <h1>Gestion des images d'un établissement</h1>
 
+                    {images && images.length === 0 ?
+                        <> Il n'y a pas encore d"images </>
+                        :
+                        <div className="images-gestion-containe">
+                            {images.map(image =>
+                                <div>
+                                    {popConfirm &&
+                                        <PopinConfirm
+                                            cancel={() => setPopConfirm(false)}
+                                            title={`Voullez vous vraiment supprimer cette image ?`}
+                                        // message={`This banner could not be removed because it is used in the context of a campaign.`}
+                                        >
+                                            <div className="btnCenter">
+                                                <Btn
+                                                    onClickFunction={(e) => { setPopConfirm() }}
+                                                    message="Annuler"
+                                                    color="alert"
+                                                    style="primary"
+                                                />
+                                                <Btn
+                                                    onClickFunction={(e) => { deleteApicture() }}
+                                                    message="Supprimer"
+                                                    color="success"
+                                                    style="outline"
+                                                />
+                                            </div>
+                                        </PopinConfirm>
+                                    }
+                                    <img key={image.id} src={image.image_url} alt={` ${image.name}`} />
+                                    <span>{image.image_name}</span>
+                                    <Btn
+                                        onClickFunction={() => { setPopConfirm(true); setIdOfPicture(image.id) }}
+                                        message="Supprimer"
+                                        color="alert"
+                                        style="secondary"
+                                    />
+
+                                </div>
+                            )}
+                        </div>
+                    }
+
+                    <div className="modal_footer_center ">
+
+                    </div>
+                </div>
+            </Modal>
             <div className="form-creation" >
                 <div className="container-btn-modif">
                     {idOfEstablishment && <i className="fas fa-arrow-left returnBtn"
@@ -127,6 +221,9 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
                     {idOfEstablishment && <i className="fas fa-cloud-upload-alt upload-icon"
                         title="Uploader Une image"
                         onClick={() => setModalIsOppen(true)}></i>}
+                    {idOfEstablishment && <i className="fas fa-images"
+                        title="Voir les images associées"
+                        onClick={() => setModalPicturesIsOppen(true)}></i>}
                 </div>
                 <h2> {idOfEstablishment ? "Modification d'un établissement" : "Création d'un établissement"}</h2>
                 <InputChange

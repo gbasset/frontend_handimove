@@ -347,6 +347,27 @@ input[type="text"].searchbar::-webkit-input-placeholder {
   z-index: 10000 !important;
 }
 
+.images-gestion-containe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.images-gestion-containe div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px auto;
+}
+
+.images-gestion-containe img {
+  max-width: 450px;
+  max-height: 280px;
+}
+
 @media screen and (max-width: 900px) {
   .search_type_selection select {
     font-size: 15px;

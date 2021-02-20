@@ -67,7 +67,7 @@ const img = {
 };
 
 function StyledDropzone({ idOfEstablishment, setModalIsOppen, url }) {
-    console.log("id", idOfEstablishment);
+
     const [uploadPercentage, setUploadPercentage] = useState(0)
     const [files, setFiles] = useState([]);
     const {
