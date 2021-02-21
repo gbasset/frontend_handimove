@@ -37,6 +37,7 @@ export default function Search() {
     const [redirectTo, setredirectTo] = useState()
     const [establishmentSelected, setEstablishmentSelected] = useState()
     const [defaultSelect, setDefaultSelect] = useState()
+    const [dataToMap, setDataToMap] = useState()
     const animatedComponents = makeAnimated();
 
     const handleSelectChange = (e) => {
@@ -58,6 +59,15 @@ export default function Search() {
             setResults2(myNewArray)
         }
     }, [defaultSelect])
+
+    useEffect(() => {
+        if (results2 && defaultSelect !== null) {
+            setDataToMap(results2)
+        } else {
+            setDataToMap(results)
+        }
+    }, [defaultSelect, results2])
+
     const handicapsList = [
         { value: "auditif", label: "auditif" },
         { value: "mental", label: "mental" },
@@ -92,7 +102,6 @@ export default function Search() {
         if (user) {
             axios.post(`fav/establishment/${user.id_user}/${e}`)
                 .then(res => {
-                    console.log(res.data)
                     StatusAlertService.showSuccess("Etablissement ajouté avec succès à vos favoris !")
                     setReloadTheFavEstablishment(true)
                 })
@@ -107,7 +116,6 @@ export default function Search() {
         if (user) {
             axios.post(`fav/event/${user.id_user}/${e}`)
                 .then(res => {
-                    console.log(res.data)
                     StatusAlertService.showSuccess("L'événement à été  ajouté avec succès à vos favoris !")
                     setReloadTheFavEvents(true)
                 })
@@ -195,13 +203,7 @@ export default function Search() {
     if (redirectTo) {
         return <Redirect to={`${redirectTo}`} />
     }
-    let dataToMap;
 
-    if (results2 && defaultSelect !== null) {
-        dataToMap = results2
-    } else {
-        dataToMap = results
-    }
 
     return (
         <div className="search_container">
@@ -260,7 +262,7 @@ export default function Search() {
                         naturOfSearch={naturOfSearch}
                         listOfSites={listOfSites}
                         setListOfStites={(e) => setListOfStites(e)}
-                        setResults={(e) => setResults(e)}
+                        setResults={(e) => { setResults(e); setDefaultSelect(null); setResults2() }}
                         setIsLoading={(e) => setIsLoading(e)}
                         handleChange={(e, elem) => handleChange(e, elem)}
                         value={value}

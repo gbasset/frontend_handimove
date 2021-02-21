@@ -21,7 +21,6 @@ export default function EstablishmentCreateContainer({ idOfComment, setIdOfComme
             axios.get(`/admin/comment/${idOfComment}`)
                 .then(res => {
                     setIsLoading(false)
-                    console.log("res", res.data);
                     // setDefaultSelect(res.data[0].handicaps.split(';').map(val =>
                     //     ({ value: val, label: val })))
                     let newElement = res.data[0]
@@ -45,7 +44,6 @@ export default function EstablishmentCreateContainer({ idOfComment, setIdOfComme
     const changeStatusComment = () => {
         setIsLoading(true)
         const status = { status: form.status_comment }
-        console.log("status", status);
         axios.put(`/admin/comment/${idOfComment}`, status)
             .then(res => {
                 StatusAlertService.showSuccess("Commentaire modifié avec succès")

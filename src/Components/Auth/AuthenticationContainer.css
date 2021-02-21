@@ -1,5 +1,5 @@
 .auth_container {
-    margin-top: 75px;
+    margin-top: 85px;
     text-align: center;
     height: 90vh;
     background: linear-gradient(to top, #82ccddab 45%, #82ccdd);
@@ -76,3 +76,11 @@
 }
 
 .btt-second {}
+
+@media screen and (max-width: 900px) {
+    .poppin {
+        left: calc(50% - 180px);
+        overflow: hidden;
+        width: 360px;
+    }
+}

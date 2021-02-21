@@ -254,7 +254,7 @@ input[type="text"].searchbar::-webkit-input-placeholder {
 
 .container-informations-establishment {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 90%;

@@ -27,7 +27,6 @@ export default function Contact() {
 
     const [isLoading, setIsLoading] = useState(false)
     const [isSend, setIsSend] = useState(false)
-    console.log("isSend", isSend);
     useEffect(() => {
         setForm(valueForm)
     }, [valueForm])

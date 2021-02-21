@@ -11,7 +11,8 @@ import { Redirect } from 'react-router-dom';
 import { Context } from '../../Context/Context'
 import moment from 'moment'
 import { StatusAlertService } from 'react-status-alert'
-import Map from '../Map/Map'
+import Map from '../Map/Map';
+import Comment from '../../Components/Comments/Comment'
 export default function EstablishmentCardContainer({ data, mode, naturOfSearch, favEstablishments, favEvents, addEventToFav, removeEventsToFav, addEstablishToFavorites, removeEstablishmentToFav, setEstablishmentSelected }) {
 
     const [arrayOfIds, setArrayOfIds] = useState()
@@ -180,10 +181,17 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                             timeout={3000}
                                         />
                                     }
-                                    <CommentContainer
+
+                                    {comments && comments.map((com, i) =>
+                                        <Comment key={i}
+                                            comment={com}
+                                            searchMode={true}
+                                        />
+                                    )}
+                                    {/* <CommentContainer
                                         commentsList={comments}
                                         setCommentIsOppen={() => setCommentIsOppen(false)}
-                                    />
+                                    /> */}
                                 </div>
                             }
                             {newCommentIsOppen &&

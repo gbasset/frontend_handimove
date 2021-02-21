@@ -66,7 +66,6 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
         { value: "visuel", label: "visuel" },
         { value: "moteur", label: "moteur" },
     ]
-    console.log("form", form);
     const createEstablishment = () => {
         setIsLoading(true)
         axios.post(`admin/establisments/`, form)
@@ -128,7 +127,6 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
                 setIsLoading(false)
                 axios.get(`/images/establishment/${idOfEstablishment}`)
                     .then(res => {
-                        console.log("res", res.data);
                         setImages(res.data)
                         setPopConfirm(false)
                         setIdOfPicture()
@@ -142,7 +140,6 @@ export default function EstablishmentCreateContainer({ idOfEstablishment, setIdO
                 setIsLoading(false)
             })
     }
-    console.log("popConfirm", popConfirm);
     return (
         <div className="establishment_container">
             {

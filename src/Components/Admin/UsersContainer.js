@@ -68,7 +68,6 @@ export default function UserContainer() {
     },
     ]
 
-    console.log("data", data);
     return (
         <div className="establishment_container">
             {!idOfUser &&

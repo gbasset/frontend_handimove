@@ -40,7 +40,6 @@ export default function useFetch() {
                     jwt.verify(tokenToVerify, process.env.REACT_APP_SECRET, function (err, decoded) {
                         if (err) {
                             console.log("err", err);
-                            console.log();
                             StatusAlertService.showSuccess("Nous n'avons pas pu vous connecter, veuillez recommencer")
                         }
                         else {

@@ -62,7 +62,6 @@ export default function AccountEditInformations() {
                         setIsRealoading(true)
                         axios.put(`/users/${user.id_user}`, form)
                             .then(res => {
-                                console.log("res", res.data[0]);
                                 const userNewData = { token: token, ...res.data[0] }
                                 localStorage.setItem('user', JSON.stringify(userNewData))
                                 setUser(userNewData)

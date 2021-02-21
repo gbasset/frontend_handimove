@@ -26,7 +26,6 @@ export default function UserCreateContainer({ idOfUser, setIdOfUser }) {
             axios.get(`/adminusers/user/${idOfUser}`)
                 .then(res => {
                     setIsLoading(false)
-                    console.log(res);
                     setForm(res.data[0])
                 })
                 .catch(error => {

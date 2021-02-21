@@ -141,8 +141,12 @@
         font-size: 25px;
         margin-top: 10px;
         text-align: center;
+        line-height: normal;
     }
     .search_title {
         margin: 20px auto;
+    }
+    .container_list_of_town ul {
+        width: 80%;
     }
 }

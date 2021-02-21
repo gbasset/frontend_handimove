@@ -1,5 +1,5 @@
 .home_container {
-    margin-top: 75px;
+    margin-top: 85px;
 }
 
 .home_container h5 {
@@ -19,6 +19,7 @@
     color: #fff;
     text-align: center;
     font-weight: bold;
+    margin-top: 0px;
 }
 
 .main-home {
@@ -35,6 +36,7 @@
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    color: #18180f;
     background: linear-gradient(to top, #ffb32e 60%, #ffcd76c4, #fad390);
 }
 
@@ -143,7 +145,7 @@
     padding: 10px;
     font-weight: 500;
     font-size: 22px;
-    color: white;
+    color: #18180f;
 }
 
 .container-steps-desktop div {
@@ -164,7 +166,7 @@
     padding: 10px;
     font-weight: 500;
     font-size: 22px;
-    color: white;
+    color: black;
 }
 
 .container-steps-desktop div img {
@@ -193,7 +195,7 @@
     padding: 10px;
     font-weight: 500;
     font-size: 22px;
-    color: white;
+    color: black;
 }
 
 .container-steps-mobile div img {
@@ -210,7 +212,7 @@
 
 @media screen and (max-width: 900px) {
     .home_container {
-        margin-top: 73px;
+        margin-top: 84px;
     }
     .main-home {
         height: auto;
@@ -245,7 +247,7 @@
     .container-first-item p {
         width: 100%;
     }
-    .container-first-item {
+    /* .container-first-item {
         width: 100%;
-    }
+    } */
 }
