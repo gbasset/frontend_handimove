@@ -13,6 +13,8 @@ import moment from 'moment'
 import { StatusAlertService } from 'react-status-alert'
 import Map from '../Map/Map';
 import Comment from '../../Components/Comments/Comment'
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
+
 export default function EstablishmentCardContainer({ data, mode, naturOfSearch, favEstablishments, favEvents, addEventToFav, removeEventsToFav, addEstablishToFavorites, removeEstablishmentToFav, setEstablishmentSelected }) {
 
     const [arrayOfIds, setArrayOfIds] = useState()
@@ -118,16 +120,16 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                         {
                             arrayOfIds && arrayOfIds.includes(data.id_etablishment) ?
                                 <div className="header-card-modal">
-                                    <p> {data.name}   <i className="fas fa-heart heart full-heart"
+                                    <p> {data.name}   <MdFavorite className="heart full-heart"
                                         onClick={mode === "search" ?
                                             (e) => removeEstablishmentToFav(favEstablishments.find(el => el.id_establishment === data.id_etablishment).ID_fav) :
                                             (e) => removeEstablishmentToFav(data.ID_fav)
-                                        }></i></p>
+                                        } /></p>
                                 </div> :
                                 <div className="header-card-modal">
-                                    <p>{data.name} <i className="far fa-heart heart"
+                                    <p>{data.name} <MdFavoriteBorder className="heart"
                                         onClick={(e) => addEstablishToFavorites(data.id_etablishment)}
-                                    ></i></p>
+                                    /></p>
                                 </div>
                         }
                         <div className="container-informations-establishment">
@@ -212,16 +214,16 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                         {
                             arrayOfIds && arrayOfIds.includes(data.id_etablishment) ?
                                 <div className="header-card">
-                                    <p> {data.name}   <i className="fas fa-heart heart full-heart"
+                                    <p> {data.name}   <MdFavorite className="heart full-heart"
                                         onClick={mode === "search" ?
                                             (e) => removeEstablishmentToFav(favEstablishments.find(el => el.id_establishment === data.id_etablishment).ID_fav) :
                                             (e) => removeEstablishmentToFav(data.ID_fav)
-                                        }></i></p>
+                                        } /></p>
                                 </div> :
                                 <div className="header-card">
-                                    <p>{data.name} <i className="far fa-heart heart"
+                                    <p>{data.name} <MdFavoriteBorder className="heart"
                                         onClick={(e) => addEstablishToFavorites(data.id_etablishment)}
-                                    ></i></p>
+                                    /></p>
                                 </div>
                         }
                     </>
@@ -232,18 +234,18 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                 <div className="header-card">
                                     <p>
                                         {data.establishment_name}
-                                        <i className="fas fa-heart heart full-heart"
+                                        <MdFavorite className="heart full-heart"
                                             onClick={mode === "search" ?
                                                 (e) => removeEstablishmentToFav(favEstablishments.find(el => el.id_establishment === data.id_establishment).ID_fav) :
                                                 (e) => removeEstablishmentToFav(data.ID_fav)
-                                            }></i>
+                                            } />
                                     </p>
                                 </div> :
                                 <div className="header-card">
                                     <p>
-                                        {data.name} <i className="far fa-heart heart"
+                                        {data.name} <MdFavoriteBorder className="heart"
                                             onClick={(e) => addEstablishToFavorites(data.id_establishment)}
-                                        ></i>
+                                        />
                                     </p>
                                 </div>
                         }
@@ -335,18 +337,18 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                                 <div className="header-card">
                                     <p>
                                         {data.name}
-                                        <i className="fas fa-heart heart full-heart"
+                                        <MdFavorite className="heart full-heart"
                                             onClick={mode === "search" ?
                                                 (e) => removeEventsToFav(favEvents.find(el => el.id_event === data.id_event).ID_fav) :
                                                 (e) => removeEventsToFav(data.ID_fav)
-                                            }></i>
+                                            } />
                                     </p>
                                 </div> :
                                 <div className="header-card">
                                     <p>
-                                        {data.name} <i className="far fa-heart heart"
+                                        {data.name} <MdFavoriteBorder className="heart"
                                             onClick={(e) => addEventToFav(data.id_event)}
-                                        ></i>
+                                        />
                                     </p>
                                 </div>
                         }
@@ -357,11 +359,11 @@ export default function EstablishmentCardContainer({ data, mode, naturOfSearch, 
                             arrayOfIds && arrayOfIds.includes(data.id_event) &&
                             <div className="header-card">
                                 <p>
-                                    {data.name} <i className="fas fa-heart heart full-heart"
+                                    {data.name} <MdFavorite className="heart full-heart"
                                         onClick={mode === "search" ?
                                             (e) => removeEventsToFav(favEvents.find(el => el.id_event === data.id_event).ID_fav) :
                                             (e) => removeEventsToFav(data.ID_fav)
-                                        }></i>
+                                        } />
                                 </p>
                             </div>
                         }
