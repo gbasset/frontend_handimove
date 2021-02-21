@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StatusAlertService } from 'react-status-alert'
 import Contact from '../Contact/Contact'
 import { withRouter } from 'react-router-dom'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 import './Home.css'
 import cardFrance from '../../Assets/France-regions-svg.svg'
 import pict1 from '../../Assets/search.png'
@@ -32,7 +33,7 @@ function Home(props) {
                             </div>
                             <div className="container-first-item">
                                 <div className="card-container-home">
-                                    <span><i className="fas fa-map-marker-alt"></i></span>
+                                    <span><FaMapMarkerAlt className="item-card-map" /></span>
                                     <img src={cardFrance} alt="" />
                                 </div>
                             </div>

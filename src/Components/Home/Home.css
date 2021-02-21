@@ -1,5 +1,5 @@
 .home_container {
-    margin-top: 85px;
+    margin-top: 75px;
 }
 
 .home_container h5 {
@@ -98,7 +98,7 @@
     color: #18180f;
 }
 
-.container-first-item span i {
+.item-card-map {
     font-size: 28px;
     color: #32d055;
 }
@@ -212,7 +212,7 @@
 
 @media screen and (max-width: 900px) {
     .home_container {
-        margin-top: 84px;
+        margin-top: 75px;
     }
     .main-home {
         height: auto;
@@ -246,6 +246,9 @@
     }
     .container-first-item p {
         width: 100%;
+    }
+    .contact-home {
+        height: 115vh;
     }
     /* .container-first-item {
         width: 100%;

@@ -120,12 +120,12 @@
     margin: auto;
 }
 
-.container-navigation-mobile ul i {
+.item-admin {
     font-size: 30px;
     cursor: pointer;
 }
 
-.container-navigation-mobile ul i:hover {
+.item-admin:hover {
     font-size: 30px;
     cursor: pointer;
 }
